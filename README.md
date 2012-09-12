@@ -1,7 +1,7 @@
 LordDesign.Utilities
 ====================
 
-This is a very simple (at first) class library for universal utilities such as logging.
+This is a very simple (at first) class library for universal utilities such as error logging.
 
 ### Dependencies
 - ELMAH
