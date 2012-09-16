@@ -29,3 +29,7 @@ This class simply wraps the basic ELMAH exception logger and will log to the elm
     }
 
 Now you can do all of your exception logging with just one simple line of code.
+
+### License
+
+LordDesign.Utilities by Lord Design (http://lorddesign.net) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
