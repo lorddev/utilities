@@ -32,4 +32,4 @@ Now you can do all of your exception logging with just one simple line of code.
 
 ### License
 
-LordDesign.Utilities by Lord Design (http://lorddesign.net) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+LordDesign.Utilities by Lord Design (http://lorddesign.net) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/. You may use it for commercial purposes, but if you modify it, the modified version must likewise be open-source.
