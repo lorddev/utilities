@@ -9,6 +9,8 @@
 
 namespace LordDesign.Utilities
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Provides an interface to access paginable data. Use in conjuction with the GetPage() extension method.
     /// </summary>
@@ -27,5 +29,10 @@ namespace LordDesign.Utilities
         int TotalResults { get; set; }
 
         #endregion
+    }
+
+    public interface IPaginable<T> :  IPaginable
+    {
+        IEnumerable<T> Items { get; set; }
     }
 }
