@@ -12,6 +12,7 @@ namespace LordDesign.Utilities
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Xml.Linq;
 
     /// <summary>
     /// TODO: Update summary.
@@ -46,5 +47,14 @@ namespace LordDesign.Utilities
         }
 
         #endregion
+
+
+        public static XElement RemoveNamespaces(this XElement e)
+        {
+            // Courtesy http://stackoverflow.com/a/7238007/16454 (Dexter Legaspi)
+            return new XElement(e.Name.LocalName,
+                e.Nodes().Select(n => n is XElement ? RemoveNamespaces(n as XElement) : n),
+                       e.HasAttributes ? e.Attributes().Select(a => a) : null);
+        }
     }
 }
