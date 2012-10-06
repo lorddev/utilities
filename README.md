@@ -5,6 +5,7 @@ This is a very simple (at first) class library for universal utilities such as e
 
 ### Dependencies
 - ELMAH
+- JSON.NET
 - [Tidy.NET](http://sourceforge.net/projects/tidynet/)
 
 ### Logger.cs
