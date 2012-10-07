@@ -12,7 +12,7 @@ This class simply wraps the basic ELMAH exception logger and will log to the elm
 
 #### Usage
 
-    ``` c#
+    ```c#
     using LordDesign.Utilities;
     
     public class MyClass
