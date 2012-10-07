@@ -6,13 +6,13 @@ This is a very simple (at first) class library for universal utilities such as e
 ### Dependencies
 - ELMAH
 - JSON.NET
-- [Tidy.NET](http://sourceforge.net/projects/tidynet/)
 
 ### Logger.cs
 This class simply wraps the basic ELMAH exception logger and will log to the elmah.axd source if the current context is an http application, and to a file if it is not. This is useful for business logic layers in which a class's usage may be over http or in a service.
 
-### Usage
+#### Usage
 
+    ``` c#
     using LordDesign.Utilities;
     
     public class MyClass
@@ -29,8 +29,13 @@ This class simply wraps the basic ELMAH exception logger and will log to the elm
             }
         }
     }
+    ```
 
 Now you can do all of your exception logging with just one simple line of code.
+
+### RssConverter
+
+This class makes it easy to download an RSS feed and parse it. It reads the data with LinqToXml and can output it in JSON format for easy portability. You can utilize the `PostFilter` delegate to filter the results even further.
 
 ### License
 
