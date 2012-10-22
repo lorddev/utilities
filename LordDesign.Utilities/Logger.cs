@@ -1,9 +1,11 @@
-﻿using System;
-using System.Web;
-using Elmah;
-
-namespace LordDesign.Utilities
+﻿namespace LordDesign.Utilities
 {
+    using System;
+    using System.Diagnostics;
+    using System.Web;
+
+    using Elmah;
+
     public class Logger
     {
         public static void Log(Exception e)
@@ -16,6 +18,8 @@ namespace LordDesign.Utilities
             {
                 ErrorLog.Default.Log(new Error(e));
             }
+
+            Debugger.Log(0, "DEBUG", "Exception: " + e);
         }
     }
 }
