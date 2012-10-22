@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Mailbot.cs" company="Lord Design">
-//   (c) Lord Design. Modified GPL: You can use freely and commercially without modification; you can modify if result 
+//   (c) Lord Design. Modified GPL: You may use freely and commercially without modification; you can modify if result 
 //   is also free.
 // </copyright>
 // <summary>
@@ -30,7 +30,9 @@ namespace LordDesign.Utilities
         /// <summary>
         /// The throttles.
         /// </summary>
-        private Throttles throttles = new Throttles();
+        private readonly Throttles throttles = new Throttles();
+
+        private SmtpClient client;
 
         #endregion
 
@@ -51,6 +53,9 @@ namespace LordDesign.Utilities
         {
             // Doesn't do anything except prevent instantiation outside of the singleton.
             this.SmtpServer = Settings.Default.SmtpServer;
+
+            var crypt = new Encryptamajig.AesEncryptamajig();
+
             this.client = new SmtpClient(this.SmtpServer);
         }
 
@@ -77,7 +82,6 @@ namespace LordDesign.Utilities
             ThreadPool.QueueUserWorkItem(this.SendMail, message);
         }
 
-        public SmtpClient client;
 
         private void SendMail(object message)
         {
