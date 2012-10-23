@@ -31,5 +31,23 @@ namespace LordDesign.Utilities.Properties {
                 return ((string)(this["SmtpServer"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SmtpLogin {
+            get {
+                return ((string)(this["SmtpLogin"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SmtpPassword {
+            get {
+                return ((string)(this["SmtpPassword"]));
+            }
+        }
     }
 }

@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Botmail.cs" />
+    <Compile Include="IEachified.cs" />
+    <Compile Include="MailThrottle.cs" />
+    <Compile Include="Crypt.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IPaginable.cs" />

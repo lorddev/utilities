@@ -5,5 +5,11 @@
     <Setting Name="SmtpServer" Type="System.String" Scope="Application">
       <Value Profile="(Default)">mail.google.com</Value>
     </Setting>
+    <Setting Name="SmtpLogin" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SmtpPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
