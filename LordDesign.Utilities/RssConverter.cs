@@ -11,11 +11,10 @@
 namespace LordDesign.Utilities
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Linq;
-    using System.Xml;
+    using System.Text;
     using System.Xml.Linq;
 
     using Newtonsoft.Json;
@@ -51,8 +50,7 @@ namespace LordDesign.Utilities
             }
         }
 
-        public AfterFilter PostFilter = x =>
-            { return x; };
+        public AfterFilter PostFilter = x => x;
 
         public delegate XDocument AfterFilter(XDocument xml);
 
@@ -62,6 +60,7 @@ namespace LordDesign.Utilities
 
         private XDocument ApplyFilter(XDocument xml, string filter, int maxRecords)
         {
+            XDocument root = xml;
             if (!string.IsNullOrEmpty(filter))
             {
                 var list = xml.Descendants(filter);
@@ -70,14 +69,14 @@ namespace LordDesign.Utilities
                     list = list.Take(maxRecords);
                 }
 
-                var root = new XDocument();
+                root = new XDocument();
                 var rss = new XElement("rss");
                 root.Add(rss);
                 list.ForEach(x => rss.Add(x.RemoveNamespaces()));
-                return root;
+                //list.ForEach(rss.Add);
             }
 
-            return xml;
+            return PostFilter(root);
         }
 
         private void HandleError(Exception error)
@@ -89,8 +88,48 @@ namespace LordDesign.Utilities
         private XDocument LoadFeed()
         {
             string feed = this.DownloadString();
+            feed = CleanFeed(feed);
             var doc = XDocument.Parse(feed);
             return doc;
+        }
+
+        //private string CleanFeed(string feed)
+        //{
+        //    var array = Encoding.UTF8.GetBytes(feed);
+        //    using (var input = new MemoryStream())
+        //    {
+        //        input.Write(array, 0, array.Length);
+        //        input.Position = 0;
+
+        //        using (var output = new MemoryStream())
+        //        {
+        //            var tidy = new Tidy();
+        //            var messages = new TidyMessageCollection();
+        //            tidy.Parse(input, output, messages);
+        //            feed = this.GetString(output);
+        //        }
+
+        //        return feed;
+        //    }
+        //}
+
+        public static string CleanFeed(string feed)
+        {
+            return feed;
+            //using (var doc = Document.FromString(feed))
+            //{
+            //    doc.ShowWarnings = false;
+            //    doc.Quiet = true;
+            //    doc.OutputXhtml = true;
+            //    doc.CleanAndRepair();
+            //    string parsed = doc.Save();
+            //    return parsed;
+            //}
+        }
+
+        private string GetString(MemoryStream stream)
+        {
+            return Encoding.UTF8.GetString(stream.ToArray());
         }
 
         private string DownloadString()
