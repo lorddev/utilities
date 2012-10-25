@@ -62,6 +62,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RestRouteHandler.cs" />
     <Compile Include="RssConverter.cs" />
   </ItemGroup>
   <ItemGroup>
