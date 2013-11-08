@@ -56,9 +56,9 @@ namespace LordDesign.Utilities
                         {
                             var stringContent = new StringContent(serialize(Payload));
                             stringContent.Headers.ContentType = new MediaTypeHeaderValue(format)
-                            {
-                                CharSet = "utf-8"
-                            };
+                                {
+                                    CharSet = "utf-8"
+                                };
                             response = httpClient.PutAsync(endpoint, stringContent).Result;
                             break;
                         }
@@ -66,9 +66,9 @@ namespace LordDesign.Utilities
                         {
                             var stringContent = new StringContent(serialize(Payload));
                             stringContent.Headers.ContentType = new MediaTypeHeaderValue(format)
-                            {
-                                CharSet = "utf-8"
-                            };
+                                {
+                                    CharSet = "utf-8"
+                                };
                             response = httpClient.PostAsync(endpoint, stringContent).Result;
                             break;
                         }
@@ -87,33 +87,24 @@ namespace LordDesign.Utilities
                 {
                     var content = response.Content.ReadAsStringAsync().Result;
 
-                    if (content.Contains(@"xmlns=""http://mylearningplan.com/api/rest/"""))
+                    // Assume we know how to deserialize the object.
+                    if (format.EndsWith("json"))
                     {
-                        // Assume we know how to deserialize the object.
-                        if (format.EndsWith("json"))
-                        {
-                            var dataItem = JsonConvert.DeserializeObject<T>(content);
-
-                            return new ApiResult<dynamic>
-                                {
-                                    StatusCode = response.StatusCode,
-                                    DataItem = dataItem
-                                };
-                        }
-
-                        var contentObject = content.DeserializeAs<T>();
+                        var dataItem = JsonConvert.DeserializeObject<T>(content);
 
                         return new ApiResult<dynamic>
                             {
                                 StatusCode = response.StatusCode,
-                                DataItem = contentObject
+                                DataItem = dataItem
                             };
                     }
+
+                    var contentObject = content.DeserializeAs<T>();
 
                     return new ApiResult<dynamic>
                         {
                             StatusCode = response.StatusCode,
-                            DataItem = content
+                            DataItem = contentObject
                         };
                 }
 
