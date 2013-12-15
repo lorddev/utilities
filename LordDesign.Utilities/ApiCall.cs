@@ -116,26 +116,35 @@ namespace LordDesign.Utilities
         {
             var sb = new StringBuilder(50);
             sb.Append(BaseUrl);
-            if (!BaseUrl.EndsWith("/"))
+
+            if (string.IsNullOrWhiteSpace(Controller))
+            {
+                return sb.ToString();
+            }
+            
+            if (!this.BaseUrl.EndsWith("/"))
             {
                 sb.Append("/");
             }
 
-            sb.Append(Controller.ToLower());
+            sb.Append(this.Controller.ToLower());
 
-            if (!Controller.EndsWith("/"))
+            if (!this.Controller.EndsWith("/"))
             {
                 sb.Append("/");
             }
 
-            if (!string.IsNullOrEmpty(Id))
+            if (!string.IsNullOrWhiteSpace(this.Id))
             {
-                sb.Append(Id.ToLower());
+                if (!string.IsNullOrEmpty(this.Id))
+                {
+                    sb.Append(this.Id.ToLower());
+                }
             }
 
-            if (!string.IsNullOrEmpty(Action))
+            if (!string.IsNullOrWhiteSpace(this.Action))
             {
-                sb.Append("/").Append(Action.ToLower());
+                sb.Append("/").Append(this.Action.ToLower());
             }
 
             return sb.ToString();
