@@ -5,6 +5,9 @@
 // </copyright>
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Collections.Generic;
+
 namespace LordDesign.Utilities
 {
     /// <summary>
@@ -17,7 +20,7 @@ namespace LordDesign.Utilities
         /// <summary>
         /// Gets or sets the addressee.
         /// </summary>
-        public string Addressee { get; set; }
+        public IEnumerable<string> Addressees { get; set; }
 
         /// <summary>
         /// Gets or sets the addresser.
@@ -27,6 +30,9 @@ namespace LordDesign.Utilities
         public string Subject { get; set; }
 
         public string Body { get; set; }
+
+        public bool Ssl { get; set; }
+
         #endregion
     }
 }
