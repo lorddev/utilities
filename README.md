@@ -41,7 +41,7 @@ Now you can do all of your exception logging with just one simple line of code.
 A handy generic DataManager abstract base class for your business layer that serves to enforce a CRUD contract between your business entities and your data layer. Useful for pagination as well.
 
 ### Mailbot
-A multithreaded SMTP queued mail sender, has a throttle based on Google Apps maximums for mail frequency received at a single account.
+A multithreaded SMTP queued mail sender, has a throttle based on Google Apps maximums for mail frequency received at a single account. Important: Create a test project and call `Crypt.HideSecretPassword()` using the same byte array used in the Mailbot class. Store the resulting encrypted password in the config file, at `LordDesign.Utilities.Properties.Settings/SmtpPassword`.
 
 ### Crypt
 Bi-directional encryption methods useful for storing credit cards or saving passwords in configuration files. (Not recommend for use with user's site credentials as those should be one-way, and this encryption is random so two identical strings when encrypted will never match. By design.)
