@@ -12,7 +12,7 @@ This is a useful class library for universal utilities such as error logging, em
 
 ### ApiCall
 
-The ApiCall class wraps the .NET HttpClient, and returns a deserialized object using Generics. It also features a Dictionary for query parameter input. The WebApiCall subclass will build your endpoint for ASP.NET MVC Web API based on the supplied controller, action, and id as input parameters.
+The `ApiCall` class wraps the .NET HttpClient, and returns a deserialized object using Generics. It also features a Dictionary for query parameter input. The `WebApiCall` subclass will build your endpoint for ASP.NET MVC Web API based on the supplied controller, action, and id as input parameters.
 
 ### Logger
 
@@ -45,6 +45,27 @@ Now you can do all of your exception logging with just one simple line of code.
 
 `IEachified` - Indicates that a collection can perform a delegate on each item in its collection apart from the mission IEnumerable<T>.ForEach() (for which I also have an extension in this library in `Extensions.cs`)
 
+### Distance API
+
+POCO classes for accessing the Google Maps distance API.
+
+Usage with a custom JSON contract resolver that converts the Google JSON property names to POCO object properties.
+
+    const string BaseUri = "https://maps.googleapis.com/maps/api/distancematrix/json";
+
+    using (
+        IApiCall client = new ApiCall(
+            BaseUri,
+            new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
+    {
+        client.QueryParams.Add("sensor", "false");
+        client.QueryParams.Add("origins", "95969");
+        client.QueryParams.Add("destinations", "95928");
+        IApiResult<dynamic> result = client.Execute<DistanceResults>();
+        Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+        Assert.AreEqual("25 mins", result.DataItem.GetResult(0).Duration.Text);
+    }
+
 ### DataManager
 
 A handy generic DataManager abstract base class for your business layer that serves to enforce a CRUD contract between your business entities and your data layer. Useful for pagination as well.
@@ -67,4 +88,4 @@ A REST route handler that can be used in Global.asax to convert a REST url reque
 
 ### License
 
-LordDesign.Utilities by Lord Design (http://lorddesign.net) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/. You may use it for commercial purposes, but if you modify it, the modified version must likewise be open-source.
+LordDesign.Utilities by Lord Design (http://lorddesign.net) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/. You may _use it for commercial purposes, but if you modify it, the modified version must likewise be open-source.
