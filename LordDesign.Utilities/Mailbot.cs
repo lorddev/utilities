@@ -12,7 +12,6 @@
 
 using System.Net;
 using System.Net.Mail;
-using System.Threading;
 using System.Threading.Tasks;
 using LordDesign.Utilities.Properties;
 
@@ -107,7 +106,7 @@ namespace LordDesign.Utilities
                                  EnableSsl = botmail.Ssl,
                                  Port = Settings.Default.SmtpPort
                              };
-            
+
             var mm = new MailMessage
                          {
                              From = new MailAddress(botmail.Addresser),

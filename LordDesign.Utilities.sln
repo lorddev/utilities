@@ -1,11 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordDesign.Utilities", "LordDesign.Utilities\LordDesign.Utilities.csproj", "{BDA4FCBB-3582-42E0-B383-1BAB2BC69547}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryptamajig", "..\Encryptamajig\Encryptamajig\Encryptamajig.csproj", "{C9385513-156E-43BB-9120-110905C5C528}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordDesign.Tests", "LordDesign.Tests\LordDesign.Tests.csproj", "{F41E3A90-DCB2-4E86-B9A1-DC45B0DFB998}"
+EndProject
 Global
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = 786e0001-a81c-40a8-96b1-bd100ef383c7
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -19,6 +26,10 @@ Global
 		{C9385513-156E-43BB-9120-110905C5C528}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9385513-156E-43BB-9120-110905C5C528}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9385513-156E-43BB-9120-110905C5C528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41E3A90-DCB2-4E86-B9A1-DC45B0DFB998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41E3A90-DCB2-4E86-B9A1-DC45B0DFB998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41E3A90-DCB2-4E86-B9A1-DC45B0DFB998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41E3A90-DCB2-4E86-B9A1-DC45B0DFB998}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

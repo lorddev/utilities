@@ -5,22 +5,54 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace LordDesign.Utilities
 {
-    public class ApiCall
+    public class ApiCall : IApiCall
     {
-        public ApiCall()
+        #region Fields
+
+        private readonly HttpClient _client = new HttpClient();
+
+        private readonly JsonSerializerSettings _settings;
+
+        private bool _disposed;
+
+        private string _endPoint;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        public ApiCall(string endpoint)
+            : this()
         {
             QueryParams = new Dictionary<string, string>();
             Method = "GET";
+            _endPoint = endpoint;
+            _settings = new JsonSerializerSettings { ContractResolver = new DefaultContractResolver() };
         }
 
-        public string Controller { get; set; }
+        public ApiCall(string endpoint, JsonSerializerSettings settings)
+            : this(endpoint)
+        {
+            _settings = settings;
+        }
 
-        public string Action { get; set; }
+        public ApiCall(Uri endpoint)
+            : this(endpoint.PathAndQuery)
+        {
+        }
 
-        public string Id { get; set; }
+        protected ApiCall()
+        {
+            _settings = new JsonSerializerSettings { ContractResolver = new DefaultContractResolver() };
+        }
+
+        #endregion
+
+        #region Public Properties
 
         public string BaseUrl { get; set; }
 
@@ -30,7 +62,23 @@ namespace LordDesign.Utilities
 
         public IDictionary<string, string> QueryParams { get; set; }
 
-        public IApiResult<dynamic> Execute<T>() where T : class
+        #endregion
+
+        #region Public Methods and Operators
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public virtual IApiResult<dynamic> Execute<T>() where T : class
+        {
+            _endPoint += BuildQueryString();
+            return Execute<T>(new Uri(_endPoint));
+        }
+
+        public virtual IApiResult<dynamic> Execute<T>(Uri endPoint) where T : class
         {
             Func<object, string> serialize;
             string format;
@@ -45,114 +93,62 @@ namespace LordDesign.Utilities
                 format = "application/json";
             }
 
-            using (var httpClient = new HttpClient())
+            HttpResponseMessage response;
+
+            switch (Method.ToUpper().Trim())
             {
-                var endpoint = BuildEndpoint() + BuildQueryString();
-                HttpResponseMessage response;
-
-                switch (Method.ToUpper().Trim())
+                case "PUT":
                 {
-                    case "PUT":
-                        {
-                            var stringContent = new StringContent(serialize(Payload));
-                            stringContent.Headers.ContentType = new MediaTypeHeaderValue(format)
-                                {
-                                    CharSet = "utf-8"
-                                };
-                            response = httpClient.PutAsync(endpoint, stringContent).Result;
-                            break;
-                        }
-                    case "POST":
-                        {
-                            var stringContent = new StringContent(serialize(Payload));
-                            stringContent.Headers.ContentType = new MediaTypeHeaderValue(format)
-                                {
-                                    CharSet = "utf-8"
-                                };
-                            response = httpClient.PostAsync(endpoint, stringContent).Result;
-                            break;
-                        }
-                    default:
-                        // Assume "GET"
-                        response = httpClient.GetAsync(endpoint).Result;
-                        break;
+                    var stringContent = new StringContent(serialize(Payload));
+                    stringContent.Headers.ContentType = new MediaTypeHeaderValue(format) { CharSet = "utf-8" };
+                    response = _client.PutAsync(_endPoint, stringContent).Result;
+                    break;
                 }
-
-                if (response.StatusCode == HttpStatusCode.NoContent)
+                case "POST":
                 {
-                    return new ApiResult<dynamic> { StatusCode = response.StatusCode };
+                    var stringContent = new StringContent(serialize(Payload));
+                    stringContent.Headers.ContentType = new MediaTypeHeaderValue(format) { CharSet = "utf-8" };
+                    response = _client.PostAsync(_endPoint, stringContent).Result;
+                    break;
                 }
+                default:
+                    // Assume "GET"
+                    response = _client.GetAsync(_endPoint).Result;
+                    break;
+            }
 
-                if (response.Content != null)
-                {
-                    var content = response.Content.ReadAsStringAsync().Result;
-
-                    // Assume we know how to deserialize the object.
-                    if (format.EndsWith("json"))
-                    {
-                        var dataItem = JsonConvert.DeserializeObject<T>(content);
-
-                        return new ApiResult<dynamic>
-                            {
-                                StatusCode = response.StatusCode,
-                                DataItem = dataItem
-                            };
-                    }
-
-                    var contentObject = content.DeserializeAs<T>();
-
-                    return new ApiResult<dynamic>
-                        {
-                            StatusCode = response.StatusCode,
-                            DataItem = contentObject
-                        };
-                }
-
+            if (response.StatusCode == HttpStatusCode.NoContent)
+            {
                 return new ApiResult<dynamic> { StatusCode = response.StatusCode };
             }
-        }
 
-        private string BuildEndpoint()
-        {
-            var sb = new StringBuilder(50);
-            sb.Append(BaseUrl);
-
-            if (string.IsNullOrWhiteSpace(Controller))
+            if (response.Content != null)
             {
-                return sb.ToString();
-            }
-            
-            if (!this.BaseUrl.EndsWith("/"))
-            {
-                sb.Append("/");
-            }
+                string content = response.Content.ReadAsStringAsync().Result;
 
-            sb.Append(this.Controller.ToLower());
-
-            if (!this.Controller.EndsWith("/"))
-            {
-                sb.Append("/");
-            }
-
-            if (!string.IsNullOrWhiteSpace(this.Id))
-            {
-                if (!string.IsNullOrEmpty(this.Id))
+                // Assume we know how to deserialize the object.
+                if (format.EndsWith("json"))
                 {
-                    sb.Append(this.Id.ToLower());
+                    var dataItem = JsonConvert.DeserializeObject<T>(content, _settings);
+
+                    return new ApiResult<dynamic> { StatusCode = response.StatusCode, DataItem = dataItem };
                 }
+
+                var contentObject = content.DeserializeAs<T>();
+
+                return new ApiResult<dynamic> { StatusCode = response.StatusCode, DataItem = contentObject };
             }
 
-            if (!string.IsNullOrWhiteSpace(this.Action))
-            {
-                sb.Append("/").Append(this.Action.ToLower());
-            }
-
-            return sb.ToString();
+            return new ApiResult<dynamic> { StatusCode = response.StatusCode };
         }
 
-        private string BuildQueryString()
+        #endregion
+
+        #region Methods
+
+        protected string BuildQueryString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             int length = QueryParams.Count;
             int i = 0;
@@ -170,18 +166,16 @@ namespace LordDesign.Utilities
             string qs2 = sb.ToString();
             return "?" + qs2;
         }
-    }
 
-    public interface IApiResult<T>
-    {
-        HttpStatusCode StatusCode { get; set; }
-        T DataItem { get; set; }
-    }
+        protected void Dispose(bool disposing)
+        {
+            if (disposing && !_disposed)
+            {
+                _client.Dispose();
+                _disposed = true;
+            }
+        }
 
-    public class ApiResult<T> : IApiResult<T>
-    {
-        public HttpStatusCode StatusCode { get; set; }
-
-        public T DataItem { get; set; }
+        #endregion
     }
 }
