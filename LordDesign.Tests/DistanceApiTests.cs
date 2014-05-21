@@ -48,27 +48,12 @@ namespace LordDesign.Tests
         {
             const string EndPoint =
                 "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928";
-          
-            using (IApiCall client = new ApiCall(EndPoint, new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
-            {
-                IApiResult<dynamic> result = client.Execute<DistanceResults>();
-                Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
-                Assert.AreEqual("25 mins", result.DataItem.GetResult(0).Duration.Text);
-            }
-        }
 
-        [Test]
-        public void ReturnsResultWithCustomApiAndQueryParams()
-        {
-            const string BaseUri =
-                "https://maps.googleapis.com/maps/api/distancematrix/json";
-
-            // sensor=false&origins=95969&destinations=95928
-            using (IApiCall client = new ApiCall(BaseUri, new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
+            using (
+                IApiCall client = new ApiCall(
+                    EndPoint,
+                    new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
             {
-                client.QueryParams.Add("sensor", "false");
-                client.QueryParams.Add("origins", "95969");
-                client.QueryParams.Add("destinations", "95928");
                 IApiResult<dynamic> result = client.Execute<DistanceResults>();
                 Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
                 Assert.AreEqual("25 mins", result.DataItem.GetResult(0).Duration.Text);
@@ -127,6 +112,26 @@ namespace LordDesign.Tests
             }
 
             Assert.Pass();
+        }
+
+        [Test]
+        public void ReturnsResultWithCustomApiAndQueryParams()
+        {
+            const string BaseUri = "https://maps.googleapis.com/maps/api/distancematrix/json";
+
+            // sensor=false&origins=95969&destinations=95928
+            using (
+                IApiCall client = new ApiCall(
+                    BaseUri,
+                    new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
+            {
+                client.QueryParams.Add("sensor", "false");
+                client.QueryParams.Add("origins", "95969");
+                client.QueryParams.Add("destinations", "95928");
+                IApiResult<dynamic> result = client.Execute<DistanceResults>();
+                Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+                Assert.AreEqual("25 mins", result.DataItem.GetResult(0).Duration.Text);
+            }
         }
 
         #endregion

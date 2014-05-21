@@ -58,6 +58,7 @@
     <Compile Include="JsonDeserializerTests.cs" />
     <Compile Include="DistanceApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

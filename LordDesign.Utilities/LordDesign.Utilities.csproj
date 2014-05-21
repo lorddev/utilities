@@ -67,6 +67,7 @@
     <Compile Include="Services\LoopTimer.cs" />
     <Compile Include="Services\PrecisionTimer.cs" />
     <Compile Include="Services\ServiceTimer.cs" />
+    <Compile Include="Text\StringFormat.cs" />
     <Compile Include="WebApiCall.cs" />
     <Compile Include="ApiCall.cs" />
     <Compile Include="Botmail.cs" />
