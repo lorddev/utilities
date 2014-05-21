@@ -34,7 +34,7 @@ namespace LordDesign.Utilities
 
         #region Public Methods and Operators
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -52,11 +52,12 @@ namespace LordDesign.Utilities
 
         protected void Dispose(bool disposing)
         {
-            if (disposing && !_disposed)
+            if (!disposing || _disposed)
             {
-                base.Dispose(true);
-                _disposed = true;
+                return;
             }
+            base.Dispose(true);
+            _disposed = true;
         }
 
         private string BuildEndpoint()
