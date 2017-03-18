@@ -8,7 +8,6 @@ This is a useful class library for universal utilities such as error logging, em
 - ELMAH
 - JSON.NET
 - [Encryptamajig](https://github.com/jbubriski/Encryptamajig) 
-- Nuget
 
 ### ApiCall
 
