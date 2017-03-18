@@ -9,13 +9,14 @@
 // </summary>
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+
 namespace Devlord.Utilities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-
     /// <summary>
     /// The throttles.
     /// </summary>
@@ -24,13 +25,13 @@ namespace Devlord.Utilities
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Throttles"/> class.
+        /// Initializes a new instance of the <see cref="Throttles" /> class.
         /// </summary>
         public Throttles()
         {
-            this.MinuteThrottle = new MailThrottle { Interval = ThrottleInterval.Minute, Limit = 180 };
-            this.HourlyThrottle = new MailThrottle { Interval = ThrottleInterval.Hour, Limit = 3600 };
-            this.DailyThrottle = new MailThrottle { Interval = ThrottleInterval.Day, Limit = 10000 };
+            MinuteThrottle = new MailThrottle { Interval = ThrottleInterval.Minute, Limit = 180 };
+            HourlyThrottle = new MailThrottle { Interval = ThrottleInterval.Hour, Limit = 3600 };
+            DailyThrottle = new MailThrottle { Interval = ThrottleInterval.Day, Limit = 10000 };
         }
 
         #endregion
@@ -40,17 +41,17 @@ namespace Devlord.Utilities
         /// <summary>
         /// Gets the daily throttle.
         /// </summary>
-        public MailThrottle DailyThrottle { get; private set; }
+        public MailThrottle DailyThrottle { get; }
 
         /// <summary>
         /// Gets the hourly throttle.
         /// </summary>
-        public MailThrottle HourlyThrottle { get; private set; }
+        public MailThrottle HourlyThrottle { get; }
 
         /// <summary>
         /// Gets the minute throttle.
         /// </summary>
-        public MailThrottle MinuteThrottle { get; private set; }
+        public MailThrottle MinuteThrottle { get; }
 
         #endregion
 
@@ -64,9 +65,9 @@ namespace Devlord.Utilities
         /// </param>
         public void ForEach(Action<MailThrottle> func)
         {
-            func(this.MinuteThrottle);
-            func(this.HourlyThrottle);
-            func(this.DailyThrottle);
+            func(MinuteThrottle);
+            func(HourlyThrottle);
+            func(DailyThrottle);
         }
 
         /// <summary>
@@ -74,26 +75,26 @@ namespace Devlord.Utilities
         /// </summary>
         public void Increment()
         {
-            this.ForEach(throttle => throttle.Increment());
+            ForEach(throttle => throttle.Increment());
         }
 
         /// <summary>
         /// The wait.
         /// </summary>
         /// <returns>
-        /// The <see cref="bool"/>.
+        /// The <see cref="bool" />.
         /// </returns>
         public void Wait()
         {
-            this.ForEach(
+            ForEach(
                 x =>
+                {
+                    while (x.Count() >= x.Limit)
                     {
-                        while (x.Count() >= x.Limit)
-                        {
-                            Console.Write("Waiting...");
-                            Thread.Sleep(100);
-                        }
-                    });
+                        Console.Write("Waiting...");
+                        Thread.Sleep(100);
+                    }
+                });
         }
 
         #endregion
@@ -107,12 +108,12 @@ namespace Devlord.Utilities
         /// <summary>
         /// The minute.
         /// </summary>
-        Minute, 
+        Minute,
 
         /// <summary>
         /// The hour.
         /// </summary>
-        Hour, 
+        Hour,
 
         /// <summary>
         /// The day.
@@ -130,7 +131,7 @@ namespace Devlord.Utilities
         /// <summary>
         /// The counter.
         /// </summary>
-        private readonly List<DateTime> counter = new List<DateTime>();
+        private readonly List<DateTime> _counter = new List<DateTime>();
 
         #endregion
 
@@ -154,13 +155,13 @@ namespace Devlord.Utilities
         /// The count.
         /// </summary>
         /// <returns>
-        /// The <see cref="int"/>.
+        /// The <see cref="int" />.
         /// </returns>
         public int Count()
         {
-            DateTime startTime = this.GetStartTime();
-            int count = this.counter.Count(x => x > startTime);
-            this.Compact(startTime);
+            var startTime = GetStartTime();
+            var count = _counter.Count(x => x > startTime);
+            Compact(startTime);
             return count;
         }
 
@@ -169,8 +170,8 @@ namespace Devlord.Utilities
         /// </summary>
         public void Increment()
         {
-            this.counter.Add(DateTime.Now);
-            this.Compact();
+            _counter.Add(DateTime.Now);
+            Compact();
         }
 
         #endregion
@@ -182,7 +183,7 @@ namespace Devlord.Utilities
         /// </summary>
         private void Compact()
         {
-            this.Compact(this.GetStartTime());
+            Compact(GetStartTime());
         }
 
         /// <summary>
@@ -193,21 +194,21 @@ namespace Devlord.Utilities
         /// </param>
         private void Compact(DateTime startTime)
         {
-            this.counter.RemoveAll(x => x < startTime);
+            _counter.RemoveAll(x => x < startTime);
         }
 
         /// <summary>
         /// The get start time.
         /// </summary>
         /// <returns>
-        /// The <see cref="DateTime"/>.
+        /// The <see cref="DateTime" />.
         /// </returns>
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         private DateTime GetStartTime()
         {
             // Per minute 180, Per hour 3600, Per day 10,000
             // http://support.google.com/a/bin/answer.py?hl=en&answer=1366776
-            switch (this.Interval)
+            switch (Interval)
             {
                 case ThrottleInterval.Minute:
                     return DateTime.Now.AddMinutes(-1);

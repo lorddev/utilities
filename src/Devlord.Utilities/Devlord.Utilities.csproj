@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiResult.cs" />
+    <Compile Include="DRMapper.cs" />
     <Compile Include="Services\ContinuousLoop.cs" />
     <Compile Include="IApiCall.cs" />
     <Compile Include="Services\LoopTimer.cs" />

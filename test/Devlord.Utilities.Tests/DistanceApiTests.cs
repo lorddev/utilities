@@ -74,7 +74,7 @@ namespace Devlord.Utilities.Tests
         /// https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928
         /// ...
         /// </summary>
-        [Test]
+        [Test, Ignore]
         public void ReturnsJsonResults()
         {
             const string endPoint =

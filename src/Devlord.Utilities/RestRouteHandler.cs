@@ -6,13 +6,13 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Web;
+using System.Web.Compilation;
+using System.Web.Routing;
+using System.Web.UI;
+
 namespace Devlord.Utilities
 {
-    using System.Web;
-    using System.Web.Compilation;
-    using System.Web.Routing;
-    using System.Web.UI;
-
     public struct RouteMap
     {
         public string PathFormat { get; set; }
@@ -24,26 +24,21 @@ namespace Devlord.Utilities
 
     public class RestRouteHandler : IRouteHandler
     {
-        private readonly string virtualPath;
-
-        private readonly string dataKey;
+        private readonly string _dataKey;
+        private readonly string _virtualPath;
 
         public RestRouteHandler(string virtualPath, string dataKey)
         {
-            this.virtualPath = virtualPath;
-            this.dataKey = dataKey;
+            _virtualPath = virtualPath;
+            _dataKey = dataKey;
         }
 
         public IHttpHandler GetHttpHandler(RequestContext context)
         {
-            string path = string.Format(
-                "{0}?{1}={2}",
-                this.virtualPath,
-                this.dataKey,
-                context.RouteData.Values[this.dataKey]);
+            string path = $"{_virtualPath}?{_dataKey}={context.RouteData.Values[_dataKey]}";
             HttpContext.Current.RewritePath(path);
 
-            var page = BuildManager.CreateInstanceFromVirtualPath(this.virtualPath, typeof(Page)) as IHttpHandler;
+            var page = BuildManager.CreateInstanceFromVirtualPath(_virtualPath, typeof(Page)) as IHttpHandler;
             return page;
         }
     }
