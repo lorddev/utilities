@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Mailbot.cs" company="Lord Design">
-//   (c) Lord Design. Modified GPL: You may use freely and commercially without modification; you can modify if result 
+//   © Lord Design. Modified GPL: You may use freely and commercially without modification; you can modify if result 
 //   is also free.
 // </copyright>
 // <summary>
