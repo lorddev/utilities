@@ -19,21 +19,13 @@ This class simply wraps the basic ELMAH exception logger and will log to the elm
 
 #### Usage
 
-    using Devlord.Utilities;
-    
-    public class MyClass
+    try
     {
-        public void DoMyThing()
-        {
-            try
-            {
-                // Todo: Do something...
-            }
-            catch (Exception e)
-            {
-                Logger.Log(e);
-            }
-        }
+        // Todo: Do something...
+    }
+    catch (Exception e)
+    {
+        Logger.Log(e);
     }
 
 Now you can do all of your exception logging with just one simple line of code.
