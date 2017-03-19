@@ -75,6 +75,10 @@ This class makes it easy to download an RSS feed and parse it. It reads the data
 
 A REST route handler that can be used in Global.asax to convert a REST url request to a query-string name-value pair on the server side. (I will probably need to provide examples for its usage.)
 
+### DRMapper
+
+Allows mapping of an `IDataReader` to POCO classes using reflection. It's faster than you might expect.
+
 ### License
 
 This program is free software: you can redistribute it and/or modify
