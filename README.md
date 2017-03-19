@@ -1,4 +1,4 @@
-lorddev utilities
+devlord utilities
 ====================
 
 This is a useful class library for universal utilities such as error logging, email sending, and web service wrappers.
