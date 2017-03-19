@@ -65,7 +65,7 @@ A multithreaded SMTP queued mail sender, has a throttle based on Google Apps max
 
 ### Crypt
 
-Bi-directional encryption methods useful for storing credit cards or saving passwords in configuration files. (Not recommend for use with user's site credentials as those should be one-way, and this encryption is random so two identical strings when encrypted will never match. By design.)
+Bi-directional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's configuration files. This is not recommend for use with user's site credentials as those should be one-way; also, site login credentials often require an encrypted password to match a _stored_ encrypted password, and this algorithm doesn't create identical strings every time.
 
 ### RssConverter
 
