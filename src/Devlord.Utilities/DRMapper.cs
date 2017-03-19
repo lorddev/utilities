@@ -8,7 +8,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data;
+using System.Reflection;
+using Devlord.Utilities.Resources;
 
 namespace Devlord.Utilities
 {
@@ -21,15 +23,17 @@ namespace Devlord.Utilities
     /// </remarks>
     public class DRMapper
     {
-        public static List<T> ParseList<T>(SqlDataReader dr)
+        public static List<T> ParseList<T>(IDataReader dr)
         {
             var list = new List<T>();
 
             var properties = typeof(T).GetProperties();
-            var instance = Activator.CreateInstance<T>();
+
+            VerifyTypeMatch<T>(dr, properties);
 
             while (dr.Read())
             {
+                var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
                     pi.SetValue(instance, dr[pi.Name], null);
@@ -41,10 +45,41 @@ namespace Devlord.Utilities
             return list;
         }
 
-        public static T ParseRecord<T>(SqlDataReader dr, int rowIndex = 0)
+        private static void VerifyTypeMatch<T>(IDataRecord dr, IEnumerable<PropertyInfo> properties)
+        {
+            // Counter for when each field is found.
+            var dictionary = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
+            
+            // Throw an error if the class expects columns that aren't being returned.
+            foreach (var pi in properties)
+            { 
+                // Increment
+                dictionary.Add(pi.Name);
+            }
+            
+            // Don't throw an error if the data set more verbose than the class we're filling
+            for (int i = 0; i < dr.FieldCount; i++)
+            { 
+                // Decrement.
+                string column = dr.GetName(i);
+                if (dictionary.Contains(column))
+                {
+                    dictionary.Remove(column);
+                }
+            }
+
+            if (dictionary.Count > 0)
+            {
+                var ex = new Exception(ExceptionText.DRMapperTypeTooComplex);
+                ex.Data.Add("Type", typeof(T));
+                ex.Data.Add("Missing fields", string.Join(", ", dictionary));
+                throw ex;
+            }
+        }
+
+        public static T ParseRecord<T>(IDataReader dr, int rowIndex = 0)
         {
             var properties = typeof(T).GetProperties();
-            var instance = Activator.CreateInstance<T>();
 
             var currentRow = 0;
             while (dr.Read())
@@ -55,12 +90,18 @@ namespace Devlord.Utilities
                     continue;
                 }
 
+                var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
                     pi.SetValue(instance, dr[pi.Name], null);
                 }
 
                 return instance;
+            }
+
+            if (rowIndex > currentRow)
+            {
+                throw new IndexOutOfRangeException(ExceptionText.DRMapperIndexOutOfRange);
             }
 
             return default(T);
