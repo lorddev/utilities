@@ -1,7 +1,9 @@
 lorddev utilities
 ====================
 
-This is a useful class library for universal utilities such as error logging, email sending, and web service wrappers.
+[![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e?svg=true)](https://ci.appveyor.com/project/lorddev/utilities)
+
+A useful class library for universal utilities such as error logging, email sending, and web service wrappers.
 
 ### Dependencies
 
