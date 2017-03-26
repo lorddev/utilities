@@ -34,8 +34,6 @@ Now you can do all of your exception logging with just one simple line of code.
 
 `IPaginable` - provides an interface indicating that the implementing collection class will perform the proper Skip/Take functions to return a certain page of the results.
 
-`IEachified` - Indicates that a collection can perform a delegate on each item in its collection apart from the mission IEnumerable<T>.ForEach() (for which I also have an extension in this library in `Extensions.cs`)
-
 ### Distance API
 
 POCO classes for accessing the Google Maps distance API.
