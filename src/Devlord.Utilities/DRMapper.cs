@@ -27,7 +27,7 @@ namespace Devlord.Utilities
         {
             var list = new List<T>();
 
-            var properties = typeof(T).GetProperties();
+            var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
 
             VerifyTypeMatch<T>(dr, properties);
 
@@ -79,7 +79,7 @@ namespace Devlord.Utilities
 
         public static T ParseRecord<T>(IDataReader dr, int rowIndex = 0)
         {
-            var properties = typeof(T).GetProperties();
+            var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
 
             var currentRow = 0;
             while (dr.Read())
