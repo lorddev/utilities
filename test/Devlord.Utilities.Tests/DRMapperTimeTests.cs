@@ -60,7 +60,7 @@ namespace Devlord.Utilities.Tests
             // Put the test data into a datareader to parse it back out into test data using FastMember.
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var results = ParseDataReaderWithFastMemeber<TestData>(_dataReader);
+            var results = ParseDataReaderWithFastMember<TestData>(_dataReader);
             stopwatch.Stop();
             Console.Write($"Elapsed: {stopwatch.Elapsed}");
             var nineHundredThird = results[902];
@@ -86,7 +86,7 @@ namespace Devlord.Utilities.Tests
             _dataReader?.Dispose();
         }
 
-        private static List<T> ParseDataReaderWithFastMemeber<T>(IDataReader dr) where T : new()
+        private static List<T> ParseDataReaderWithFastMember<T>(IDataReader dr) where T : new()
         {
             var accessor = TypeAccessor.Create(typeof(T));
             var list = new List<T>();
