@@ -9,10 +9,8 @@
     <licenseUrl>https://github.com/lorddev/utilities/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/lorddev/utilities</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-   
-    <description>Multipurpose globally-useful Utilities library so you don't have to make your own for every project. Includes
-        extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, and strongly-typed API callers.</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>   
+    <description>Multipurpose globally-useful Utilities library so you don't have to make your own for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, and strongly-typed API callers.</description>
     <releaseNotes>New IDataReader mapper for dynamic ORM.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Utilities</tags>
