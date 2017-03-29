@@ -10,8 +10,9 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+#if NETSTANDARD1_5
 using System.Net;
-using System.Net.Mail;
+using MailKit;
 using System.Threading.Tasks;
 using Devlord.Utilities.Properties;
 
@@ -23,7 +24,7 @@ namespace Devlord.Utilities
     /// </summary>
     public class Mailbot
     {
-        #region Fields
+#region Fields
 
         private readonly Crypt _crypt = new Crypt();
 
@@ -32,9 +33,9 @@ namespace Devlord.Utilities
         /// </summary>
         private readonly Throttles _throttles = new Throttles();
 
-        #endregion
+#endregion
 
-        #region Constructors and Destructors
+#region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="Mailbot" /> class.
@@ -62,9 +63,9 @@ namespace Devlord.Utilities
                              };
         }
 
-        #endregion
+#endregion
 
-        #region Public Properties
+#region Public Properties
 
         /// <summary>
         ///     Gets the instance.
@@ -76,20 +77,20 @@ namespace Devlord.Utilities
         /// </summary>
         public string SmtpServer { get; private set; }
 
-        #endregion
+#endregion
 
         // Per minute 180, Per hour 3600, Per day 10,000
 
-        #region Public Methods and Operators
+#region Public Methods and Operators
 
         public async Task QueueMail(Botmail message)
         {
             await SendMail(message);
         }
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
 
         private async Task SendMail(object message)
         {
@@ -125,6 +126,8 @@ namespace Devlord.Utilities
             });
         }
 
-        #endregion
+#endregion
     }
 }
+
+#endif
