@@ -7,6 +7,8 @@
 // <author>aaron</author>
 // -----------------------------------------------------------------------
 
+using System.Reflection;
+
 namespace Devlord.Utilities
 {
     using System;

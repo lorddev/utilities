@@ -4,11 +4,10 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using Devlord.Utilities.MapsApi;
 using Newtonsoft.Json;
-using NUnit.Framework;
+using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    [TestFixture]
     public class DistanceApiTests
     {
         private static double ParseDuration(string distanceString)
@@ -20,7 +19,7 @@ namespace Devlord.Utilities.Tests
             return double.Parse(resultDuration);
         }
 
-        [Test]
+        [Fact]
         public void ReturnsDeserializedResults()
         {
             const string EndPoint =
@@ -31,10 +30,10 @@ namespace Devlord.Utilities.Tests
 
                 if (response.StatusCode != HttpStatusCode.NoContent && response.StatusCode != HttpStatusCode.OK)
                 {
-                    Assert.Fail("No response content");
+                    Assert.True(false, "No response content");
                 }
 
-                Assert.IsNotNull(response.Content);
+                Assert.NotNull(response.Content);
 
                 var content = response.Content.ReadAsStringAsync().Result;
 
@@ -42,17 +41,15 @@ namespace Devlord.Utilities.Tests
 
                 var parsedObject = JsonConvert.DeserializeObject<DistanceResults>(content, settings);
 
-                Assert.AreEqual(typeof(DistanceElement),
+                Assert.Equal(typeof(DistanceElement),
                     parsedObject.Rows.ElementAt(0).Elements.ElementAt(0).GetType());
 
                 var resultDuration = ParseDuration(parsedObject.GetResult(0).Duration.Text);
                 resultDuration.ShouldBeInRange(20, 30);
             }
-
-            Assert.Pass();
         }
 
-        [Test]
+        [Fact]
         public void ReturnsExpectedResultWithCustomApi()
         {
             const string endPoint =
@@ -62,7 +59,7 @@ namespace Devlord.Utilities.Tests
                 new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
             {
                 var result = client.Execute<DistanceResults>();
-                Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+                Assert.Equal(HttpStatusCode.OK, result.StatusCode);
 
                 var resultDuration = ParseDuration((string) result.DataItem.GetResult(0).Duration.Text);
                 resultDuration.ShouldBeInRange(20, 30);
@@ -74,7 +71,7 @@ namespace Devlord.Utilities.Tests
         /// https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928
         /// ...
         /// </summary>
-        [Test, Ignore]
+        [Fact(Skip = "Run explicitly")]
         public void ReturnsJsonResults()
         {
             const string endPoint =
@@ -85,10 +82,10 @@ namespace Devlord.Utilities.Tests
 
                 if (response.StatusCode != HttpStatusCode.NoContent && response.StatusCode != HttpStatusCode.OK)
                 {
-                    Assert.Fail("No response content");
+                    Assert.True(false, "No response content");
                 }
 
-                Assert.IsNotNull(response.Content);
+                Assert.NotNull(response.Content);
 
                 var content = response.Content.ReadAsStringAsync().Result;
 
@@ -117,16 +114,14 @@ namespace Devlord.Utilities.Tests
 }
 ".Replace("\r\n", "\n");
 
-                //Assert.AreEqual(expected, content);
+                //Assert.Equal(expected, content);
 
-                Assert.Inconclusive(@"It's showing s a 27-minute drive instead of 25. We need to update 
+                Assert.True(false, @"It's showing s a 27-minute drive instead of 25. We need to update 
 this comparison to allow for variations in travel time.");
             }
-
-            Assert.Pass();
         }
 
-        [Test]
+        [Fact]
         public void ReturnsResultWithCustomApiAndQueryParams()
         {
             const string baseUri = "https://maps.googleapis.com/maps/api/distancematrix/json";
@@ -139,7 +134,7 @@ this comparison to allow for variations in travel time.");
                 client.QueryParams.Add("origins", "95969");
                 client.QueryParams.Add("destinations", "95928");
                 var result = client.Execute<DistanceResults>();
-                Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+                Assert.Equal(HttpStatusCode.OK, result.StatusCode);
 
                 var resultDuration = ParseDuration((string) result.DataItem.GetResult(0).Duration.Text);
                 resultDuration.ShouldBeInRange(20, 30);

@@ -8,6 +8,7 @@ using System.ComponentModel;
 
 // ReSharper disable CheckNamespace
 
+#if NETSTANDARD1_5
 namespace System.Security.Cryptography
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -101,3 +102,5 @@ namespace System.Security.Cryptography
         }
     }
 }
+
+#endif

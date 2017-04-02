@@ -6,8 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Devlord.Utilities.Tests")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyDescription("XUnit test package for Devlord.Utilities. Switched from NUnit to XUnit because of compatibility issues in .NET Core.")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Devlord.Utilities.Tests")]
 [assembly: AssemblyCopyright("Copyright © 2017")]
@@ -32,5 +31,3 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.0.*")]
-[assembly: AssemblyFileVersion("4.0.0.0")]

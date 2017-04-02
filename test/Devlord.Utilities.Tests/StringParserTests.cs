@@ -1,53 +1,46 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 using Devlord.Utilities.Text;
-using NUnit.Framework;
+using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    [TestFixture]
-    public class StringParserTests
+    public class StringParserTest
     {
-        #region Public Methods and Operators
-
-        [Test]
-        public void TestIntParse()
-        {
-            IEnumerable<int> expected = new[] { 24 }.AsEnumerable();
-            string target = "24 miles";
-
-            string format = "{0} miles";
-
-            IEnumerable<int> actual = StringFormat.Parse<int>(format, target);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
+        [Fact]
         public void TestDecimalParse()
         {
             var expected = new[] { 24.1M }.AsEnumerable();
-            string target = "24.1 miles";
+            var target = "24.1 miles";
 
-            string format = "{0} miles";
-            
+            var format = "{0} miles";
+
             var actual = StringFormat.Parse<decimal>(format, target);
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void TestDoubleParse()
         {
             var expected = new[] { 24.1D }.AsEnumerable();
-            string target = "24.1 miles";
+            var target = "24.1 miles";
 
-            string format = "{0} miles";
+            var format = "{0} miles";
 
             var actual = StringFormat.Parse<double>(format, target);
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        #endregion
+        [Fact]
+        public void TestIntParse()
+        {
+            var expected = new[] { 24 }.AsEnumerable();
+            const string target = "24 miles";
+
+            const string format = "{0} miles";
+
+            var actual = StringFormat.Parse<int>(format, target);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
@@ -20,7 +21,7 @@ namespace Devlord.Utilities
 
         private static bool IsDataContract(Type t)
         {
-            bool isDataContract = t.GetCustomAttributes(typeof(DataContractAttribute), true).Any();
+            bool isDataContract = t.GetTypeInfo().GetCustomAttributes(typeof(DataContractAttribute), true).Any();
             return isDataContract;
         }
 

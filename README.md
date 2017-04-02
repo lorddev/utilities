@@ -4,19 +4,36 @@ A useful class library for universal utilities such as error logging, email send
 
 [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e?svg=true)](https://ci.appveyor.com/project/lorddev/utilities)
 
-### Dependencies
+### 5.0 Release notes
 
-- ELMAH
-- JSON.NET
-- [Encryptamajig](https://github.com/jbubriski/Encryptamajig) 
+* Incremented major version to 5.0 because of breaking changes in .NET Core
+    - There is a question of whether these features are truly deprecated or just haven't been finished yet, because I've seen reports
+      that some of the features will be added in .NET Core 2.0.
+
+* Changed service timers due to the .NET System.Timers.Timer class having been deprecated. I tried to keep the public interface intact, 
+as well as the behavior. But you'll need to change "ElapsedEventArgs" to "ServiceTimerState" in your events.
+        private static void LoopedElapsed(object sender, ElapsedEventArgs e)
+        {
+            Console.WriteLine("Test message ONE");
+        }
+        // to
+        private static void LoopedElapsed(object sender, ServiceTimerState e)
+        {
+            Console.WriteLine("Test message ONE");
+        }
+* Added MailKit dependency when using this library in .NET Core.
+* Changed WebClient to HttpClient, made RssConvert async.
+* Absorbed [Encryptamajig](https://github.com/jbubriski/Encryptamajig) since it didn't appear to be maintained and I needed it updated to .NET Core.
 
 ### ApiCall
 
-The `ApiCall` class wraps the .NET HttpClient, and returns a deserialized object using Generics. It also features a Dictionary for query parameter input. The `WebApiCall` subclass will build your endpoint for ASP.NET MVC Web API based on the supplied controller, action, and id as input parameters.
+The `ApiCall` class wraps the .NET HttpClient, and returns a deserialized object using Generics. It also features a Dictionary for query parameter 
+input. The `WebApiCall` subclass will build your endpoint for ASP.NET MVC Web API based on the supplied controller, action, and id as input parameters.
 
 ### Logger
 
-This class simply wraps the basic ELMAH exception logger and will log to the elmah.axd source if the current context is an http application, and to a file if it is not. This is useful for business logic layers in which a class's usage may be over http or in a service.
+This class simply wraps the basic ELMAH exception logger and will log to the elmah.axd source if the current context is an http application, 
+and to a file if it is not. This is useful for business logic layers in which a class's usage may be over http or in a service.
 
 #### Usage
 
@@ -33,7 +50,8 @@ Now you can do all of your exception logging with just one simple line of code.
 
 ### Interfaces
 
-`IPaginable` - provides an interface indicating that the implementing collection class will perform the proper Skip/Take functions to return a certain page of the results.
+`IPaginable` - provides an interface indicating that the implementing collection class will perform the proper Skip/Take functions to return a 
+certain page of the results.
 
 ### Distance API
 
@@ -56,23 +74,29 @@ Usage with a custom JSON contract resolver that converts the Google JSON propert
 
 ### DataManager
 
-A handy generic DataManager abstract base class for your business layer that serves to enforce a CRUD contract between your business entities and your data layer. Useful for pagination as well.
+A handy generic DataManager abstract base class for your business layer that serves to enforce a CRUD contract between your business entities
+and your data layer. Useful for pagination as well.
 
 ### Mailbot
 
-A multithreaded SMTP queued mail sender, has a throttle based on Google Apps maximums for mail frequency received at a single account. Important: Create a test project and call `Crypt.HideSecretPassword()` using the same byte array used in the Mailbot class. Store the resulting encrypted password in the config file, at `Devlord.Utilities.Properties.Settings/SmtpPassword`.
+A multithreaded SMTP queued mail sender, has a throttle based on Google Apps maximums for mail frequency received at a single account.
+Important: Create a test project and call `Crypt.HideSecretPassword()` using the same byte array used in the Mailbot class. Store the resulting encrypted password in the config file, at `Devlord.Utilities.Properties.Settings/SmtpPassword`.
 
 ### Crypt
 
-Bi-directional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's configuration files. This is not recommend for use with user's site credentials as those should be one-way; also, site login credentials often require an encrypted password to match a _stored_ encrypted password, and this algorithm doesn't create identical strings every time.
+Bi-directional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's configuration files. 
+This is not recommend for use with user's site credentials as those should be one-way; also, site login credentials often require an encrypted password 
+to match a _stored_ encrypted password, and this algorithm doesn't create identical strings every time.
 
 ### RssConverter
 
-This class makes it easy to download an RSS feed and parse it. It reads the data with LinqToXml and can output it in JSON format for easy portability. You can utilize the `PostFilter` delegate to filter the results even further. (Sorry, I can't remember what project I needed this for.)
+This class makes it easy to download an RSS feed and parse it. It reads the data with LinqToXml and can output it in JSON format for easy portability. 
+You can utilize the `PostFilter` delegate to filter the results even further. (Sorry, I can't remember what project I needed this for.)
 
 ### RestRouteHandler
 
-A REST route handler that can be used in Global.asax to convert a REST url request to a query-string name-value pair on the server side. (I will probably need to provide examples for its usage.)
+A REST route handler that can be used in Global.asax to convert a REST url request to a query-string name-value pair on the server side. (I will 
+probably need to provide examples for its usage.)
 
 ### DRMapper
 

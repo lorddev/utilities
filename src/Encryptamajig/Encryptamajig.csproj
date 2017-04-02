@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
+    <TargetFrameworks>netstandard1.5;net451;</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -11,7 +11,8 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
   </PropertyGroup>
 
-  <ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.5'">
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
   </ItemGroup>
 

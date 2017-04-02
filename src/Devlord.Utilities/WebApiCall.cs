@@ -34,7 +34,7 @@ namespace Devlord.Utilities
 
         #region Public Methods and Operators
 
-        public virtual void Dispose()
+        public override void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -50,7 +50,7 @@ namespace Devlord.Utilities
 
         #region Methods
 
-        protected void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (!disposing || _disposed)
             {
@@ -82,12 +82,9 @@ namespace Devlord.Utilities
                 sb.Append("/");
             }
 
-            if (!string.IsNullOrWhiteSpace(Id))
+            if (!string.IsNullOrWhiteSpace(Id) && !string.IsNullOrEmpty(Id))
             {
-                if (!string.IsNullOrEmpty(Id))
-                {
-                    sb.Append(Id.ToLower());
-                }
+                sb.Append(Id.ToLower());
             }
 
             if (!string.IsNullOrWhiteSpace(Action))

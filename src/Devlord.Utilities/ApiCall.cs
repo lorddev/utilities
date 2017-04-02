@@ -7,6 +7,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
+#pragma warning disable S1449 // Culture should be specified for "string" operations
 namespace Devlord.Utilities
 {
     public class ApiCall : IApiCall
@@ -167,7 +168,7 @@ namespace Devlord.Utilities
             return "?" + qs2;
         }
 
-        protected void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing && !_disposed)
             {

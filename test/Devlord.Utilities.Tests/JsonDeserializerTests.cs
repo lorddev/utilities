@@ -1,33 +1,29 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
-using Devlord.Utilities;
 using Devlord.Utilities.MapsApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
+using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    [TestFixture]
-    public class JsonDeserializerTests
+    public class JsonDeserializerTest
     {
-        #region Public Methods and Operators
-
-        [Test]
+        [Fact]
         public void TestCustomResolver()
         {
             var settings = new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() };
 
             var bob = new { PropertyName = "asdf" };
-            string json = JsonConvert.SerializeObject(bob, Formatting.Indented, settings);
+            var json = JsonConvert.SerializeObject(bob, Formatting.Indented, settings);
 
-            Assert.AreEqual("{\r\n  \"property_name\": \"asdf\"\r\n}", json);
+            Assert.Equal("{\r\n  \"property_name\": \"asdf\"\r\n}", json);
         }
 
-        [Test]
+        [Fact]
         public void TestDeserializeDynamic()
         {
-            string input = @"{
+            var input = @"{
    ""destination_addresses"" : [ ""Chico, CA 95928, USA"" ],
    ""origin_addresses"" : [ ""Paradise, CA 95969, USA"" ],
    ""rows"" : [
@@ -55,13 +51,13 @@ namespace Devlord.Utilities.Tests
 
             dynamic parsedObject = JsonConvert.DeserializeObject(input, settings);
 
-            Assert.AreEqual(typeof(JObject), parsedObject.rows[0].elements[0].GetType());
+            Assert.Equal(typeof(JObject), parsedObject.rows[0].elements[0].GetType());
         }
 
-        [Test]
+        [Fact]
         public void TestDeserializeStrongTyped()
         {
-            string input = @"{
+            var input = @"{
    ""destination_addresses"" : [ ""Chico, CA 95928, USA"" ],
    ""origin_addresses"" : [ ""Paradise, CA 95969, USA"" ],
    ""rows"" : [
@@ -89,45 +85,43 @@ namespace Devlord.Utilities.Tests
 
             var parsedObject = JsonConvert.DeserializeObject<DistanceResults>(input, settings);
 
-            Assert.AreEqual(typeof(DistanceElement), parsedObject.Rows.ElementAt(0).Elements.ElementAt(0).GetType());
+            Assert.Equal(typeof(DistanceElement), parsedObject.Rows.ElementAt(0).Elements.ElementAt(0).GetType());
 
-            Assert.AreEqual("25 mins", parsedObject.GetResult(0).Duration.Text);
+            Assert.Equal("25 mins", parsedObject.GetResult(0).Duration.Text);
         }
 
-        [Test]
+        [Fact]
         public void TestRegexProofs()
         {
             var reg = new Regex("\\s[A-Z]");
-            string test = "Hello World";
-            string result = reg.Replace(test, m => m.Value.ToLower());
-            Assert.AreEqual("Hello world", result);
+            var test = "Hello World";
+            var result = reg.Replace(test, m => m.Value.ToLower());
+            Assert.Equal("Hello world", result);
 
             reg = new Regex("\\s[A-Z]");
             test = "Hello World";
             result = reg.Replace(test, m => m.Value.ToLower());
-            Assert.AreEqual("Hello world", result);
+            Assert.Equal("Hello world", result);
 
             reg = new Regex("\\s[A-Z]");
             test = "Hello World";
             result = reg.Replace(test, m => "_" + m.Value.Trim().ToLower());
-            Assert.AreEqual("Hello_world", result);
+            Assert.Equal("Hello_world", result);
 
             reg = new Regex("\\s[A-Z]");
             test = "Hello World";
-            MatchCollection matches = reg.Matches(test);
-            Assert.AreEqual(1, matches.Count);
+            var matches = reg.Matches(test);
+            Assert.Equal(1, matches.Count);
 
             reg = new Regex("\\s?[A-Z]");
             test = "Hello World";
             matches = reg.Matches(test);
-            Assert.AreEqual(2, matches.Count);
+            Assert.Equal(2, matches.Count);
 
             reg = new Regex("(?<=[a-z])[A-Z]");
             test = "HelloWorld";
             result = reg.Replace(test, m => "_" + m.Value.ToLower());
-            Assert.AreEqual("Hello_world", result);
+            Assert.Equal("Hello_world", result);
         }
-
-        #endregion
     }
 }

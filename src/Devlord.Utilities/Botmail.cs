@@ -33,6 +33,8 @@ namespace Devlord.Utilities
 
         public bool Ssl { get; set; }
 
+        public MailFormat Format { get; set; }
+
         #endregion
     }
 }

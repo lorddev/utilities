@@ -1,4 +1,4 @@
-using NUnit.Framework;
+using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
@@ -6,8 +6,17 @@ namespace Devlord.Utilities.Tests
     {
         public static void ShouldBeInRange(this double actual, double lbound, double ubound)
         {
-            Assert.GreaterOrEqual(actual, lbound);
-            Assert.LessOrEqual(actual, ubound);
+            Assert.InRange(actual, lbound, ubound);
+        }
+
+        public static void ShouldEqual(this object actual, object expected)
+        {
+            Assert.Equal(expected, actual);
+        }
+
+        public static void ShouldBeNull<T>(this T actual) where T : class
+        {
+            Assert.Null(actual);
         }
     }
 }

@@ -1,16 +1,14 @@
-﻿#pragma warning disable S101 // Types should be named in camel case
-
+﻿#pragma warning disable S101 // Types should be named in camel cas
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Devlord.Utilities.Tests;
 using FastMember;
 using FizzWare.NBuilder;
-using NUnit.Framework;
-using Should;
+using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    [TestFixture]
     public class DRMapperExceptionTests
     {
         public class WrongTestDto
@@ -21,10 +19,10 @@ namespace Devlord.Utilities.Tests
             public DateTime LastBarred { get; set; }
         }
         
-        [Test]
+        [Fact]
         public void TestDataReaderWithBadFieldNames()
         {
-            // fake data columns map to WrongTestData class
+            // fake data columns map to WrongTestData class   
             var fakeData = Builder<TestData>.CreateListOfSize(100).Build().ToList();
 
             // Put the test data into a datareader to parse it back out into test data using reflection.
@@ -39,7 +37,7 @@ namespace Devlord.Utilities.Tests
         }
 
 
-        [Test]
+        [Fact]
         public void TestDRMapperSingleRowNull()
         {
             // fake data columns map to WrongTestData class
@@ -51,7 +49,7 @@ namespace Devlord.Utilities.Tests
             result.ShouldBeNull();
         }
 
-        [Test]
+        [Fact]
         public void TestDRMapperSingleRowOutOfRange()
         {
             // fake data columns map to WrongTestData class

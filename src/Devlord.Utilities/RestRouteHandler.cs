@@ -6,6 +6,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+#if !NETSTANDARD1_5
 using System.Web;
 using System.Web.Compilation;
 using System.Web.Routing;
@@ -13,15 +14,6 @@ using System.Web.UI;
 
 namespace Devlord.Utilities
 {
-    public struct RouteMap
-    {
-        public string PathFormat { get; set; }
-
-        public string TargetPath { get; set; }
-
-        public string DataKey { get; set; }
-    }
-
     public class RestRouteHandler : IRouteHandler
     {
         private readonly string _dataKey;
@@ -43,3 +35,5 @@ namespace Devlord.Utilities
         }
     }
 }
+
+#endif

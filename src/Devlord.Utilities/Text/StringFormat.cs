@@ -45,6 +45,8 @@ namespace Devlord.Utilities.Text
             return c;
         }
 
+        public delegate TOutput Converter<in TInput, out TOutput>(TInput input);
+
         #endregion
     }
 }

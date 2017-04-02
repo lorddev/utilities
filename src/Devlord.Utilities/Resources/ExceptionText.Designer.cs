@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Reflection;
+
 namespace Devlord.Utilities.Resources {
     using System;
     
@@ -39,7 +41,7 @@ namespace Devlord.Utilities.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Devlord.Utilities.Resources.ExceptionText", typeof(ExceptionText).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Devlord.Utilities.Resources.ExceptionText", typeof(ExceptionText).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

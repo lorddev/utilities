@@ -7,18 +7,15 @@ using System.Diagnostics;
 using System.Linq;
 using FastMember;
 using FizzWare.NBuilder;
-using NUnit.Framework;
-using Should;
+using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
     /// <summary>
     /// Provides benchmarking for custom ORM tools
     /// </summary>
-    [TestFixture]
     public class DRMapperTimeTests : IDisposable
     {
-
         private static readonly List<TestData> _inMemoryData;
 
         private IDataReader _dataReader;
@@ -27,17 +24,16 @@ namespace Devlord.Utilities.Tests
         {
             _inMemoryData = Builder<TestData>.CreateListOfSize(2000).Build().ToList();
         }
-
-        [SetUp]
-        public void SetUpDataReader()
+        
+        public DRMapperTimeTests()
         {
             _dataReader = ObjectReader.Create(_inMemoryData);
         }
 
         /// <summary>
         /// Takes 21 ms for 2000 records
-        /// </summary>
-        [Test]
+        /// Takes 21 ms for 2000 record        /// </summary>
+        [Fact]
         public void TestDataReaderWithReflection()
         {
             // Put the test data into a datareader to parse it back out into test data using reflection.
@@ -52,9 +48,8 @@ namespace Devlord.Utilities.Tests
         }
 
         /// <summary>
-        /// Takes 22 ms for 2000 records
-        /// </summary>
-        [Test]
+        /// Takes 22 ms for 2000 record        /// </summary>
+        [Fact]
         public void TestDataReaderWithFastMember()
         {
             // Put the test data into a datareader to parse it back out into test data using FastMember.
@@ -68,7 +63,7 @@ namespace Devlord.Utilities.Tests
             nineHundredThird.LastName.ShouldEqual(_inMemoryData[902].LastName);
         }
 
-        [Test]
+        [Fact]
         public void TestDRMapperSingleRow()
         {
             var stopwatch = new Stopwatch();

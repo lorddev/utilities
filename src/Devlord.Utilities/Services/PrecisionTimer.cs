@@ -1,32 +1,38 @@
 ﻿using System;
-using System.Timers;
+using System.Threading;
+using Timer = System.Threading.Timer;
 
 namespace Devlord.Utilities.Services
 {
     public class PrecisionTimer : ServiceTimer
     {
+        private TimeSpan _countDown;
         #region Constructors and Destructors
 
         public PrecisionTimer(DateTime eventTimeUtc)
         {
-            TimeSpan countDown = eventTimeUtc.Subtract(DateTime.UtcNow);
-            LocalTimer = new Timer { AutoReset = false, Interval = countDown.TotalMilliseconds };
+            _countDown = eventTimeUtc.Subtract(DateTime.UtcNow);
         }
 
         protected PrecisionTimer()
         {
         }
 
-        #endregion
+        private ServiceTimerState _state = new ServiceTimerState { State = 0 };
 
-        #region Public Methods and Operators
-
-        public override ServiceTimer AddEvent(ElapsedEventHandler elapsedHandler)
+        protected override void AllCallbacks(object state)
         {
-            LocalTimer.Elapsed += elapsedHandler;
-            return this;
+            _state = state as ServiceTimerState ?? new ServiceTimerState { State = state };
+
+            base.AllCallbacks(_state);
+        }
+
+        public override void Run()
+        {
+            LocalTimer = new Timer(AllCallbacks, _state, (int)_countDown.TotalMilliseconds, Timeout.Infinite);
         }
 
         #endregion
+        
     }
 }
