@@ -9,25 +9,21 @@ namespace FizzWare.NBuilder.Extensions
     {
         public static Type GetTypeWithoutNullability(this Type t)
         {
-            return t.GetInfo().IsGenericType &&
+            return t.GetTypeInfo().IsGenericType &&
                    t.GetGenericTypeDefinition() == typeof(Nullable<>)
-                       ? t.GetInfo().GetGenericArguments().Single()
+                       ? t.GetTypeInfo().GetGenericArguments().Single()
                        : t;
         }
 
         public static IList<MemberInfo> GetPublicInstancePropertiesAndFields(this Type t)
         {
             var memberInfos = new List<MemberInfo>();
-            memberInfos.AddRange(t.GetInfo().GetProperties(BindingFlags.Public | BindingFlags.Instance));
-            memberInfos.AddRange(t.GetInfo().GetFields());
+            memberInfos.AddRange(t.GetTypeInfo().GetProperties(BindingFlags.Public | BindingFlags.Instance));
+            memberInfos.AddRange(t.GetTypeInfo().GetFields());
             return memberInfos;
         }
-        
-#if NETCORE
-        public static TypeInfo GetInfo(this Type type)
-        {
-            return type.GetTypeInfo();
-        }
+
+#if NETSTANDARD1_5
 
         public static PropertyInfo[] GetProperties(this Type type, BindingFlags flags)
         {
@@ -38,8 +34,9 @@ namespace FizzWare.NBuilder.Extensions
         {
             return type.GetTypeInfo().GetFields();
         }
-#else
-        public static Type GetInfo(this Type type)
+#endif
+#if NET35
+        public static Type GetTypeInfo(this Type type)
         {
             return type;
         }

@@ -57,10 +57,10 @@ namespace FizzWare.NBuilder.Implementation
 
         public bool RequiresConstructorArgs(Type type)
         {
-            if (type.GetInfo().IsValueType)
+            if (type.GetTypeInfo().IsValueType)
                 return false;
 
-            var constructors = type.GetInfo().GetConstructors(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var constructors = type.GetTypeInfo().GetConstructors(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
             foreach (var constructorInfo in constructors)
             {

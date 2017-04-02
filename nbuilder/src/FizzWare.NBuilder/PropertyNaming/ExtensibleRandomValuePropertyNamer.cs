@@ -99,7 +99,7 @@ namespace FizzWare.NBuilder.PropertyNaming
                 return;
             }
             
-            var methodInfo = handler.GetInfo();
+            var methodInfo = handler.GetMethodInfo();
             
             var value = methodInfo.GetParameters().Length == 1 ? 
                 handler.DynamicInvoke(memberInfo) : 
@@ -115,7 +115,7 @@ namespace FizzWare.NBuilder.PropertyNaming
                 return Handlers[type];
             }
             
-            var isEnum = type.GetInfo().IsEnum;
+            var isEnum = type.GetTypeInfo().IsEnum;
 
             var typeWithoutNullability = type.GetTypeWithoutNullability();
             return Handlers.ContainsKey(typeWithoutNullability)
@@ -152,7 +152,7 @@ namespace FizzWare.NBuilder.PropertyNaming
 
         protected void NameWith(Delegate handler)
         {
-            var returnType = handler.GetInfo().ReturnType;
+            var returnType = handler.GetMethodInfo().ReturnType;
             if (Handlers.ContainsKey(returnType))
             {
                 Handlers.Remove(returnType);

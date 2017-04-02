@@ -8,7 +8,7 @@ namespace FizzWare.NBuilder.Extensions
     {
         public static MethodInfo GetInfo(this Delegate @delegate)
         {
-#if NETCORE
+#if NETSTANDARD1_5
             return @delegate.GetMethodInfo();
 #else
             return @delegate.Method;

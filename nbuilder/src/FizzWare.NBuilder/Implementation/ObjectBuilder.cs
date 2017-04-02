@@ -108,7 +108,7 @@ namespace FizzWare.NBuilder.Implementation
             for (int i = 0; i < functions.Count; i++)
             {
                 var del = functions[i];
-                int parameterCount = del.GetInfo().GetParameters().Count();
+                int parameterCount = del.GetMethodInfo().GetParameters().Count();
                 switch (parameterCount)
                 {
                     case 1:
@@ -130,7 +130,7 @@ namespace FizzWare.NBuilder.Implementation
         {
             bool requiresArgs = reflectionUtil.RequiresConstructorArgs(typeof(T));
 
-            var ti = typeof(T).GetInfo();
+            var ti = typeof(T).GetTypeInfo();
 
             if (ti.IsInterface)
                 throw new TypeCreationException("Cannot build an interface");
@@ -144,11 +144,7 @@ namespace FizzWare.NBuilder.Implementation
             {
                 obj = _constructorExpression.Compile().Invoke(index);
             }
-            else if (requiresArgs && constructorArgs != null)
-            {
-                obj = reflectionUtil.CreateInstanceOf<T>(constructorArgs);
-            }
-            else if (constructorArgs != null)
+            else if (requiresArgs && constructorArgs != null || constructorArgs != null)
             {
                 obj = reflectionUtil.CreateInstanceOf<T>(constructorArgs);
             }

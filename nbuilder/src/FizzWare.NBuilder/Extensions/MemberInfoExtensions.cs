@@ -36,10 +36,14 @@ namespace FizzWare.NBuilder.Extensions
                 }
                 catch (Exception)
                 {
-                    
-                    #if !SILVERLIGHT && !NETCORE
+
+#if !SILVERLIGHT && !NETSTANDARD1_5
                     Trace.WriteLine(string.Format("NBuilder warning: {0} threw an exception when attempting to read its current value", memberInfo.Name));
-                    #endif
+#endif
+
+#if NETSTANDARD1_5
+                    Debug.WriteLine(string.Format("NBuilder warning: {0} threw an exception when attempting to read its current value", memberInfo.Name));
+#endif
                 }
             }
 
@@ -52,12 +56,9 @@ namespace FizzWare.NBuilder.Extensions
             {
                 ((FieldInfo)m).SetValue(instance, value);
             }
-            else if (m is PropertyInfo)
+            else if (m is PropertyInfo && ((PropertyInfo) m).CanWrite)
             {
-                if (((PropertyInfo)m).CanWrite)
-                {
-                    ((PropertyInfo)m).SetValue(instance, value, null);
-                }
+                ((PropertyInfo) m).SetValue(instance, value, null);
             }
         }
     }

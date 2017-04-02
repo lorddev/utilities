@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FC94E63F-2ACD-4E49-97FB-4EE2A7535374}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzWare.NBuilder-NetCore", "src\FizzWare.NBuilder\FizzWare.NBuilder-NetCore.csproj", "{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{22F9DDD5-4077-4C24-B2A7-1CBF9B878F7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5A6F727F-913B-4B28-8588-E23D357EEAFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		NETCORE|Any CPU = NETCORE|Any CPU
+		Release_HIDEOBSOLETE|Any CPU = Release_HIDEOBSOLETE|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.NETCORE|Any CPU.ActiveCfg = Release|Any CPU
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.NETCORE|Any CPU.Build.0 = Release|Any CPU
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.Release_HIDEOBSOLETE|Any CPU.ActiveCfg = Release|Any CPU
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.Release_HIDEOBSOLETE|Any CPU.Build.0 = Release|Any CPU
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E86BFAF-E73F-496C-8FC4-2806F3B7097D} = {22F9DDD5-4077-4C24-B2A7-1CBF9B878F7A}
+	EndGlobalSection
+EndGlobal
