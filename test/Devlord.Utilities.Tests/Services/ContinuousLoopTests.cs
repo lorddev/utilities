@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
+using Devlord.Utilities.Tests;
 using Xunit;
+using Xunit.Abstractions;
 
 // ReSharper disable CheckNamespace
 
@@ -8,6 +11,13 @@ namespace Devlord.Utilities.Services.Tests
 {
     public class ServiceTimerTests
     {
+        private readonly ITestOutputHelper _output;
+
+        public ServiceTimerTests(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+
         public void TestContinuousLoop()
         {
             Console.WriteLine("Test app start logging.");
@@ -25,32 +35,34 @@ namespace Devlord.Utilities.Services.Tests
             Assert.True(success);
         }
 
-        private static void LoopedElapsed(object sender, ServiceTimerState e)
+        private void LoopedElapsed(object sender, ServiceTimerState e)
         {
-            Console.WriteLine("Test message ONE");
+            _output.WriteLine("Test message ONE");
         }
 
-        private static void LoopedElapsedTwo(object sender, ServiceTimerState e)
+        private void LoopedElapsedTwo(object sender, ServiceTimerState e)
         {
-            Console.WriteLine("Test message TWO");
+            _output.WriteLine("Test message TWO");
         }
 
         [Fact]
-        public void TestLoopTimerConstructor()
+        public async Task TestLoopTimer3X()
         {
-            var success = false;
-            ServiceTimer timer = new LoopTimer(TimeSpan.FromSeconds(1));
+            var ct = 0;
+            ServiceTimer timer = new LoopTimer(TimeSpan.FromSeconds(0.01));
             timer.AddEvent(
                 (s, e) =>
                 {
-                    timer.ShutDown();
-                    success = true;
+                    Interlocked.Increment(ref ct);
+                    _output.WriteLine("poke: " + ct);
                 });
             timer.Run();
-
-            Task.Delay(1000);
-
-            Assert.True(success);
+            
+            await Task.Delay(40);
+            
+            timer.ShutDown();
+            _output.WriteLine("Asserting...");
+            ct.ShouldBeInRange(1, 5);
         }
     }
 }

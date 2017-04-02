@@ -48,11 +48,10 @@ namespace Devlord.Utilities
         }
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="Mailbot" /> class from being created.
+        /// Private constructor to enforce use of singleton.
         /// </summary>
         private Mailbot()
         {
-            // Doesn't do anything except prevent instantiation outside of the singleton.
             SmtpServer = Settings.Default.SmtpServer;
             _crypt.Key = new byte[]
             {

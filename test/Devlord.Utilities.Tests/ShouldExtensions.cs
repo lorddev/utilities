@@ -9,6 +9,11 @@ namespace Devlord.Utilities.Tests
             Assert.InRange(actual, lbound, ubound);
         }
 
+        public static void ShouldBeInRange(this int actual, int lbound, int ubound)
+        {
+            Assert.InRange(actual, lbound, ubound);
+        }
+
         public static void ShouldEqual(this object actual, object expected)
         {
             Assert.Equal(expected, actual);

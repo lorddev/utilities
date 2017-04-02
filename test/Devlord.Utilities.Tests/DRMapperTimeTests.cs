@@ -18,13 +18,10 @@ namespace Devlord.Utilities.Tests
     {
         private static readonly List<TestData> _inMemoryData;
 
-        private IDataReader _dataReader;
+        private readonly IDataReader _dataReader;
 
-        static DRMapperTimeTests()
-        {
-            _inMemoryData = Builder<TestData>.CreateListOfSize(2000).Build().ToList();
-        }
-        
+        static DRMapperTimeTests() => _inMemoryData = Builder<TestData>.CreateListOfSize(1000).Build().ToList();
+
         public DRMapperTimeTests()
         {
             _dataReader = ObjectReader.Create(_inMemoryData);
@@ -39,6 +36,7 @@ namespace Devlord.Utilities.Tests
             // Put the test data into a datareader to parse it back out into test data using reflection.
             var stopwatch = new Stopwatch();
             stopwatch.Start();
+
             var results = DRMapper.ParseList<TestData>(_dataReader);
             stopwatch.Stop();
             Console.Write($"Elapsed: {stopwatch.Elapsed}");
@@ -48,7 +46,8 @@ namespace Devlord.Utilities.Tests
         }
 
         /// <summary>
-        /// Takes 22 ms for 2000 record        /// </summary>
+        /// Takes 22 ms for 2000 records
+        /// </summary>
         [Fact]
         public void TestDataReaderWithFastMember()
         {
@@ -58,9 +57,9 @@ namespace Devlord.Utilities.Tests
             var results = ParseDataReaderWithFastMember<TestData>(_dataReader);
             stopwatch.Stop();
             Console.Write($"Elapsed: {stopwatch.Elapsed}");
-            var nineHundredThird = results[902];
-            nineHundredThird.Id.ShouldEqual(903);
-            nineHundredThird.LastName.ShouldEqual(_inMemoryData[902].LastName);
+            var nineHundredThird = results[90];
+            nineHundredThird.Id.ShouldEqual(91);
+            nineHundredThird.LastName.ShouldEqual(_inMemoryData[90].LastName);
         }
 
         [Fact]
