@@ -6,7 +6,7 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute> 
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.0.31</Version>
+    <Version>5.0.0.37</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>lorddev</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
