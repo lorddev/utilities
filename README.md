@@ -1,39 +1,19 @@
 devlord utilities
 ====================
-A useful class library for universal utilities such as error logging, email sending, and web service wrappers.
+A useful class library for universal utilities like encryption, sending emails, and consuming RESTful APIs.
 
 | Master      | Develop      | Nuget      |
 | -----       | -----        | -----      |
 | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/master?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [![NuGet Badge](https://buildstats.info/nuget/Devlord.Utilities)](https://www.nuget.org/packages/Devlord.Utilities/) |
 
-### 5.0 Release notes
+### Features
 
-* Incremented major version to 5.0 because of breaking changes in .NET Core
-    - There is a question of whether these features are truly deprecated or just haven't been finished yet, because I've seen reports
-      that some of the features will be added in .NET Core 2.0.
-
-* Changed service timers due to the .NET System.Timers.Timer class having been deprecated. I tried to keep the public interface intact, 
-as well as the behavior. But you'll need to change "ElapsedEventArgs" to "ServiceTimerState" in your events.
-
-        private static void LoopedElapsed(object sender, ElapsedEventArgs e)
-        {
-            Console.WriteLine("Test message ONE");
-        }
-        // to
-        private static void LoopedElapsed(object sender, ServiceTimerState e)
-        {
-            Console.WriteLine("Test message ONE");
-        }
-* Added MailKit dependency when using this library in .NET Core.
-* Breaking changes to Mailbot class: Use `GetInstance(string smtpServer)` instead of the `Instance` property. Throttles are now smtp-server-specific.
-  Also, app.config kind of doesn't work anymore since converting to .NET Core, so let me know if you have a fix.
-* Changed WebClient to HttpClient, made RssConvert async.
-* Absorbed [Encryptamajig](https://github.com/jbubriski/Encryptamajig) since it didn't appear to be maintained and I needed it updated to .NET Core.
-* Note that `RestRouteHandler` is only compatible with .NET v4.5.1. If you are using this feature, make sure you have the right target set.
-* Had some trouble with future-compatibility for `app.config`, so we've converted to the newer "ConfigurationBuilder" method. To set your settings for
-  items in `Devlord.Utilities.Settings`, copy `devlord.utilities.json` into your project, and set "Copy to Output Directory" to either
-  "Copy if newer" or "Copy always".
-* `DRMapper.ParseRecord<T>` overload with rowIndex has been deprecated.
+* .NET Core compatibility
+* System.Threading.Timers service clocks.
+* Email throttling to help you avoid being suspended by your ISP.
+* Generic HTTP API wrappers.
+* Two-way AES encryption.
+* "Micro-ORM" DataReader mapper for when using something else would be overkill.
 
 ### ApiCall
 
@@ -57,6 +37,8 @@ and to a file if it is not. This is useful for business logic layers in which a 
     }
 
 Now you can do all of your exception logging with just one simple line of code.
+
+>  Elmah is not exactly compatible with .NET Core, so I think we'll have to rearchitect this feature in order to make it very helpful.
 
 ### Interfaces
 
@@ -114,17 +96,12 @@ Allows mapping of an `IDataReader` to POCO classes using reflection. It's faster
 
 ### License
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Contact Aaron Lord: "lorddev" on GitHub or "devlords" on Twitter.
