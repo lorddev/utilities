@@ -89,7 +89,7 @@ and your data layer. Useful for pagination as well.
 
 ### Mailbot
 
-A multithreaded SMTP queued mail sender, has a throttle based on Google Apps maximums for mail frequency received at a single account.
+A multithreaded SMTP queued mail sender, has a throttle based on Google Apps maximums for mail frequency sent by a single account.
 Important: Create a test project and call `Crypt.HideSecretPassword()` using the same byte array used in the Mailbot class. Store the resulting encrypted password in the config file, at `Devlord.Utilities.Properties.Settings/SmtpPassword`.
 
 ### Crypt
