@@ -9,6 +9,13 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>Supports .NET Core netstandard 1.5</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/jbubriski/Encryptamajig</PackageProjectUrl>
+    <Authors>John Bubriski</Authors>
+    <RepositoryUrl>https://github.com/jbubriski/Encryptamajig</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Encryption</PackageTags>
   </PropertyGroup>
 
 

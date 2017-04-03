@@ -7,7 +7,7 @@ using System.Diagnostics;
 #if NETSTANDARD1_5
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using Elmah.Io;
+//using Elmah.Io;
 #endif
 
 namespace Devlord.Utilities

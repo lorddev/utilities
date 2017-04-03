@@ -4,48 +4,52 @@
     <TargetFrameworks>netstandard1.5;net462;net451;</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute> 
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.0.215</Version>
+    <Version>5.0.0.232</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>lorddev</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
+    <Copyright>Copyright © 2017 Aaron Lord</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>utils utilities email distance-matrix micro-orm logging encryption</PackageTags>
+    <PackageSummary>Utilities class library so you don't have to rewrite your utilities on ever project.</PackageSummary>
+    <PackageReleaseNotes>ph</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-   <!--  
+   <!--
     <PostBuildEvent>cd ../../..
-      powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>      
+      powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>
    -->
     <PreBuildEvent></PreBuildEvent>
-   <!--
-      powershell.exe -File $(ProjectDir)\vers-inc.ps1 $(ProjectPath)
-    -->
-   </PropertyGroup>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
-    <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj" />
+    <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.5'">    
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />    
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.5'">
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
     <PackageReference Include="MailKit" Version="1.12.0" />
-    <PackageReference Include="Elmah.Io.AspNetCore" Version="3.2.39-pre" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.1" />
-    
+
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
   </ItemGroup>
-  
+
   <ItemGroup Condition="'$(TargetFramework)'!='netstandard1.5'">
     <PackageReference Include="elmah" Version="1.2.2" />
-    
+
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -59,7 +63,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  
+
 <ItemGroup Condition="'$(TargetFramework)'=='net35'">
   <Reference Include="System.Web.Extensions" />
 </ItemGroup>
@@ -71,7 +75,7 @@
       <DependentUpon>ExceptionText.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-  
+
   <ItemGroup>
     <EmbeddedResource Update="Resources\ExceptionText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,7 +83,7 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>    
+  <ItemGroup>
     <DotNetCliToolReference Include="dotnet-bump" Version="1.0.1" />
   </ItemGroup>
 
