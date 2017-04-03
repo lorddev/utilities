@@ -9,11 +9,11 @@ using Xunit.Abstractions;
 
 namespace Devlord.Utilities.Services.Tests
 {
-    public class ServiceTimerTests
+    public class ContinuousLoopTests
     {
         private readonly ITestOutputHelper _output;
 
-        public ServiceTimerTests(ITestOutputHelper output)
+        public ContinuousLoopTests(ITestOutputHelper output)
         {
             _output = output;
         }

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    public class JsonDeserializerTest
+    public class JsonDeserializerTests
     {
         [Fact]
         public void TestCustomResolver()

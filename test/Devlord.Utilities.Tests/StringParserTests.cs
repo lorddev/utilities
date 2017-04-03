@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    public class StringParserTest
+    public class StringParserTests
     {
         [Fact]
         public void TestDecimalParse()

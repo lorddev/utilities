@@ -17,7 +17,8 @@ namespace Devlord.Utilities
     /// <summary>
     /// Provides strong-typed results for data returned from ADO data readers
     /// </summary>
-    /// <remarks>Similar to what EntityFramework and Automapper  do, but with less "startup" overhead. It's useful when working on 
+    /// <remarks>
+    /// Similar to what EntityFramework and Automapper  do, but with less "startup" overhead. It's useful when working on
     /// small projects that don't have the EF scaffolding in place.
     /// See http://improve.dk/performance-comparison-reading-data-from-the-database-strongly-typed/
     /// </remarks>
@@ -27,7 +28,8 @@ namespace Devlord.Utilities
         {
             var list = new List<T>();
 
-            var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+            var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public |
+                                                     BindingFlags.Instance);
 
             VerifyTypeMatch<T>(dr, properties);
 
@@ -49,19 +51,19 @@ namespace Devlord.Utilities
         {
             // Counter for when each field is found.
             var dictionary = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
-            
+
             // Throw an error if the class expects columns that aren't being returned.
             foreach (var pi in properties)
-            { 
+            {
                 // Increment
                 dictionary.Add(pi.Name);
             }
-            
+
             // Don't throw an error if the data set more verbose than the class we're filling
-            for (int i = 0; i < dr.FieldCount; i++)
-            { 
+            for (var i = 0; i < dr.FieldCount; i++)
+            {
                 // Decrement.
-                string column = dr.GetName(i);
+                var column = dr.GetName(i);
                 if (dictionary.Contains(column))
                 {
                     dictionary.Remove(column);
@@ -77,19 +79,20 @@ namespace Devlord.Utilities
             }
         }
 
-        public static T ParseRecord<T>(IDataReader dr, int rowIndex = 0)
+        [Obsolete("This feature has been deprecated. The workaround is to sort in your query.", true)]
+        public static T ParseRecord<T>(IDataReader dr, int rowIndex)
         {
-            var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+            throw new NotImplementedException(
+                "This feature has been deprecated. The workaround is to sort in your query.");
+        }
 
-            var currentRow = 0;
+        public static T ParseRecord<T>(IDataReader dr)
+        {
+            var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public |
+                                                     BindingFlags.Instance);
+
             while (dr.Read())
             {
-                if (currentRow < rowIndex)
-                {
-                    currentRow++;
-                    continue;
-                }
-
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
@@ -97,11 +100,6 @@ namespace Devlord.Utilities
                 }
 
                 return instance;
-            }
-
-            if (rowIndex > currentRow)
-            {
-                throw new IndexOutOfRangeException(ExceptionText.DRMapperIndexOutOfRange);
             }
 
             return default(T);

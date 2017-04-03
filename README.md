@@ -22,8 +22,15 @@ as well as the behavior. But you'll need to change "ElapsedEventArgs" to "Servic
             Console.WriteLine("Test message ONE");
         }
 * Added MailKit dependency when using this library in .NET Core.
+* Breaking changes to Mailbot class: Use `GetInstance(string smtpServer)` instead of the `Instance` property. Throttles are now smtp-server-specific.
+  Also, app.config kind of doesn't work anymore since converting to .NET Core, so let me know if you have a fix.
 * Changed WebClient to HttpClient, made RssConvert async.
 * Absorbed [Encryptamajig](https://github.com/jbubriski/Encryptamajig) since it didn't appear to be maintained and I needed it updated to .NET Core.
+* Note that `RestRouteHandler` is only compatible with .NET v4.5.1. If you are using this feature, make sure you have the right target set.
+* Had some trouble with future-compatibility for `app.config`, so we've converted to the newer "ConfigurationBuilder" method. To set your settings for
+  items in `Devlord.Utilities.Settings`, copy `devlord.utilities.json` into your project, and set "Copy to Output Directory" to either
+  "Copy if newer" or "Copy always".
+  * `DRMapper.ParseRecord<T>` overload with rowIndex has been deprecated.
 
 ### ApiCall
 

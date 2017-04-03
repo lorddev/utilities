@@ -22,11 +22,11 @@ namespace Devlord.Utilities.Tests
         [Fact]
         public void ReturnsDeserializedResults()
         {
-            const string EndPoint =
+            const string endPoint =
                 "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928";
             using (var httpClient = new HttpClient())
             {
-                var response = httpClient.GetAsync(EndPoint).Result;
+                var response = httpClient.GetAsync(endPoint).Result;
 
                 if (response.StatusCode != HttpStatusCode.NoContent && response.StatusCode != HttpStatusCode.OK)
                 {

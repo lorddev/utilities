@@ -12,13 +12,21 @@ namespace Devlord.Utilities
         #region Constructors and Destructors
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Throttles" /> class with the default Google Apps values from
+        /// a few years ago.
+        /// </summary>
+        public Throttles() : this(180, 3600, 1000)
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Throttles" /> class.
         /// </summary>
-        public Throttles()
+        protected Throttles(int min, int hour, int day)
         {
-            MinuteThrottle = new MailThrottle { Interval = ThrottleInterval.Minute, Limit = 180 };
-            HourlyThrottle = new MailThrottle { Interval = ThrottleInterval.Hour, Limit = 3600 };
-            DailyThrottle = new MailThrottle { Interval = ThrottleInterval.Day, Limit = 10000 };
+            MinuteThrottle = new MailThrottle { Interval = ThrottleInterval.Minute, Limit = min };
+            HourlyThrottle = new MailThrottle { Interval = ThrottleInterval.Hour, Limit = hour };
+            DailyThrottle = new MailThrottle { Interval = ThrottleInterval.Day, Limit = day };
         }
 
         #endregion

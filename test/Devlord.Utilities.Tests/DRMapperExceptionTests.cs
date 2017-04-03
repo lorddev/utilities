@@ -48,20 +48,5 @@ namespace Devlord.Utilities.Tests
             var result = DRMapper.ParseRecord<TestData>(dataReader);
             result.ShouldBeNull();
         }
-
-        [Fact]
-        public void TestDRMapperSingleRowOutOfRange()
-        {
-            // fake data columns map to WrongTestData class
-            var fakeData = Builder<WrongTestDto>.CreateListOfSize(5).Build().ToList();
-
-            // Put the test data into a datareader to parse it back out into test data using reflection.
-            var dataReader = ObjectReader.Create(fakeData);
-
-            Assert.Throws<IndexOutOfRangeException>(() =>
-            {
-                var result = DRMapper.ParseRecord<TestData>(dataReader, 7);
-            });
-        }
     }
 }

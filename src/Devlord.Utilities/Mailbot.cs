@@ -10,8 +10,9 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using Devlord.Utilities.Properties;
 
 namespace Devlord.Utilities
 {
@@ -34,25 +35,16 @@ namespace Devlord.Utilities
         /// <summary>
         /// The throttles.
         /// </summary>
-        private readonly Throttles _throttles = new Throttles();
+        private Throttles _throttles = new Throttles();
 
         #endregion
 
         #region Constructors and Destructors
         /// <summary>
-        /// Initializes static members of the <see cref="Mailbot" /> class.
-        /// </summary>
-        static Mailbot()
-        {
-            Instance = new Mailbot();
-        }
-
-        /// <summary>
         /// Private constructor to enforce use of singleton.
         /// </summary>
         private Mailbot()
         {
-            SmtpServer = Settings.Default.SmtpServer;
             _crypt.Key = new byte[]
             {
                 80, 20, 245, 0, 124, 61, 192, 137, 232, 79, 249, 228, 1, 246, 187, 3, 228, 215, 250, 11,
@@ -66,16 +58,41 @@ namespace Devlord.Utilities
 
         #endregion
 
-        #region Public Properties
+        private static readonly object DictionaryLock = new object();
+
         /// <summary>
         /// Gets the instance.
         /// </summary>
-        public static Mailbot Instance { get; }
+        public static Mailbot GetInstance(string smtpServer)
+        {
+            smtpServer = smtpServer.ToLower();
+            lock (DictionaryLock)
+            {
+                if (Instances.ContainsKey(smtpServer))
+                {
+                    return Instances[smtpServer];
+                }
+
+                var instance = new Mailbot { SmtpServer = smtpServer };
+                if (smtpServer == "smtp.gmail.com")
+                {
+                    instance._throttles = new GmailThrottles();
+                }
+
+                instance.SmtpServer = smtpServer;
+                Instances.Add(smtpServer, instance);
+                return instance;
+            }
+        }
+
+        private static readonly Dictionary<string, Mailbot> Instances = new Dictionary<string, Mailbot>();
+
+        #region Public Properties
 
         /// <summary>
         /// Gets the SMTP server.
         /// </summary>
-        public string SmtpServer { get; }
+        public string SmtpServer { get; private set; }
 
         #endregion
     }

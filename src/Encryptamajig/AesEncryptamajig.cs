@@ -61,38 +61,43 @@
 
         private static bool CheckInput(string field, string fieldName)
         {
-            if (string.IsNullOrWhiteSpace(field))
+            if (string.IsNullOrEmpty(field))
             {
                 throw new ArgumentNullException(fieldName);
             }
 
-            return field.Length > 0;
+            return field.Trim().Length > 0;
         }
 
+        // Supress warnings due to .NET 3.5 compatibility
+        // ReSharper disable SuspiciousTypeConversion.Global
+        #pragma warning disable S1944 // Inappropriate casts should not be made
         private static DeriveResult DeriveBytes(string key)
         {
-            using (var deriver = new Rfc2898DeriveBytes(key, SaltSize))
-            {
-                return new DeriveResult
-                    {
-                        Salt = deriver.Salt,
-                        Key = deriver.GetBytes(32),
-                        InitializationVector = deriver.GetBytes(16)
-                    };
-            }
+            var deriver = new Rfc2898DeriveBytes(key, SaltSize);
+            var result = new DeriveResult
+                {
+                    Salt = deriver.Salt,
+                    Key = deriver.GetBytes(32),
+                    InitializationVector = deriver.GetBytes(16)
+                };
+            (deriver as IDisposable)?.Dispose();
+            return result;
         }
 
         private static DeriveResult DeriveBytes(string key, byte[] saltBytes)
         {
-            using (var deriver = new Rfc2898DeriveBytes(key, saltBytes))
-            {
-                // Derive the previous IV from the Key and Salt
-                return new DeriveResult
-                    {
-                        Key = deriver.GetBytes(32),
-                        InitializationVector = deriver.GetBytes(16)
-                    };
-            }
+            var deriver = new Rfc2898DeriveBytes(key, saltBytes);
+         
+            // Derive the previous IV from the Key and Salt
+            var result = new DeriveResult
+                {
+                    Key = deriver.GetBytes(32),
+                    InitializationVector = deriver.GetBytes(16)
+                };
+
+            (deriver as IDisposable)?.Dispose();
+            return result;
         }
 
         private static byte[] EncryptStream(string clearText, DeriveResult bytes)

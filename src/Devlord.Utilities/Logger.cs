@@ -1,11 +1,11 @@
-﻿using Elmah;
+﻿#if !NETSTANDARD1_5
+using System.Web;
+using Elmah;
+#endif
 using System;
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-#if NET451
-using System.Web;
-#endif
 #if NETSTANDARD1_5
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Elmah.Io;
 #endif
@@ -17,8 +17,14 @@ namespace Devlord.Utilities
         protected Logger()
         {
         }
+        
+#if NETSTANDARD1_5
 
-#if !NETSTANDARD1_5
+        public static void Log(Exception e)
+        {
+            Log(new ConsoleLogger(), e);
+        }
+#else
         public static void Log(Exception e)
         {
             if (HttpContext.Current != null)
@@ -33,23 +39,11 @@ namespace Devlord.Utilities
             Debugger.Log(0, "DEBUG", "Exception: " + e);
         }
 #endif
-#if NETSTANDARD1_5
-
-        public static void Log(Exception e)
-        {
-            Log(new ConsoleLogger(), e);
-        }
-
-
-#endif
 
         public static void Log(ILogger logger, Exception e)
         {
             logger.WriteEntry(e.ToString(), EventLogEntryType.Error);
         }
-
-       
-
       
     }
     public class ConsoleLogger : ILogger

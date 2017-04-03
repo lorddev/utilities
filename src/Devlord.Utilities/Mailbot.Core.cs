@@ -13,7 +13,6 @@
 #if NETSTANDARD1_5
 using System;
 using System.Threading.Tasks;
-using Devlord.Utilities.Properties;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;

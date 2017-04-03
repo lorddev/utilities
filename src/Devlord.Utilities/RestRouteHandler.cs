@@ -6,7 +6,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-#if !NETSTANDARD1_5
+#if NET451
 using System.Web;
 using System.Web.Compilation;
 using System.Web.Routing;
