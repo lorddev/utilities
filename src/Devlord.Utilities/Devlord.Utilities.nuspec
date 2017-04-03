@@ -2,11 +2,11 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>4.0.1</version>
+    <version>5.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/lorddev/utilities/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/lorddev/utilities</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>   

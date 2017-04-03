@@ -2,7 +2,9 @@ devlord utilities
 ====================
 A useful class library for universal utilities such as error logging, email sending, and web service wrappers.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e?svg=true)](https://ci.appveyor.com/project/lorddev/utilities)
+| Master      | Develop      | Nuget      |
+| ----- | ----- | ----- |
+| [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/master?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [![NuGet Badge](https://buildstats.info/nuget/Devlord.Utilities)](https://www.nuget.org/packages/Devlord.Utilities/) |
 
 ### 5.0 Release notes
 
