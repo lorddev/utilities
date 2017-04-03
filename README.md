@@ -12,6 +12,7 @@ A useful class library for universal utilities such as error logging, email send
 
 * Changed service timers due to the .NET System.Timers.Timer class having been deprecated. I tried to keep the public interface intact, 
 as well as the behavior. But you'll need to change "ElapsedEventArgs" to "ServiceTimerState" in your events.
+
         private static void LoopedElapsed(object sender, ElapsedEventArgs e)
         {
             Console.WriteLine("Test message ONE");
@@ -30,7 +31,7 @@ as well as the behavior. But you'll need to change "ElapsedEventArgs" to "Servic
 * Had some trouble with future-compatibility for `app.config`, so we've converted to the newer "ConfigurationBuilder" method. To set your settings for
   items in `Devlord.Utilities.Settings`, copy `devlord.utilities.json` into your project, and set "Copy to Output Directory" to either
   "Copy if newer" or "Copy always".
-  * `DRMapper.ParseRecord<T>` overload with rowIndex has been deprecated.
+* `DRMapper.ParseRecord<T>` overload with rowIndex has been deprecated.
 
 ### ApiCall
 
