@@ -1,12 +1,10 @@
 version: 5.0.0.{build}
 image: Visual Studio 2017
-build:
-  verbosity: minimal
 build_script:
 - ps: >-
-dotnet restore
-dotnet msbuild
+    dotnet restore
+    dotnet msbuild
 test_script:
-- ps: >- 
-dotnet test test\Encryptamajig.Tests\Encryptamajig.Tests.csproj
-dotnet test test\Devlord.Utilities.Tests\Devlord.Utilities.Tests.csproj
+- ps: >-
+    dotnet test test\Encryptamajig.Tests\Encryptamajig.Tests.csproj
+    dotnet test test\Devlord.Utilities.Tests\Devlord.Utilities.Tests.csproj
