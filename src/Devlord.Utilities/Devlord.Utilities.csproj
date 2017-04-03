@@ -16,7 +16,7 @@
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>utils utilities email distance-matrix micro-orm logging encryption</PackageTags>
-    <PackageSummary>Utilities class library so you don't have to rewrite your utilities on ever project.</PackageSummary>
+    <PackageSummary>Utilities class library so you don't have to rewrite your utilities on every project.</PackageSummary>
     <PackageReleaseNotes>ph</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup>
