@@ -1,14 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">--------------------------------------------------------------------------------------------------------------------&#xD;
 &lt;copyright file="$FILENAME$" company="Lord Design"&gt;&#xD;
-  © Lord Design&#xD;
+  © $CURRENT_YEAR$ Lord Design&#xD;
 &lt;/copyright&gt;&#xD;
-&lt;license type="GPL"&gt;&#xD;
-  You may use freely and commercially without modification; you can modify if result &#xD;
-  is also free.&#xD;
+&lt;license type="GPL-3.0"&gt;&#xD;
+  You may use freely and commercially without modification; if you make changes, please share back to the&#xD;
+  community. &#xD;
 &lt;/license&gt;&#xD;
-&lt;summary&gt;&#xD;
-&lt;/summary&gt;&#xD;
 &lt;author&gt;$USER_NAME$&lt;/author&gt;&#xD;
 --------------------------------------------------------------------------------------------------------------------&#xD;
 </s:String>

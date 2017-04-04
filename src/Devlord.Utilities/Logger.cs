@@ -22,7 +22,6 @@ namespace Devlord.Utilities
         protected Logger()
         {
         }
-
     }
 
 #if !NETSTANDARD1_3

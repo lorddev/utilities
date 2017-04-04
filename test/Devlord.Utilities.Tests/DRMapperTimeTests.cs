@@ -79,7 +79,6 @@ namespace Devlord.Utilities.Tests
         {
             Stopwatch stopwatch;
             TestData result;
-             List<TestData> results;
             var inMemoryData = Builder<TestData>.CreateListOfSize(1).Build();
             using (var dataReader = ObjectReader.Create(inMemoryData))
             {

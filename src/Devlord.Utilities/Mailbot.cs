@@ -11,7 +11,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Devlord.Utilities
@@ -22,24 +21,12 @@ namespace Devlord.Utilities
     /// </summary>
     public partial class Mailbot
     {
-        // Per minute 180, Per hour 3600, Per day 10,000
+        private static readonly object DictionaryLock = new object();
 
-        public async Task QueueMail(Botmail message)
-        {
-            await SendMail(message);
-        }
-
-        #region Fields
-        private readonly Crypt _crypt = new Crypt();
-
-        /// <summary>
-        /// The throttles.
-        /// </summary>
-        private Throttles _throttles = new Throttles();
-
-        #endregion
+        private static readonly Dictionary<string, Mailbot> Instances = new Dictionary<string, Mailbot>();
 
         #region Constructors and Destructors
+
         /// <summary>
         /// Private constructor to enforce use of singleton.
         /// </summary>
@@ -58,7 +45,21 @@ namespace Devlord.Utilities
 
         #endregion
 
-        private static readonly object DictionaryLock = new object();
+        #region Public Properties
+
+        /// <summary>
+        /// Gets the SMTP server.
+        /// </summary>
+        public string SmtpServer { get; private set; }
+
+        #endregion
+
+        // Per minute 180, Per hour 3600, Per day 10,000
+
+        public async Task QueueMail(Botmail message)
+        {
+            await SendMail(message);
+        }
 
         /// <summary>
         /// Gets the instance.
@@ -85,14 +86,14 @@ namespace Devlord.Utilities
             }
         }
 
-        private static readonly Dictionary<string, Mailbot> Instances = new Dictionary<string, Mailbot>();
+        #region Fields
 
-        #region Public Properties
+        private readonly Crypt _crypt = new Crypt();
 
         /// <summary>
-        /// Gets the SMTP server.
+        /// The throttles.
         /// </summary>
-        public string SmtpServer { get; private set; }
+        private Throttles _throttles = new Throttles();
 
         #endregion
     }

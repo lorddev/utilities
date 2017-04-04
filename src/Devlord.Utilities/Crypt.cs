@@ -1,12 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Crypt.cs" company="">
-//   
+// <copyright file="Crypt.cs" company="Lord Design">
+//   © 2017 Lord Design
 // </copyright>
-// <created>10/22/2012 3:42 PM</created>
-// <author>aaron@lorddesign.net</author>
-// <summary>
-//   TODO: Update summary.
-// </summary>
+// <license type="GPL-3.0">
+//   You may use freely and commercially without modification; if you make changes, please share back to the
+//   community.
+// </license>
+// <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;

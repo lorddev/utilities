@@ -12,7 +12,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -33,16 +32,6 @@ namespace Devlord.Utilities
         public string SmtpLogin => GetValue<string>("Devlord.Utilities:SmtpLogin");
         public string SmtpPassword => GetValue<string>("Devlord.Utilities:SmtpPassword");
 
-        public T GetValue<T>(string propertyName)
-        {
-            string value = _configuration[propertyName];
-            if (value != null)
-            {
-                return JsonConvert.DeserializeObject<T>(value);
-            }
-            throw new SettingNotFoundException(propertyName);
-        }
-        
         private static IConfiguration GetConfig()
         {
             var builder = new ConfigurationBuilder()
@@ -52,16 +41,20 @@ namespace Devlord.Utilities
                 .SetBasePath(AppContext.BaseDirectory)
 #endif
                 .AddJsonFile("devlord.utilities.json",
-                    optional: true,
-                    reloadOnChange: true);
+                    true,
+                    true);
 
             return builder.Build();
         }
 
-    }
-
-    public class SettingNotFoundException : KeyNotFoundException
-    {
-        public SettingNotFoundException(string setting) : base($"{nameof(SettingNotFoundException)}: {setting}") { }
+        public T GetValue<T>(string propertyName)
+        {
+            var value = _configuration[propertyName];
+            if (value != null)
+            {
+                return JsonConvert.DeserializeObject<T>(value);
+            }
+            throw new SettingNotFoundException(propertyName);
+        }
     }
 }
