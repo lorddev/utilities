@@ -4,13 +4,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Diagnostics;
 using System.Text;
 using Test.Cryptography;
 using Xunit;
-// ReSharper disable CheckNamespace
+using System.Security.Cryptography;
 
-namespace System.Security.Cryptography.Encryption.Aes.Tests
+namespace Encryptamajig.Tests
 {
     /// <summary>
     /// Since AesManaged wraps Aes, we only test minimally here.

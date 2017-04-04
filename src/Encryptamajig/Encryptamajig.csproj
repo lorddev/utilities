@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.5;net462;net451;</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net462;netstandard1.3;netstandard1.5</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -10,16 +10,17 @@
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <Version>1.1.0</Version>
-    <PackageReleaseNotes>Supports .NET Core netstandard 1.5</PackageReleaseNotes>
+    <PackageReleaseNotes>Supports .NET Core netstandard 1.3</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/jbubriski/Encryptamajig</PackageProjectUrl>
     <Authors>John Bubriski</Authors>
     <RepositoryUrl>https://github.com/jbubriski/Encryptamajig</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Encryption</PackageTags>
   </PropertyGroup>
-
-
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.5'">
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
   </ItemGroup>
 

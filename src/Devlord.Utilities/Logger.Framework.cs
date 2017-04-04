@@ -12,6 +12,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
+#if NET451 || NET462
+using System.Web;
+using Elmah;
 using System;
 using System.Diagnostics;
 
@@ -19,39 +22,27 @@ namespace Devlord.Utilities
 {
     public partial class Logger
     {
-        protected Logger()
+
+        public static void Log(Exception e)
         {
+            if (HttpContext.Current != null)
+            {
+                ErrorSignal.FromCurrentContext().Raise(e);
+            }
+            else
+            {
+                ErrorLog.Default.Log(new Error(e));
+            }
+
+            Debugger.Log(0, "DEBUG", "Exception: " + e);
         }
+        
 
-    }
-
-#if !NETSTANDARD1_3
-
-    public interface ILogger
-    {
-        void Log(Exception exception);
-
-        void WriteEntry(string message, EventLogEntryType error, LogCode code = LogCode.None);
-    }
-
-    public partial class ConsoleLogger : ILogger
-    {
-        public void Log(Exception exception)
+        public static void Log(ILogger logger, Exception e)
         {
-            WriteEntry(exception.ToString(), EventLogEntryType.Error);
+            logger.WriteEntry(e.ToString(), EventLogEntryType.Error);
         }
-
-        public void WriteEntry(string message, EventLogEntryType error, LogCode code = LogCode.None)
-        {
-            Console.WriteLine($"message: {message}, error: {error}, code: {code}");
-        }
-    }
-
-#endif
-
-    public enum LogCode
-    {
-        None,
-        GenericError
     }
 }
+
+#endif

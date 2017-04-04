@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFrameworks>netcoreapp1.1;net452;net462</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
   </PropertyGroup>
   <PropertyGroup>
-    <PackageTargetFallback>net451;netstandard1.5</PackageTargetFallback>
     <Version>5.0-test</Version>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
@@ -24,10 +23,14 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.5'">    
-    <PackageReference Include="CoreCompat.System.Configuration" Version="4.2.3-r4" />
+  <ItemGroup Condition="'$(TargetFramework)'=='net452'">    
+    <PackageReference Include="xunit.runner.console" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net462'">    
+    <PackageReference Include="xunit.runner.console" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\nbuilder\src\FizzWare.NBuilder\FizzWare.NBuilder-NetCore.csproj" />

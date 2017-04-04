@@ -5,11 +5,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System.ComponentModel;
+using System.Security.Cryptography;
 
-// ReSharper disable CheckNamespace
-
-#if NETSTANDARD1_5
-namespace System.Security.Cryptography
+#if NETSTANDARD1_5 || NETSTANDARD1_3
+namespace Encryptamajig
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class AesManaged : Aes

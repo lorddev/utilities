@@ -59,8 +59,8 @@ namespace Devlord.Utilities.Tests
             // Put the test data into a datareader to parse it back out into test data using FastMember.
             Stopwatch stopwatch;
             List<TestData> results;
-            var inMemoryData = Builder<TestData>.CreateListOfSize(1000).Build().OrderBy(c => c.Id).ToList();
-            inMemoryData.First().Id.ShouldEqual(1);
+            var inMemoryData = Builder<TestData>.CreateListOfSize(1000).Build();
+            inMemoryData.ElementAt(902).Id.ShouldEqual(903);
             using (var dataReader = ObjectReader.Create(inMemoryData))
             {
                 stopwatch = new Stopwatch();
@@ -79,10 +79,9 @@ namespace Devlord.Utilities.Tests
         {
             Stopwatch stopwatch;
             TestData result;
-            var inMemoryData = Builder<TestData>.CreateListOfSize(100).Build().OrderBy(c => c.Id);
-            inMemoryData.First().Id.ShouldEqual(1);
-            var filter = inMemoryData.Where(x => x.Id == 45);
-            using (var dataReader = ObjectReader.Create(filter))
+             List<TestData> results;
+            var inMemoryData = Builder<TestData>.CreateListOfSize(1).Build();
+            using (var dataReader = ObjectReader.Create(inMemoryData))
             {
                 stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -91,9 +90,9 @@ namespace Devlord.Utilities.Tests
 
             stopwatch.Stop();
             _output.WriteLine($"Elapsed: {stopwatch.Elapsed}");
-            result.Id.ShouldEqual(45);
-            result.FirstName.ShouldEqual("FirstName45");
-            result.LastName.ShouldEqual("LastName45");
+            result.Id.ShouldEqual(1);
+            result.FirstName.ShouldEqual("FirstName1");
+            result.LastName.ShouldEqual("LastName1");
         }
         
 

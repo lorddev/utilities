@@ -1,12 +1,23 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Settings.cs" company="Lord Design">
+//   © Lord Design
+// </copyright>
+// <license type="GPL">
+//   You may use freely and commercially without modification; you can modify if result 
+//   is also free.
+// </license>
+// <summary>
+// </summary>
+// <author>Aaron Lord</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace Devlord.Utilities
 {
-
     public class Settings
     {
         public static Settings Default { get; } = new Settings();
@@ -36,7 +47,7 @@ namespace Devlord.Utilities
         {
             var builder = new ConfigurationBuilder()
 #if NET451
-                .SetBasePath(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
 #else
                 .SetBasePath(AppContext.BaseDirectory)
 #endif

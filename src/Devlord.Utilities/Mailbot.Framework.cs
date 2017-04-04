@@ -10,7 +10,7 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-#if !NETSTANDARD1_5
+#if NET451 || NET462
 using System;
 using System.Net;
 using System.Net.Mail;
