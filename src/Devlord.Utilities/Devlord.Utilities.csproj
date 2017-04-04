@@ -1,12 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;netstandard1.5;net462;net451;</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard1.5;net451;net462;</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.0.232</Version>
+    <Version>5.0.38</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>lorddev</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
@@ -18,18 +18,17 @@
     <PackageTags>utils utilities email distance-matrix micro-orm logging encryption</PackageTags>
     <PackageSummary>Utilities class library so you don't have to rewrite your utilities on every project.</PackageSummary>
     <PackageReleaseNotes>ph</PackageReleaseNotes>
-  </PropertyGroup>
-  <PropertyGroup>
-    <!-- Makes the TypeScript compilation task a no-op -->
+     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+  </PropertyGroup>
+  <!-- only run it for the first build! -->
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">   
    <!--
-    <PostBuildEvent>cd ../../..
+    <PBuildEvent>cd ../../..
       powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>
    -->
-    <PreBuildEvent></PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.3|AnyCPU'">
-    <DocumentationFile>bin\Debug\Devlord.Utilities.xml</DocumentationFile>
+    <PreBuildEvent>cd ../../../
+    	powershell.exe -NoProfile -File vers-inc.ps1 Devlord.Utilities.csproj</PreBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,7 +38,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.5'">
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3' Or '$(TargetFramework)'=='netstandard1.5'">
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
@@ -48,19 +47,9 @@
 
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
-    <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
-    <PackageReference Include="MailKit" Version="1.12.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.1" />
+  </ItemGroup> 
 
-    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net451'">
+  <ItemGroup Condition="'$(TargetFramework)'=='net451' Or '$(TargetFramework)'=='net462'">
     <PackageReference Include="elmah" Version="1.2.2" />
 
     <Reference Include="System" />
@@ -76,23 +65,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)'=='net462'">
-    <PackageReference Include="elmah" Version="1.2.2" />
-
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-
+ 
   <ItemGroup>
     <Compile Update="Resources\ExceptionText.Designer.cs">
       <DesignTime>True</DesignTime>
