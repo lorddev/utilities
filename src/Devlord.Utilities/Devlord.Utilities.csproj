@@ -6,7 +6,7 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.38</Version>
+    <Version>5.0.43</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>lorddev</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
@@ -24,7 +24,7 @@
   <!-- only run it for the first build! -->
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">   
    <!--
-    <PBuildEvent>cd ../../..
+    <PostBuildEvent>cd ../../..
       powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>
    -->
     <PreBuildEvent>cd ../../../
