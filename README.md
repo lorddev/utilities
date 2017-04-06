@@ -13,11 +13,13 @@ To install Devlord.Utilities, run the following command in the Package Manager C
 ### Feature Summary
 
 * .NET Core compatibility
-* System.Threading.Timers service clocks.
-* Email throttling to help you avoid being suspended by your ISP.
-* Generic HTTP API wrappers.
-* Two-way AES encryption.
-* "Micro-ORM" DataReader mapper for when using something else would be overkill.
+* System.Threading.Timers service clocks
+* Email throttling to help you avoid being suspended by your ISP
+* Generic HTTP API wrappers
+* Two-way AES encryption
+* "Micro-ORM" DataReader mapper for when using a full-featured ORM would be overkill
+
+More details below, but for even _more_ details, see the [project wiki](https://github.com/lorddev/utilities/wiki).
 
 ### Service Timers
 
@@ -25,8 +27,6 @@ We've provided 3 types of timers for back-end services to execute operations
 * At a certain time
 * At a certain regular interval
 * Continuously, repeating an action as soon as the previous action is complete
-
-More details below, but for even _more_ details, see the [project wiki](https://github.com/lorddev/utilities/wiki).
 
 ### ApiCall
 
