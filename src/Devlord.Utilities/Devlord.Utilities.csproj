@@ -6,9 +6,9 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.111</Version>
+    <Version>5.0.114</Version>
     <Company>Devlords Cooperative</Company>
-    <Authors>lorddev</Authors>
+    <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
     <Copyright>Copyright © 2017 Aaron Lord</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</PackageLicenseUrl>
@@ -39,8 +39,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\$(Configuration)\netstandard1.3\asdf2.dll" Pack="true" PackagePath="lib\netstandard1.3\asdf2.dll" />
-    <None Include="bin\$(Configuration)\netstandard1.5\asdf2.dll" Pack="true" PackagePath="lib\netstandard1.5\asdf2.dll" />
+    <None Include="bin\$(Configuration)\netstandard1.3\Encryptamajig.dll" Pack="true" PackagePath="lib\netstandard1.3\" />
+    <None Include="bin\$(Configuration)\netstandard1.5\Encryptamajig.dll" Pack="true" PackagePath="lib\netstandard1.5\" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3' Or '$(TargetFramework)'=='netstandard1.5'">
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />

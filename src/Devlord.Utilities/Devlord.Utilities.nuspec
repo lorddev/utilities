@@ -5,7 +5,7 @@
         <id>Devlord.Utilities</id>
 
          <!-- The package version number that is used when resolving dependencies -->
-        <version>5.0.111</version>
+        <version>5.0.113</version>
         <title>Devlord.Utilities</title>
 
         <!-- Authors contain text that appears directly on the gallery -->
@@ -28,11 +28,14 @@
         <summary>Utilities class library so you don't have to rewrite your utilities on every project.</summary>
       
         <!-- Any details about this particular release -->
-        <releaseNotes>New IDataReader mapper for dynamic ORM.</releaseNotes>
+        <releaseNotes>* DRMapper is now case-insensitive, so you don't have to worry about making sure your model classes exactly match your database outputs.
+* Extended compatibility to netstandard1.3
+        
+Make sure you add a copy of "devlord.utilities.json" to your project's root directory to set your SMTP settings. See the documentation on GitHub for more information.</releaseNotes>
 	
 	    <!-- The description can be used in package manager UI. Note that the
             nuget.org gallery uses information you add in the portal. -->
-        <description>Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers. Also includes a .NET Core-compatible build of Encryptamajig.</description>
+        <description>Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, basic datareader-to-POCO mapping, a mailer throttle, and strongly-typed API callers.</description>
      
         <!-- Copyright information -->
         <copyright>Copyright © 2017 Aaron Lord</copyright>
@@ -41,12 +44,12 @@
         <tags>utils utilities email distance-matrix micro-orm logging encryption</tags>
 
 	    <contentFiles>
-	    	 <!-- Copy config to the root of the output folder -- BUG! This doesn't work! -->
+	    	 <!-- Copy config to the root of the output folder - BUG! This doesn't work! -->
 	    	 <files include="any/any/devlord.utilities.json" buildAction="None" copyToOutput="true" flatten="true" />
 	    </contentFiles>
    
 	    <!-- Dependencies are automatically installed when the package is installed -->
-	    <dependencies>
+        <dependencies>
             <group targetFramework=".NETStandard1.5">
                 <dependency id="MailKit" version="1.12.0" exclude="Build,Analyzers" />
                 <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
@@ -60,15 +63,26 @@
                 <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
                 <dependency id="System.Threading.Timer" version="4.3.0" exclude="Build,Analyzers" />
             </group>
+            <group targetFramework=".NETStandard1.3">
+                <dependency id="MailKit" version="1.12.0" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.AspNetCore.Http" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="System.Xml.XmlSerializer" version="4.3.0" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Logging" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="System.Collections" version="4.3.0" exclude="Build,Analyzers" />
+                <dependency id="System.Runtime.Serialization.Xml" version="4.3.0" exclude="Build,Analyzers" />
+                <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
+                <dependency id="System.Threading.Timer" version="4.3.0" exclude="Build,Analyzers" />
+            </group>
             <group targetFramework=".NETFramework4.5.1">
-                <dependency id="Encryptamajig" version="1.0.0" exclude="Build,Analyzers" />
                 <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
                 <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
                 <dependency id="elmah" version="1.2.2" exclude="Build,Analyzers" />
                 <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
             </group>
             <group targetFramework=".NETFramework4.6.2">
-                <dependency id="Encryptamajig" version="1.0.0" exclude="Build,Analyzers" />
                 <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
                 <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
                 <dependency id="elmah" version="1.2.2" exclude="Build,Analyzers" />
@@ -84,10 +98,14 @@
     <files>  	
  
         <file src="devlord.utilities.json" target="contentFiles\any\any" buildAction="None" copyToOutput="true"/>
-        <file src="bin\Release\netstandard1.3\*.dll" target="lib\netstandard1.3" />
- 	    <file src="bin\Release\netstandard1.5\*.dll" target="lib\netstandard1.5" />
- 	    <file src="bin\Release\net451\*.dll" target="lib\net451" />
-        <file src="bin\Release\net462\*.dll" target="lib\net462" />
+        <file src="bin\Release\netstandard1.3\Devlord.Utilities.dll" target="lib\netstandard1.3" />
+        <file src="bin\Release\netstandard1.3\Encryptamajig.dll" target="lib\netstandard1.3" />
+ 	    <file src="bin\Release\netstandard1.5\Devlord.Utilities.dll" target="lib\netstandard1.5" />
+ 	    <file src="bin\Release\netstandard1.5\Encryptamajig.dll" target="lib\netstandard1.5" />
+ 	    <file src="bin\Release\net451\Devlord.Utilities.dll" target="lib\net451" />
+ 	    <file src="bin\Release\net451\Encryptamajig.dll" target="lib\net451" />
+        <file src="bin\Release\net462\Devlord.Utilities.dll" target="lib\net462" />
+        <file src="bin\Release\net462\Encryptamajig.dll" target="lib\net462" />
         <!-- A readme.txt will be displayed when the package is installed -->
         <file src="..\..\README.md" target="" />
     </files>
