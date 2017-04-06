@@ -34,7 +34,7 @@ POCO classes for accessing the Google Maps distance API.
 
 Usage with a custom JSON contract resolver that converts the Google JSON property names to POCO object properties.
 
-    ```csharp
+```csharp
     const string BaseUri = "https://maps.googleapis.com/maps/api/distancematrix/json";
 
     using (IApiCall client = new ApiCall(BaseUri,
@@ -45,7 +45,7 @@ Usage with a custom JSON contract resolver that converts the Google JSON propert
         client.QueryParams.Add("destinations", "95928");
         IApiResult<dynamic> result = client.Execute<DistanceResults>();
     }
-    ```
+```
 
 ### DataManager
 
@@ -73,6 +73,10 @@ You can utilize the `PostFilter` delegate to filter the results even further. (S
 Allows mapping of an `IDataReader` to POCO classes using reflection. It's faster than you might expect.
 
 For more information, see the Wiki!
+
+### Contributing
+
+Yes, please!
 
 ### License
 
