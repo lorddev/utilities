@@ -8,7 +8,7 @@ A useful class library for universal utilities like encryption, sending emails, 
 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
-    Install-Package Devlord.Utilities
+    PM> Install-Package Devlord.Utilities
 
 ### Feature Summary
 
@@ -64,9 +64,8 @@ A multithreaded SMTP queued mail sender, has a throttle based on Google Apps max
 
 ### Crypt
 
-Bi-directional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's
-configuration files. This is not recommend for use with user's site credentials as those should be one-way; also, site login 
-credentials often require an encrypted password to match a _stored_ encrypted password, and this algorithm doesn't create identical strings every time.
+Bidirectional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's
+configuration files. (Not recommend for use with user's site credentials as those should use one-way encryption.)
 
 ### RssConverter
 
@@ -91,8 +90,8 @@ Yes, please!
 
 ### License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
