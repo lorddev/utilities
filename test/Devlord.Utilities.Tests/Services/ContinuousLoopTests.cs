@@ -1,4 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ContinuousLoopTests.cs" company="Lord Design">
+//   © 2017 Lord Design
+// </copyright>
+// <license type="GPL-3.0">
+//   You may use freely and commercially without modification; if you make changes, please share back to the
+//   community. 
+// </license>
+// <author>Aaron Lord</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Devlord.Utilities.Tests;
@@ -11,12 +22,12 @@ namespace Devlord.Utilities.Services.Tests
 {
     public class ContinuousLoopTests
     {
-        private readonly ITestOutputHelper _output;
-
         public ContinuousLoopTests(ITestOutputHelper output)
         {
             _output = output;
         }
+
+        private readonly ITestOutputHelper _output;
 
         public void TestContinuousLoop()
         {
@@ -46,25 +57,32 @@ namespace Devlord.Utilities.Services.Tests
         }
 
         [Fact]
-        public async Task TestLoopTimer3X()
+        public void TestLoopTimer3X()
         {
-            var ct = 0;
+            // This test will fail unless the assembly is marked with the 
+            // [assembly: CollectionBehavior(DisableTestParallelization = true)] 
+            // This is because when running tests in parallel, the thread prioritization
+            // system behaves unexpectedly. The lesson for end-users is: If you require something
+            // to happen at a certain time, make sure that owner of the Timer object is your main thread.
+            var ct462 = 0;
+
             ServiceTimer timer = new LoopTimer(TimeSpan.FromSeconds(0.01));
             timer.AddEvent(
                 (s, e) =>
                 {
-                    Interlocked.Increment(ref ct);
-                    _output.WriteLine("poke: " + ct);
+                    _output.WriteLine("poke: " + Interlocked.Increment(ref ct462));
                 });
             timer.Run();
-            
-            await Task.Delay(40);
-            
+
+            var t = Task.Delay(50);
+            t.Wait();
+
             timer.ShutDown();
             _output.WriteLine("Asserting...");
             // TODO: Running local returns 4 as expected; running on AppVeyor returns
             // 12. Presumably running in parallel on steroids?
-            ct.ShouldBeInRange(1, 20);
+            
+            ct462.ShouldBeInRange(2, 6);
         }
     }
 }

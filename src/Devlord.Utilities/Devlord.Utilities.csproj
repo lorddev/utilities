@@ -6,7 +6,7 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.90</Version>
+    <Version>5.0.111</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>lorddev</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
@@ -17,19 +17,19 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>utils utilities email distance-matrix micro-orm logging encryption</PackageTags>
     <PackageSummary>Utilities class library so you don't have to rewrite your utilities on every project.</PackageSummary>
-    <PackageReleaseNotes>ph</PackageReleaseNotes>
-     <!-- Makes the TypeScript compilation task a no-op -->
+    <PackageReleaseNotes>...</PackageReleaseNotes>
+    <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <NuspecFile>Devlord.Utilities.nuspec</NuspecFile>
   </PropertyGroup>
   <!-- only run it for the first build! -->
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">   
-   <!--
-    <PostBuildEvent>cd ../../..
-      powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>
-   -->
-    <PreBuildEvent>cd ../../../
-    	powershell.exe -NoProfile -File vers-inc.ps1 Devlord.Utilities.csproj</PreBuildEvent>
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'"> 
+     <PreBuildEvent>cd ../../../
+         powershell.exe -NoProfile -File vers-inc.ps1 Devlord.Utilities.csproj</PreBuildEvent>
+     <!-- 
+     <PostBuildEvent>cd ../../..
+         powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>
+     -->
   </PropertyGroup>
 
   <ItemGroup>

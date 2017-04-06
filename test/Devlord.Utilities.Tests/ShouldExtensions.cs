@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace Devlord.Utilities.Tests
@@ -17,6 +18,11 @@ namespace Devlord.Utilities.Tests
         public static void ShouldEqual(this object actual, object expected)
         {
             Assert.Equal(expected, actual);
+        }
+
+        public static void ShouldEqual(this string actual, string expected, StringComparer comparer)
+        {
+            Assert.Equal(expected, actual, comparer);
         }
 
         public static void ShouldBeNull<T>(this T actual) where T : class

@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using Devlord.Utilities.Resources;
 
 namespace Devlord.Utilities
 {
@@ -31,14 +30,14 @@ namespace Devlord.Utilities
             var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public |
                                                      BindingFlags.Instance);
 
-            VerifyTypeMatch<T>(dr, properties);
+            var fieldNames = new TypeMatcher<T>(properties).VerifyTypeMatch(dr).GetFieldTranslator();
 
             while (dr.Read())
             {
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
-                    pi.SetValue(instance, dr[pi.Name], null);
+                    pi.SetValue(instance, dr[fieldNames[pi.Name.ToLowerInvariant()]], null);
                 }
 
                 list.Add(instance);
@@ -47,37 +46,6 @@ namespace Devlord.Utilities
             return list;
         }
 
-        private static void VerifyTypeMatch<T>(IDataRecord dr, IEnumerable<PropertyInfo> properties)
-        {
-            // Counter for when each field is found.
-            var dictionary = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
-
-            // Throw an error if the class expects columns that aren't being returned.
-            foreach (var pi in properties)
-            {
-                // Increment
-                dictionary.Add(pi.Name);
-            }
-
-            // Don't throw an error if the data set more verbose than the class we're filling
-            for (var i = 0; i < dr.FieldCount; i++)
-            {
-                // Decrement.
-                var column = dr.GetName(i);
-                if (dictionary.Contains(column))
-                {
-                    dictionary.Remove(column);
-                }
-            }
-
-            if (dictionary.Count > 0)
-            {
-                var ex = new Exception(ExceptionText.DRMapperTypeTooComplex);
-                ex.Data.Add("Type", typeof(T));
-                ex.Data.Add("Missing fields", string.Join(", ", dictionary));
-                throw ex;
-            }
-        }
 
         [Obsolete("This feature has been deprecated. The workaround is to sort in your query.", true)]
         public static T ParseRecord<T>(IDataReader dr, int rowIndex)
@@ -91,12 +59,14 @@ namespace Devlord.Utilities
             var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public |
                                                      BindingFlags.Instance);
 
+            var fieldTranslator = new TypeMatcher<T>(properties).VerifyTypeMatch(dr).GetFieldTranslator();
+
             while (dr.Read())
             {
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
-                    pi.SetValue(instance, dr[pi.Name], null);
+                    pi.SetValue(instance, dr[fieldTranslator[pi.Name.ToLowerInvariant()]], null);
                 }
 
                 return instance;
