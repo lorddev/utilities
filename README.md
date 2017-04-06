@@ -1,16 +1,16 @@
-| Master      | Develop      | Nuget      |
-| -----       | -----        | -----      |
-| [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/master?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [![NuGet Badge](https://buildstats.info/nuget/Devlord.Utilities)](https://www.nuget.org/packages/Devlord.Utilities/) |
-
 devlord utilities
 ====================
 A useful class library for universal utilities like encryption, sending emails, and consuming RESTful APIs.
+
+| Master      | Develop      | NuGet      |
+| -----       | -----        | -----      |
+| [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/master?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [![NuGet Badge](https://buildstats.info/nuget/Devlord.Utilities)](https://www.nuget.org/packages/Devlord.Utilities/) |
 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
     Install-Package Devlord.Utilities
 
-### Features
+### Feature Summary
 
 * .NET Core compatibility
 * System.Threading.Timers service clocks.
@@ -25,6 +25,8 @@ We've provided 3 types of timers for back-end services to execute operations
 * At a certain time
 * At a certain regular interval
 * Continuously, repeating an action as soon as the previous action is complete
+
+More details below, but for even _more_ details, see the [project wiki](https://github.com/lorddev/utilities/wiki).
 
 ### ApiCall
 
@@ -76,7 +78,12 @@ You can utilize the `PostFilter` delegate to filter the results even further. (S
 
 Allows mapping of an `IDataReader` to POCO classes using reflection. It's faster than you might expect.
 
-For more information, see the Wiki!
+### Pagination
+
+```csharp
+    var query = from a in context.Addresses where a.IsActive select a;
+    var results = query.GetPage(pageNumber, pageSize); 
+```
 
 ### Contributing
 
