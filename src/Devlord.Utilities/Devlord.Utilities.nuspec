@@ -1,35 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <!-- how to pack:
-    1. Use Visual Studio "Pack" tool.
-    2. Navigate to bin\Release
-    3. Open the package in Nuget Package Explorer
-    4. Add devlord.utilities.json to each folder via drag-and-drop
-    5. Delete Encryptamajig Nuget dependency from netstandard1.5
-    5. Add Encryptamajig.dll for netstandard1.5 via drag-and-drop
-    6. Verify release notes
-    -->
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
+        <!-- The identifier that must be unique within the hosting gallery -->
         <id>Devlord.Utilities</id>
-        <version>5.0.0</version>
+
+         <!-- The package version number that is used when resolving dependencies -->
+        <version>5.0.111</version>
         <title>Devlord.Utilities</title>
-        <authors>lorddev</authors>
-        <owners>Devlords Cooperative</owners>
+
+        <!-- Authors contain text that appears directly on the gallery -->
+        <authors>Aaron Lord</authors>
+
+        <!-- Owners are typically nuget.org identities that allow gallery
+             users to easily find other packages by the same owners.  -->
+        <owners>devlord</owners>
+
+        <!-- License and project URLs provide links for the gallery -->
         <licenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/lorddev/utilities</projectUrl>
+
+        <!-- The icon is used in Visual Studio's package manager UI and in the gallery -->
         <iconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</iconUrl>
+
+        <!-- If true, this value prompts the user to accept the license when
+             installing the package. -->
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <summary>Utilities class library so you don't have to rewrite your utilities on ever project.</summary>
-        <description>Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers. Also includes a .NET Core-compatible build of Encryptamajig.</description>
+        <summary>Utilities class library so you don't have to rewrite your utilities on every project.</summary>
+      
+        <!-- Any details about this particular release -->
         <releaseNotes>New IDataReader mapper for dynamic ORM.</releaseNotes>
+	
+	    <!-- The description can be used in package manager UI. Note that the
+            nuget.org gallery uses information you add in the portal. -->
+        <description>Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers. Also includes a .NET Core-compatible build of Encryptamajig.</description>
+     
+        <!-- Copyright information -->
         <copyright>Copyright © 2017 Aaron Lord</copyright>
+
+        <!-- Tags appear in the gallery and can be used for tag searches -->
         <tags>utils utilities email distance-matrix micro-orm logging encryption</tags>
+
+	    <contentFiles>
+	    	 <!-- Copy config to the root of the output folder -- BUG! This doesn't work! -->
+	    	 <files include="any/any/devlord.utilities.json" buildAction="None" copyToOutput="true" flatten="true" />
+	    </contentFiles>
+   
+	    <!-- Dependencies are automatically installed when the package is installed -->
+	    <dependencies>
+            <group targetFramework=".NETStandard1.5">
+                <dependency id="MailKit" version="1.12.0" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.AspNetCore.Http" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="System.Xml.XmlSerializer" version="4.3.0" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Logging" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="System.Collections" version="4.3.0" exclude="Build,Analyzers" />
+                <dependency id="System.Runtime.Serialization.Xml" version="4.3.0" exclude="Build,Analyzers" />
+                <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
+                <dependency id="System.Threading.Timer" version="4.3.0" exclude="Build,Analyzers" />
+            </group>
+            <group targetFramework=".NETFramework4.5.1">
+                <dependency id="Encryptamajig" version="1.0.0" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="elmah" version="1.2.2" exclude="Build,Analyzers" />
+                <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
+            </group>
+            <group targetFramework=".NETFramework4.6.2">
+                <dependency id="Encryptamajig" version="1.0.0" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
+                <dependency id="elmah" version="1.2.2" exclude="Build,Analyzers" />
+                <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
+            </group>
+        </dependencies>
     </metadata>
-    <files>
-        <file src="bin\Release\netstandard1.5\devlord.utilities.json" target="lib\netstandard1.5\devlord.utilities.json" />
-        <file src="bin\Release\netstandard1.5\Encryptamajig.dll" target="lib\netstandard1.5\Encryptamajig.dll" />
-        <file src="bin\Release\net462\devlord.utilities.json" target="net451\devlord.utilities.json" />
-        <file src="bin\Release\net462\devlord.utilities.json" target="net462\devlord.utilities.json" />
-        <file src="..\..\README.md" target="Devlord.Utilities.md" />
+  
+  <references>
+  	<reference file="Devlord.Utilities.dll"/>
+  	<reference file="Encryptamajig.dll"/>
+  </references>
+    <files>  	
+ 
+        <file src="devlord.utilities.json" target="contentFiles\any\any" buildAction="None" copyToOutput="true"/>
+        <file src="bin\Release\netstandard1.3\*.dll" target="lib\netstandard1.3" />
+ 	    <file src="bin\Release\netstandard1.5\*.dll" target="lib\netstandard1.5" />
+ 	    <file src="bin\Release\net451\*.dll" target="lib\net451" />
+        <file src="bin\Release\net462\*.dll" target="lib\net462" />
+        <!-- A readme.txt will be displayed when the package is installed -->
+        <file src="..\..\README.md" target="" />
     </files>
 </package>

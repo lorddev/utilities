@@ -6,7 +6,7 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.43</Version>
+    <Version>5.0.90</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>lorddev</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
@@ -20,6 +20,7 @@
     <PackageReleaseNotes>ph</PackageReleaseNotes>
      <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <NuspecFile>Devlord.Utilities.nuspec</NuspecFile>
   </PropertyGroup>
   <!-- only run it for the first build! -->
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">   
@@ -33,11 +34,14 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
-    <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj" Version="1.1.0" />
+    <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj"  />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="bin\$(Configuration)\netstandard1.3\asdf2.dll" Pack="true" PackagePath="lib\netstandard1.3\asdf2.dll" />
+    <None Include="bin\$(Configuration)\netstandard1.5\asdf2.dll" Pack="true" PackagePath="lib\netstandard1.5\asdf2.dll" />
+  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3' Or '$(TargetFramework)'=='netstandard1.5'">
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
@@ -86,7 +90,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="devlord.utilities.json">
+    <None Include="devlord.utilities.json" Pack="true" PackagePath="devlord.utilities.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
