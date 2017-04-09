@@ -1,12 +1,12 @@
 devlord utilities
 ====================
 
-[![Join the chat at https://gitter.im/devlord-utilities/Lobby](https://badges.gitter.im/devlord-utilities/Lobby.svg)](https://gitter.im/devlord-utilities/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A useful class library for universal utilities like encryption, sending emails, and consuming RESTful APIs.
 
-| Master      | Develop      | NuGet      |
-| -----       | -----        | -----      |
-| [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/master?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [![NuGet Badge](https://buildstats.info/nuget/Devlord.Utilities)](https://www.nuget.org/packages/Devlord.Utilities/) |
+| Master      | Develop      | NuGet      | Gitter    |
+| -----       | -----        | -----      |------     |
+| [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/master?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [![NuGet Badge](https://buildstats.info/nuget/Devlord.Utilities)](https://www.nuget.org/packages/Devlord.Utilities/) | [![Join the chat at https://gitter.im/devlord-utilities/Lobby](https://badges.gitter.im/devlord-utilities/Lobby.svg)](https://gitter.im/devlord-utilities/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
