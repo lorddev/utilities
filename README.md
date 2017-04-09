@@ -1,5 +1,7 @@
 devlord utilities
 ====================
+
+[![Join the chat at https://gitter.im/devlord-utilities/Lobby](https://badges.gitter.im/devlord-utilities/Lobby.svg)](https://gitter.im/devlord-utilities/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A useful class library for universal utilities like encryption, sending emails, and consuming RESTful APIs.
 
 | Master      | Develop      | NuGet      |
