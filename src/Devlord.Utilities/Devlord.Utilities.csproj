@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;netstandard1.5;net451;net462;</TargetFrameworks>
+    <TargetFrameworks>net451;netstandard1.3;netstandard1.6;</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.114</Version>
+    <Version>5.0.186</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
@@ -21,6 +21,7 @@
     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <NuspecFile>Devlord.Utilities.nuspec</NuspecFile>
+    <UserSecretsId>22b9d517-6954-4beb-b7be-ba24eb9ac441</UserSecretsId>
   </PropertyGroup>
   <!-- only run it for the first build! -->
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'"> 
@@ -34,15 +35,15 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
-    <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj"  />
+    <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <!--<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.0.0" />-->
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\$(Configuration)\netstandard1.3\Encryptamajig.dll" Pack="true" PackagePath="lib\netstandard1.3\" />
-    <None Include="bin\$(Configuration)\netstandard1.5\Encryptamajig.dll" Pack="true" PackagePath="lib\netstandard1.5\" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3' Or '$(TargetFramework)'=='netstandard1.5'">
+    <None Include="bin\$(Configuration)\netstandard1.6\Encryptamajig.dll" Pack="true" PackagePath="lib\netstandard1.6\" />
+ 
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
@@ -87,10 +88,11 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="dotnet-bump" Version="1.0.1" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="devlord.utilities.json" Pack="true" PackagePath="devlord.utilities.json">
+    <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

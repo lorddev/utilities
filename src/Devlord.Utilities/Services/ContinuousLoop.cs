@@ -18,7 +18,6 @@ namespace Devlord.Utilities.Services
         #endregion
 
         #region Constructors and Destructors
-        
 
         #endregion
 

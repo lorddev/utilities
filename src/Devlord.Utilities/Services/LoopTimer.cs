@@ -7,6 +7,7 @@ namespace Devlord.Utilities.Services
     public class LoopTimer : PrecisionTimer
     {
         #region Constructors and Destructors
+
         private double _interval = 0;
 
         public LoopTimer(TimeSpan interval)
@@ -16,7 +17,7 @@ namespace Devlord.Utilities.Services
 
         public override void Run()
         {
-            LocalTimer = new Timer(AllCallbacks, new ServiceTimerState(), 0, (int)_interval);
+            LocalTimer = new Timer(AllCallbacks, new ServiceTimerState(), 0, (int) _interval);
         }
 
         #endregion

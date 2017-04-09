@@ -22,6 +22,7 @@ namespace Devlord.Utilities
     public class MailThrottle
     {
         #region Fields
+
         /// <summary>
         /// The counter.
         /// </summary>
@@ -30,6 +31,7 @@ namespace Devlord.Utilities
         #endregion
 
         #region Public Properties
+
         /// <summary>
         /// Gets or sets the interval.
         /// </summary>
@@ -43,6 +45,7 @@ namespace Devlord.Utilities
         #endregion
 
         #region Public Methods and Operators
+
         /// <summary>
         /// The count.
         /// </summary>
@@ -69,6 +72,7 @@ namespace Devlord.Utilities
         #endregion
 
         #region Methods
+
         /// <summary>
         /// The compact.
         /// </summary>

@@ -73,7 +73,7 @@ configuration files. (Not recommend for use with user's site credentials as thos
 
 This class makes it easy to download an RSS feed and parse it. It reads the data with LinqToXml and can output it in JSON format 
 for easy portability. 
-You can utilize the `PostFilter` delegate to filter the results even further. (Sorry, I can't remember what project I needed this for.)
+You can utilize the `PostFilter` delegate to filter the results even further. (Sorry, I can't remember what project I needed this for... Maybe a shopping app for eBay or Amazon? Who uses RSS anymore?)
 
 ### DRMapper
 

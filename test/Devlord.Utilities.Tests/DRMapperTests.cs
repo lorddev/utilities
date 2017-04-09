@@ -98,7 +98,37 @@ namespace Devlord.Utilities.Tests
         }
 
         [Fact]
-        public void TestDRMapperCaseInsensitive()
+        public void TestDataReaderDBNulls()
+        {
+            // Put the test data into a datareader to parse it back out into test data using reflection.
+            Stopwatch stopwatch;
+            List<TestData> results;
+            var inMemoryData = Builder<TestData>.CreateListOfSize(100)
+                .TheFirst(50)
+                .With(e => e.FirstName = null)
+                .TheLast(50)
+                .With(c => c.LastName = null)
+                .Build()
+                .ToList();
+            inMemoryData.First().Id.ShouldEqual(1);
+            inMemoryData[48].Id.ShouldEqual(49);
+            using (var dataReader = ObjectReader.Create(inMemoryData))
+            {
+                stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                results = DRMapper.ParseList<TestData>(dataReader);
+            }
+            stopwatch.Stop();
+            _output.WriteLine($"Elapsed: {stopwatch.Elapsed}");
+            var ninety8 = results[97];
+            ninety8.Id.ShouldEqual(98);
+            ninety8.FirstName.ShouldEqual(inMemoryData[97].FirstName);
+            ninety8.LastName.ShouldBeNull();
+        }
+
+        [Fact]
+        public void TestDRMapperCaseInsensitive_SingleRow()
         {
             TestData result;
             var inMemoryData = Builder<TestDataUpperCase>.CreateListOfSize(1).Build();

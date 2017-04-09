@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 #pragma warning disable S1449 // Culture should be specified for "string" operations
+
 namespace Devlord.Utilities
 {
     public class ApiCall : IApiCall

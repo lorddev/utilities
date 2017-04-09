@@ -4,6 +4,12 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Xunit;
 
+#if NETCOREAPP1_1
+using LogType = Microsoft.Extensions.Logging.LogLevel;
+#else
+using LogType = System.Diagnostics.EventLogEntryType;
+#endif
+
 namespace Devlord.Utilities.Tests
 {
     public class TestLogger : ILogger
@@ -15,7 +21,7 @@ namespace Devlord.Utilities.Tests
             throw new Exception("Logged exception found in tested code. Rethrowing...", exception); 
         }
 
-        public void WriteEntry(string message, EventLogEntryType error, LogCode errorCode = LogCode.None)
+        public void WriteEntry(string message, LogType error, LogCode errorCode = LogCode.None)
         {
             throw new NotImplementedException();
         }

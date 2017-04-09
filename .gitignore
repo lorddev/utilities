@@ -165,6 +165,7 @@ pip-log.txt
 #################
 
 .vs/*
+.idea/*
 
 # Created by mergetool
 *.orig

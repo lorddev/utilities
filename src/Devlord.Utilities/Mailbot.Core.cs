@@ -10,7 +10,7 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-#if NETSTANDARD1_5 || NETSTANDARD1_3
+#if !NET451
 using System;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;

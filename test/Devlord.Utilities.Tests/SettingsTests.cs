@@ -8,16 +8,10 @@ namespace Devlord.Utilities.Tests
         [Fact]
         public void SettingsTest()
         {
-            Settings.Default.GetValue<int>("Devlord.Utilities:SmtpPort").ShouldEqual(587);
-        }
-
-        [Fact]
-        public void SettingsUriExceptionTest()
-        {
             Exception thrown = null;
             try
             {
-                Settings.Default.GetValue<int>("Devlord.Utilities:SmtpPort").ShouldEqual(587);
+                Settings.Default.SmtpPort.ShouldEqual(587);
             }
             catch (Exception e)
             {
@@ -26,6 +20,12 @@ namespace Devlord.Utilities.Tests
 
             Assert.False(thrown is ArgumentException, "ArgumentException was thrown");
             Assert.Null(thrown);
+        }
+        
+        [Fact]
+        public void TestDonaldsHair()
+        {
+            Devlord.Utilities.Settings.Default.SmtpPassword.ShouldEqual("Donald's Hair");
         }
     }
 }

@@ -19,19 +19,14 @@ namespace Devlord.Utilities
 {
     public class Settings
     {
+        private static IConfiguration _configuration = GetConfig();
+        
         public static Settings Default { get; } = new Settings();
 
-        private readonly IConfiguration _configuration;
-
-        private Settings()
-        {
-            _configuration = GetConfig();
-        }
-
-        public int SmtpPort => GetValue<int>("Devlord.Utilities:SmtpPort");
-        public string SmtpLogin => GetValue<string>("Devlord.Utilities:SmtpLogin");
-        public string SmtpPassword => GetValue<string>("Devlord.Utilities:SmtpPassword");
-
+        public int SmtpPort => int.Parse(GetValue("SmtpPort"));
+        public string SmtpLogin => GetValue("SmtpLogin");
+        public string SmtpPassword => GetValue("SmtpPassword");
+        
         private static IConfiguration GetConfig()
         {
             var builder = new ConfigurationBuilder()
@@ -40,21 +35,21 @@ namespace Devlord.Utilities
 #else
                 .SetBasePath(AppContext.BaseDirectory)
 #endif
-                .AddJsonFile("devlord.utilities.json",
+                .AddJsonFile("appsettings.json",
                     true,
                     true);
-
+            //builder.AddUserSecrets("22b9d517-6954-4beb-b7be-ba24eb9ac441");
             return builder.Build();
         }
 
-        public T GetValue<T>(string propertyName)
+        private static string GetValue(string propertyName)
         {
-            var value = _configuration[propertyName];
-            if (value != null)
+            var value = _configuration["Devlord.Utilities:" + propertyName];
+            if (value == null)
             {
-                return JsonConvert.DeserializeObject<T>(value);
+                throw new SettingNotFoundException(propertyName);
             }
-            throw new SettingNotFoundException(propertyName);
+            return value;
         }
     }
 }

@@ -108,7 +108,7 @@ namespace Devlord.Utilities
             using (var client = new HttpClient())
             {
                 var uri = new Uri("http://" + new Uri(FeedUrl)
-                    .GetComponents(UriComponents.StrongAuthority, UriFormat.Unescaped));
+                                      .GetComponents(UriComponents.StrongAuthority, UriFormat.Unescaped));
                 var request = new HttpRequestMessage
                 {
                     RequestUri = uri,

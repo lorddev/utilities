@@ -14,6 +14,7 @@
 
 using System;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace Devlord.Utilities
 {
@@ -24,29 +25,14 @@ namespace Devlord.Utilities
         }
     }
 
-#if !NETSTANDARD1_3
-
-    public interface ILogger
+    public partial interface ILogger
     {
         void Log(Exception exception);
-
-        void WriteEntry(string message, EventLogEntryType error, LogCode code = LogCode.None);
     }
 
     public partial class ConsoleLogger : ILogger
     {
-        public void Log(Exception exception)
-        {
-            WriteEntry(exception.ToString(), EventLogEntryType.Error);
-        }
-
-        public void WriteEntry(string message, EventLogEntryType error, LogCode code = LogCode.None)
-        {
-            Console.WriteLine($"message: {message}, error: {error}, code: {code}");
-        }
     }
-
-#endif
 
     public enum LogCode
     {

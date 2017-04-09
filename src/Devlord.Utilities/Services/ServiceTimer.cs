@@ -57,5 +57,4 @@ namespace Devlord.Utilities.Services
             LocalTimer.Dispose();
         }
     }
-    
 }

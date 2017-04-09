@@ -31,7 +31,7 @@ namespace Devlord.Utilities
         #endregion
     }
 
-    public interface IPaginable<T> :  IPaginable
+    public interface IPaginable<T> : IPaginable
     {
         IEnumerable<T> Items { get; set; }
     }

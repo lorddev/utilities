@@ -6,7 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Devlord.Utilities")]
-[assembly: AssemblyDescription("Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers. Also includes a .NET Core-compatible build of Encryptamajig.")]
+[assembly:
+    AssemblyDescription(
+        "Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers. Also includes a .NET Core-compatible build of Encryptamajig.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
