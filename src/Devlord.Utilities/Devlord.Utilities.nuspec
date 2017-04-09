@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- How to use:
+     1. Update notes, version, etc.
+     2. Go to command-line, at src\Devlord.Utilities
+     3. Run "dotnet pack -c Release" -->
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
         <!-- The identifier that must be unique within the hosting gallery -->
         <id>Devlord.Utilities</id>
 
          <!-- The package version number that is used when resolving dependencies -->
-        <version>5.0.113</version>
+        <version>5.0.123</version>
         <title>Devlord.Utilities</title>
 
         <!-- Authors contain text that appears directly on the gallery -->
@@ -26,17 +30,16 @@
              installing the package. -->
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <summary>Utilities class library so you don't have to rewrite your utilities on every project.</summary>
-      
+
         <!-- Any details about this particular release -->
-        <releaseNotes>* DRMapper is now case-insensitive, so you don't have to worry about making sure your model classes exactly match your database outputs.
-* Extended compatibility to netstandard1.3
-        
-Make sure you add a copy of "devlord.utilities.json" to your project's root directory to set your SMTP settings. See the documentation on GitHub for more information.</releaseNotes>
-	
+        <releaseNotes>* Fixed bug where inclusion of "devlord.utilities.json" in the package was causing the build to fail in projects that referenced this library.
+
+After installing, re-open your project and verify whether a copy of "devlord.utilities.json" was automatically added. If not, make sure you add a copy to your project's root directory to set your SMTP settings. See the documentation on GitHub for more information. An upcoming release will address configuration issues more comprehensively.</releaseNotes>
+
 	    <!-- The description can be used in package manager UI. Note that the
             nuget.org gallery uses information you add in the portal. -->
         <description>Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, basic datareader-to-POCO mapping, a mailer throttle, and strongly-typed API callers.</description>
-     
+
         <!-- Copyright information -->
         <copyright>Copyright © 2017 Aaron Lord</copyright>
 
@@ -44,10 +47,10 @@ Make sure you add a copy of "devlord.utilities.json" to your project's root dire
         <tags>utils utilities email distance-matrix micro-orm logging encryption</tags>
 
 	    <contentFiles>
-	    	 <!-- Copy config to the root of the output folder - BUG! This doesn't work! -->
+	    	 <!-- Copy config to the root of the output folder -->
 	    	 <files include="any/any/devlord.utilities.json" buildAction="None" copyToOutput="true" flatten="true" />
 	    </contentFiles>
-   
+
 	    <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
             <group targetFramework=".NETStandard1.5">
@@ -90,14 +93,14 @@ Make sure you add a copy of "devlord.utilities.json" to your project's root dire
             </group>
         </dependencies>
     </metadata>
-  
+
   <references>
   	<reference file="Devlord.Utilities.dll"/>
   	<reference file="Encryptamajig.dll"/>
   </references>
-    <files>  	
- 
-        <file src="devlord.utilities.json" target="contentFiles\any\any" buildAction="None" copyToOutput="true"/>
+    <files>
+
+        <file src="content\devlord.utilities.json" target="contentFiles\any\any\" />
         <file src="bin\Release\netstandard1.3\Devlord.Utilities.dll" target="lib\netstandard1.3" />
         <file src="bin\Release\netstandard1.3\Encryptamajig.dll" target="lib\netstandard1.3" />
  	    <file src="bin\Release\netstandard1.5\Devlord.Utilities.dll" target="lib\netstandard1.5" />
