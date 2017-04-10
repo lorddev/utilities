@@ -9,7 +9,7 @@
         <id>Devlord.Utilities</id>
 
          <!-- The package version number that is used when resolving dependencies -->
-        <version>5.0.123</version>
+        <version>5.0.205</version>
         <title>Devlord.Utilities</title>
 
         <!-- Authors contain text that appears directly on the gallery -->
@@ -53,7 +53,7 @@ After installing, re-open your project and verify whether a copy of "devlord.uti
 
 	    <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
-            <group targetFramework=".NETStandard1.5">
+            <group targetFramework=".NETStandard1.6">
                 <dependency id="MailKit" version="1.12.0" exclude="Build,Analyzers" />
                 <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
                 <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
@@ -85,12 +85,6 @@ After installing, re-open your project and verify whether a copy of "devlord.uti
                 <dependency id="elmah" version="1.2.2" exclude="Build,Analyzers" />
                 <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
             </group>
-            <group targetFramework=".NETFramework4.6.2">
-                <dependency id="Microsoft.Extensions.Configuration.Json" version="1.1.1" exclude="Build,Analyzers" />
-                <dependency id="Microsoft.Extensions.Configuration" version="1.1.1" exclude="Build,Analyzers" />
-                <dependency id="elmah" version="1.2.2" exclude="Build,Analyzers" />
-                <dependency id="Newtonsoft.Json" version="10.0.1" exclude="Build,Analyzers" />
-            </group>
         </dependencies>
     </metadata>
 
@@ -103,12 +97,10 @@ After installing, re-open your project and verify whether a copy of "devlord.uti
         <file src="content\devlord.utilities.json" target="contentFiles\any\any\" />
         <file src="bin\Release\netstandard1.3\Devlord.Utilities.dll" target="lib\netstandard1.3" />
         <file src="bin\Release\netstandard1.3\Encryptamajig.dll" target="lib\netstandard1.3" />
- 	    <file src="bin\Release\netstandard1.5\Devlord.Utilities.dll" target="lib\netstandard1.5" />
- 	    <file src="bin\Release\netstandard1.5\Encryptamajig.dll" target="lib\netstandard1.5" />
+ 	    <file src="bin\Release\netstandard1.5\Devlord.Utilities.dll" target="lib\netstandard1.6" />
+ 	    <file src="bin\Release\netstandard1.5\Encryptamajig.dll" target="lib\netstandard1.6" />
  	    <file src="bin\Release\net451\Devlord.Utilities.dll" target="lib\net451" />
  	    <file src="bin\Release\net451\Encryptamajig.dll" target="lib\net451" />
-        <file src="bin\Release\net462\Devlord.Utilities.dll" target="lib\net462" />
-        <file src="bin\Release\net462\Encryptamajig.dll" target="lib\net462" />
         <!-- A readme.txt will be displayed when the package is installed -->
         <file src="..\..\README.md" target="" />
     </files>

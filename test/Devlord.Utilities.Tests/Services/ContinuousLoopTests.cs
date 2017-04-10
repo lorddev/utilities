@@ -29,9 +29,10 @@ namespace Devlord.Utilities.Services.Tests
 
         private readonly ITestOutputHelper _output;
 
+        [Fact]
         public void TestContinuousLoop()
         {
-            Console.WriteLine("Test app start logging.");
+            Console.WriteLine(@"Test app start logging.");
             var success = false;
             ServiceTimer timedMultiple = new ContinuousLoop();
             timedMultiple.AddEvent(LoopedElapsed)
@@ -43,6 +44,10 @@ namespace Devlord.Utilities.Services.Tests
                         success = true;
                     });
             timedMultiple.Run();
+
+            var t = Task.Delay(50);
+            t.Wait();
+
             Assert.True(success);
         }
 
@@ -82,7 +87,7 @@ namespace Devlord.Utilities.Services.Tests
             // TODO: Running local returns 4 as expected; running on AppVeyor returns
             // 12. Presumably running in parallel on steroids?
             
-            ct462.ShouldBeInRange(2, 6);
+            ct462.ShouldBeInRange(1, 6);
         }
     }
 }
