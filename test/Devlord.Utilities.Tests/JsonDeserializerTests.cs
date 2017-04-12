@@ -17,7 +17,7 @@ namespace Devlord.Utilities.Tests
             var bob = new { PropertyName = "asdf" };
             var json = JsonConvert.SerializeObject(bob, Formatting.Indented, settings);
             // For macos compatibility
-            json.Replace("\r\n", "\n");
+            json = json.Replace("\r\n", "\n");
             Assert.Equal("{\n  \"property_name\": \"asdf\"\n}", json);
         }
 

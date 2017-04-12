@@ -166,6 +166,7 @@ pip-log.txt
 
 .vs/*
 .idea/*
+*.userprefs
 
 # Created by mergetool
 *.orig
