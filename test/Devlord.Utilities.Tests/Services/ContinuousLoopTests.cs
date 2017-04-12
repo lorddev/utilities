@@ -39,14 +39,18 @@ namespace Devlord.Utilities.Services.Tests
                 .AddEvent(LoopedElapsedTwo)
                 .AddEvent(
                     (s, e) =>
-                    {
-                        timedMultiple.ShutDown();
+                    {                        
                         success = true;
                     });
             timedMultiple.Run();
 
-            var t = Task.Delay(50);
+            var t = Task.Delay(10);
             t.Wait();
+            timedMultiple.ShutDown();
+
+            // Wait for threads to settle down
+            var t2 = Task.Delay(20);
+            t2.Wait();
 
             Assert.True(success);
         }
