@@ -4,7 +4,7 @@
 // </copyright>
 // <license type="GPL-3.0">
 //   You may use freely and commercially without modification; if you make changes, please share back to the
-//   community. 
+//   community.
 // </license>
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
@@ -40,15 +40,19 @@ namespace Devlord.Utilities.Services.Tests
                 .AddEvent(
                     (s, e) =>
                     {
-                        timedMultiple.ShutDown();
                         success = true;
                     });
             timedMultiple.Run();
 
-            var t = Task.Delay(50);
+            var t = Task.Delay(10);
             t.Wait();
 
             Assert.True(success);
+            timedMultiple.ShutDown();
+
+            // Give the threads time to die off before exiting the test or exceptions will be thrown.
+            t = Task.Delay(10);
+            t.Wait();
         }
 
         private void LoopedElapsed(object sender, ServiceTimerState e)
@@ -64,8 +68,8 @@ namespace Devlord.Utilities.Services.Tests
         [Fact]
         public void TestLoopTimer3X()
         {
-            // This test will fail unless the assembly is marked with the 
-            // [assembly: CollectionBehavior(DisableTestParallelization = true)] 
+            // This test will fail unless the assembly is marked with the
+            // [assembly: CollectionBehavior(DisableTestParallelization = true)]
             // This is because when running tests in parallel, the thread prioritization
             // system behaves unexpectedly. The lesson for end-users is: If you require something
             // to happen at a certain time, make sure that owner of the Timer object is your main thread.
@@ -86,7 +90,7 @@ namespace Devlord.Utilities.Services.Tests
             _output.WriteLine("Asserting...");
             // TODO: Running local returns 4 as expected; running on AppVeyor returns
             // 12. Presumably running in parallel on steroids?
-            
+
             ct462.ShouldBeInRange(1, 6);
         }
     }

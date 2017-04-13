@@ -9,7 +9,7 @@
         <id>Devlord.Utilities</id>
 
          <!-- The package version number that is used when resolving dependencies -->
-        <version>5.0.205</version>
+        <version>5.1.2</version>
         <title>Devlord.Utilities</title>
 
         <!-- Authors contain text that appears directly on the gallery -->
@@ -32,7 +32,7 @@
         <summary>Utilities class library so you don't have to rewrite your utilities on every project.</summary>
 
         <!-- Any details about this particular release -->
-        <releaseNotes>* Fixed bug where inclusion of "devlord.utilities.json" in the package was causing the build to fail in projects that referenced this library.
+        <releaseNotes>* Removed RssConverter class.
 
 After installing, re-open your project and verify whether a copy of "devlord.utilities.json" was automatically added. If not, make sure you add a copy to your project's root directory to set your SMTP settings. See the documentation on GitHub for more information. An upcoming release will address configuration issues more comprehensively.</releaseNotes>
 

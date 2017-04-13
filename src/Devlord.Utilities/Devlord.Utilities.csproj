@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net451;netstandard1.3;netstandard1.6;</TargetFrameworks>
@@ -6,7 +6,7 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.205</Version>
+    <Version>5.1.2</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
@@ -25,11 +25,11 @@
   </PropertyGroup>
   <!-- only run it for the first build! -->
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
-     <PreBuildEvent>
+     <!--<PreBuildEvent>
          cd ../../../
          powershell.exe -NoProfile -File ../../tools/vers-inc.ps1 Devlord.Utilities.csproj
          powershell.exe -NoProfile -File ../../tools/vers-inc.ps1 Devlord.Utilities.nuspec
-     </PreBuildEvent>
+     </PreBuildEvent>-->
      <!--
      <PostBuildEvent>cd ../../..
          powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>

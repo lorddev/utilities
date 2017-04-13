@@ -4,7 +4,7 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Xunit;
 
-#if NETCOREAPP1_1
+#if NETCOREAPP1_1 || NETSTANDARD1_5
 using LogType = Microsoft.Extensions.Logging.LogLevel;
 #else
 using LogType = System.Diagnostics.EventLogEntryType;
@@ -18,7 +18,7 @@ namespace Devlord.Utilities.Tests
         {
             Console.WriteLine(exception);
             Errors.Add(exception);
-            throw new Exception("Logged exception found in tested code. Rethrowing...", exception); 
+            throw new Exception("Logged exception found in tested code. Rethrowing...", exception);
         }
 
         public void WriteEntry(string message, LogType error, LogCode errorCode = LogCode.None)

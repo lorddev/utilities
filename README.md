@@ -69,12 +69,6 @@ A multithreaded SMTP queued mail sender, has a throttle based on Google Apps max
 Bidirectional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's
 configuration files. (Not recommend for use with user's site credentials as those should use one-way encryption.)
 
-### RssConverter
-
-This class makes it easy to download an RSS feed and parse it. It reads the data with LinqToXml and can output it in JSON format 
-for easy portability. 
-You can utilize the `PostFilter` delegate to filter the results even further. (Sorry, I can't remember what project I needed this for... Maybe a shopping app for eBay or Amazon? Who uses RSS anymore?)
-
 ### DRMapper
 
 Allows mapping of an `IDataReader` to POCO classes using reflection. It's faster than you might expect.
