@@ -11,6 +11,10 @@ A useful class library for universal utilities like encryption, sending emails, 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
     PM> Install-Package Devlord.Utilities
+    
+Or from the command-line:
+
+    dotnet add package Devlord.Utilities
 
 ### Feature Summary
 
