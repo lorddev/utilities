@@ -10,6 +10,12 @@ namespace Devlord.Utilities
 {
     public static class XmlTools
     {
+        /// <summary>
+        /// Serializes the given object to an xml string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string ToXmlString<T>(this T input)
         {
             using (var writer = new StringWriter())

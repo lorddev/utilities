@@ -11,7 +11,7 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-//using Elmah.Io;
+using Elmah.Io;
 
 #if !NET451
 
@@ -21,7 +21,7 @@ using System;
 
 namespace Devlord.Utilities
 {
-    public partial interface ILogger
+    public partial interface IDevLogger
     {
         void WriteEntry(string message, LogLevel logLevel, LogCode code = LogCode.None);
     }
@@ -33,13 +33,13 @@ namespace Devlord.Utilities
             Log(new ConsoleLogger(), e);
         }
         
-        public static void Log(ILogger logger, Exception e)
+        public static void Log(IDevLogger logger, Exception e)
         {
             logger.WriteEntry(e.ToString(), LogLevel.Error);
         }
     }
 
-    public partial class ConsoleLogger : ILogger
+    public partial class ConsoleLogger : IDevLogger
     {
         public void Log(Exception exception)
         {

@@ -35,4 +35,4 @@ using Xunit;
 
 // Unit test configuration
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)] 
+[assembly: CollectionBehavior(DisableTestParallelization = true)] 

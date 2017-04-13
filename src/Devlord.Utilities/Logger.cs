@@ -25,12 +25,12 @@ namespace Devlord.Utilities
         }
     }
 
-    public partial interface ILogger
+    public partial interface IDevLogger
     {
         void Log(Exception exception);
     }
 
-    public partial class ConsoleLogger : ILogger
+    public partial class ConsoleLogger : IDevLogger
     {
     }
 
