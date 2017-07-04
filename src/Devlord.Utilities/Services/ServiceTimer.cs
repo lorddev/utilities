@@ -10,7 +10,7 @@ namespace Devlord.Utilities.Services
         public object State { get; set; }
     }
 
-    public abstract class ServiceTimer
+    public abstract class ServiceTimer : IDisposable
     {
         #region Fields
 
@@ -54,8 +54,21 @@ namespace Devlord.Utilities.Services
         public void ShutDown()
         {
             LocalTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            LocalTimer.Dispose();
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <remarks>You might not want to dispose of this yourself unless you have a way of making sure all of your threads
+        /// are complete. You might end up with a "cannot access disposed object" error.</remarks>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing) LocalTimer?.Dispose();
         }
     }
-    
 }

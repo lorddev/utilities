@@ -81,7 +81,7 @@
                     Key = deriver.GetBytes(32),
                     InitializationVector = deriver.GetBytes(16)
                 };
-            (deriver as IDisposable)?.Dispose();
+            ((IDisposable)deriver).Dispose();
             return result;
         }
 
@@ -96,7 +96,7 @@
                     InitializationVector = deriver.GetBytes(16)
                 };
 
-            (deriver as IDisposable)?.Dispose();
+            ((IDisposable)deriver).Dispose();
             return result;
         }
 

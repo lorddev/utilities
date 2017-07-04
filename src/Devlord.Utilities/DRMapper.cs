@@ -30,14 +30,16 @@ namespace Devlord.Utilities
             var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public |
                                                      BindingFlags.Instance);
 
-            var fieldNames = new TypeMatcher<T>(properties).VerifyTypeMatch(dr).GetFieldTranslator();
+            var fieldTranslator = new TypeMatcher<T>(properties).VerifyTypeMatch(dr).GetFieldTranslator();
 
             while (dr.Read())
             {
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
-                    pi.SetValue(instance, dr[fieldNames[pi.Name.ToLowerInvariant()]], null);
+                    var fieldName = fieldTranslator[pi.Name.ToLowerInvariant()];
+                    if (dr[fieldName] != DBNull.Value)
+                        pi.SetValue(instance, dr[fieldTranslator[pi.Name.ToLowerInvariant()]], null);
                 }
 
                 list.Add(instance);
@@ -66,7 +68,9 @@ namespace Devlord.Utilities
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
-                    pi.SetValue(instance, dr[fieldTranslator[pi.Name.ToLowerInvariant()]], null);
+                    var fieldName = fieldTranslator[pi.Name.ToLowerInvariant()];
+                    if (dr[fieldName] != DBNull.Value)
+                        pi.SetValue(instance, dr[fieldName], null);
                 }
 
                 return instance;

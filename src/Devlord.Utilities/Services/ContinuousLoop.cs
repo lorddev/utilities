@@ -13,12 +13,13 @@ namespace Devlord.Utilities.Services
     {
         #region Fields
 
-        private int _runningTimers;
+        private int _queuedTimers;
+
+        private int _workerCount;
 
         #endregion
 
         #region Constructors and Destructors
-        
 
         #endregion
 
@@ -31,9 +32,9 @@ namespace Devlord.Utilities.Services
         /// <returns></returns>
         public override ServiceTimer AddEvent(ServiceTimerEventHandler @event)
         {
+            _queuedTimers++;
             Events += (s, e) =>
             {
-                ++_runningTimers;
                 try
                 {
                     @event.Invoke(this, e);
@@ -43,9 +44,10 @@ namespace Devlord.Utilities.Services
                     Logger.Log(error);
                 }
 
-                if (--_runningTimers == 0)
+                if (Interlocked.Increment(ref _workerCount) == _queuedTimers)
                 {
                     // Restart the timer immediately.
+                    Interlocked.Exchange(ref _workerCount, 0);
                     LocalTimer.Change(0, Timeout.Infinite);
                 }
             };

@@ -11,6 +11,10 @@ A useful class library for universal utilities like encryption, sending emails, 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
     PM> Install-Package Devlord.Utilities
+    
+Or from the command-line:
+
+    dotnet add package Devlord.Utilities
 
 ### Feature Summary
 
@@ -68,12 +72,6 @@ A multithreaded SMTP queued mail sender, has a throttle based on Google Apps max
 
 Bidirectional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's
 configuration files. (Not recommend for use with user's site credentials as those should use one-way encryption.)
-
-### RssConverter
-
-This class makes it easy to download an RSS feed and parse it. It reads the data with LinqToXml and can output it in JSON format 
-for easy portability. 
-You can utilize the `PostFilter` delegate to filter the results even further. (Sorry, I can't remember what project I needed this for.)
 
 ### DRMapper
 

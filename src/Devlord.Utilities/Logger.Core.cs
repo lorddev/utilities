@@ -11,65 +11,46 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Elmah.Io;
 
-#if NETSTANDARD1_5 || NETSTANDARD1_3
+#if !NET451
 
-using System;
-
-#if NETSTANDARD1_5
 using System.Diagnostics;
-#endif
-
-//using Elmah.Io;
-
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace Devlord.Utilities
 {
+    public partial interface IDevLogger
+    {
+        void WriteEntry(string message, LogLevel logLevel, LogCode code = LogCode.None);
+    }
+
     public partial class Logger
     {
         public static void Log(Exception e)
         {
             Log(new ConsoleLogger(), e);
         }
-
-#if NETSTANDARD1_3
-        public static void Log(ILogger logger, Exception e)
+        
+        public static void Log(IDevLogger logger, Exception e)
         {
-            logger.WriteEntry(e.ToString(), "Error");
+            logger.WriteEntry(e.ToString(), LogLevel.Error);
         }
-#else
-
-        public static void Log(ILogger logger, Exception e)
-        {
-            logger.WriteEntry(e.ToString(), EventLogEntryType.Error);
-        }
-
-#endif
-
     }
 
-#if NETSTANDARD1_3
-
-    public interface ILogger
-    {
-        void Log(Exception exception);
-
-        void WriteEntry(string message, object error, LogCode code = LogCode.None);
-    }
-
-    public partial class ConsoleLogger : ILogger
+    public partial class ConsoleLogger : IDevLogger
     {
         public void Log(Exception exception)
         {
-            WriteEntry(exception.ToString(), "Error");
+            WriteEntry(exception.ToString(), LogLevel.Error);
         }
 
-        public void WriteEntry(string message, object error, LogCode code = LogCode.None)
+        public void WriteEntry(string message, LogLevel error, LogCode code = LogCode.None)
         {
             Console.WriteLine($"message: {message}, error: {error}, code: {code}");
         }
     }
-
-#endif
+    
 }
 #endif

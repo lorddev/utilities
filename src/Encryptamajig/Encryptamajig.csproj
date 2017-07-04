@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net462;netstandard1.3;netstandard1.5</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard1.3;netstandard1.5</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -17,10 +17,7 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Encryption</PackageTags>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.5'">
-    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3'Or'$(TargetFramework)'=='netstandard1.5'">
     <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
   </ItemGroup>
 

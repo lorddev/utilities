@@ -68,7 +68,7 @@ namespace Devlord.Utilities.Tests
 
         /// <summary>
         /// Given the following input:
-        /// https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928
+        /// https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&amp;origins=95969&amp;destinations=95928
         /// ...
         /// </summary>
         [Fact(Skip = "Run explicitly")]

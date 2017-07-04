@@ -7,6 +7,7 @@ namespace Devlord.Utilities.Services
     public class PrecisionTimer : ServiceTimer
     {
         private TimeSpan _countDown;
+
         #region Constructors and Destructors
 
         public PrecisionTimer(DateTime eventTimeUtc)
@@ -29,10 +30,9 @@ namespace Devlord.Utilities.Services
 
         public override void Run()
         {
-            LocalTimer = new Timer(AllCallbacks, _state, (int)_countDown.TotalMilliseconds, Timeout.Infinite);
+            LocalTimer = new Timer(AllCallbacks, _state, (int) _countDown.TotalMilliseconds, Timeout.Infinite);
         }
 
         #endregion
-        
     }
 }

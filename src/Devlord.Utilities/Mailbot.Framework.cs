@@ -10,7 +10,9 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-#if NET451 || NET462
+// This code is a remnant as we aren't building for NET451. It may be worth considering putting back in if the mail 
+// APIs are supported in the next netstandard release so that we don't have to have MailKit as a dependency. --lorddev
+#if NET451
 using System;
 using System.Net;
 using System.Net.Mail;

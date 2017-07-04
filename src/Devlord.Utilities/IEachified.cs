@@ -5,10 +5,11 @@
 // </copyright>
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Devlord.Utilities
 {
     using System;
- 
+
     /// <summary>
     /// Enforces a rule that a collection can perform a certain action on each of its items.
     /// </summary>
