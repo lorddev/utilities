@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Devlord.Utilities.Cryptography;
 using Xunit;
 
 namespace Devlord.Utilities.Tests

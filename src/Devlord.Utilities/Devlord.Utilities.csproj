@@ -5,8 +5,8 @@
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.2</Version>
-    <Version>5.1.3</Version>
+    <Version>5.0.34</Version>
+    <Version>5.1.34</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
@@ -36,6 +36,7 @@
      -->
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="2.1.1" />
     <PackageReference Include="Elmah.Io.AspNetCore" Version="3.2.39-pre" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />

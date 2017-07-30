@@ -11,18 +11,22 @@
 
 using System;
 using System.Security.Cryptography;
+using System.Text;
 using Encryptamajig;
+using BC = BCrypt.Net.BCrypt;
 
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Cryptography
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// A basic wrapper for crucial encryption algorithms.
     /// </summary>
     public class Crypt
     {
         #region Fields
 
         public byte[] Key { get; set; }
+
+        public static UTF8Encoding SafeUtf8 = new UTF8Encoding(false, true);
 
         #endregion
 
@@ -53,6 +57,23 @@ namespace Devlord.Utilities
             return AesEncryptamajig.Decrypt(cipher, Convert.ToBase64String(Key));
         }
 
+        public string OneWay(string cleartext)
+        {
+            var bcrypt = BC.HashPassword(cleartext);
+            return bcrypt;
+        }
+
+        /// <summary>
+        /// Todo: BCrypt expects string for cleartext, but that's not secure due to GC issues with strings in memory.
+        /// Need to "override" BCrypt's behavior here, or somehow access their private static method.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="storedCipherText"></param>
+        /// <returns></returns>
+        public bool Verify(byte[] input, string storedCipherText)
+        {
+            return BC.Verify(SafeUtf8.GetString(input), storedCipherText);
+        }
         #endregion
     }
 }

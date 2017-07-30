@@ -25,9 +25,19 @@ namespace Devlord.Utilities.Tests
             Assert.Equal(expected, actual, comparer);
         }
 
+        public static void ShouldNotEqual(this string actual, string expected)
+        {
+            Assert.NotEqual(expected, actual);
+        }
+
         public static void ShouldBeNull<T>(this T actual) where T : class
         {
             Assert.Null(actual);
+        }
+
+        public static void ShouldBeTrue(this bool actual)
+        {
+            Assert.True(actual);
         }
     }
 }
