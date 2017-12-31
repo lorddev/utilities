@@ -1,4 +1,6 @@
-This software has been ported from https://github.com/jbubriski/Encryptamajig. See the included LICENSE file for its own license, which is different from the license for Devlord.Utilities.
+This software is derived from https://github.com/jbubriski/Encryptamajig. See the included LICENSE file for its own license, which is different from the license for Devlord.Utilities.
+
+The text below is jbubriski's.
 
 ---------------
 
