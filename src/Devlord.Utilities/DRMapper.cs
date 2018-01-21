@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MailThrottle.cs" company="Lord Design">
+// <copyright file="DRMapper.cs" company="Lord Design">
 //   © Lord Design. Modified GPL: You may use freely and commercially without modification; you can modify if result 
 //   is also free.
 // </copyright>
@@ -46,14 +46,6 @@ namespace Devlord.Utilities
             }
 
             return list;
-        }
-
-
-        [Obsolete("This feature has been deprecated. The workaround is to sort in your query.", true)]
-        public static T ParseRecord<T>(IDataReader dr, int rowIndex)
-        {
-            throw new NotImplementedException(
-                "This feature has been deprecated. The workaround is to sort in your query.");
         }
 
         public static T ParseRecord<T>(IDataReader dr)
