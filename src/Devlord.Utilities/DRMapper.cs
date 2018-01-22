@@ -66,7 +66,8 @@ namespace Devlord.Utilities
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
-                    pi.SetValue(instance, dr[fieldTranslator[pi.Name.ToLowerInvariant()]], null);
+                    var value = dr[fieldNames[pi.Name.ToLowerInvariant()]];
+                    pi.SetValue(instance, value == DBNull.Value ? null : value, null);
                 }
 
                 return instance;
