@@ -58,5 +58,11 @@ namespace Devlord.Utilities
                 e.Nodes().Select(n => n is XElement ? RemoveNamespaces(n as XElement) : n),
                 e.HasAttributes ? e.Attributes().Select(a => a) : null);
         }
+        
+        public static IList<T> AsList<T>(this IEnumerable<T> query)
+        {
+            var list = query as IList<T> ?? query.ToList();
+            return list;
+        }
     }
 }
