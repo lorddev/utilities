@@ -12,7 +12,7 @@ namespace Devlord.Utilities
     using System.Collections.Generic;
 
     /// <summary>
-    /// Provides an interface to access paginable data. Use in conjuction with the GetPage() extension method.
+    /// Provides an interface to access paginable data. Use in conjunction with the GetPage() extension method.
     /// </summary>
     /// <remarks>
     /// The following methods are also implemented automatically via extension methods: int GetPageCount() and 
