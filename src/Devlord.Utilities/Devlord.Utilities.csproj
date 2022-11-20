@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;netstandard1.6;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net6.0</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>5.0.37</Version>
     <Version>5.1.37</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>devlord</Authors>
@@ -22,18 +21,6 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <NuspecFile>Devlord.Utilities.nuspec</NuspecFile>
     <UserSecretsId>22b9d517-6954-4beb-b7be-ba24eb9ac441</UserSecretsId>
-  </PropertyGroup>
-  <!-- only run it for the first build! -->
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
-     <PreBuildEvent>
-         cd ../../../
-         powershell.exe -NoProfile -File ../../tools/vers-inc.ps1 Devlord.Utilities.csproj
-         powershell.exe -NoProfile -File ../../tools/vers-inc.ps1 Devlord.Utilities.nuspec
-     </PreBuildEvent>
-    <!--
-     <PostBuildEvent>cd ../../..
-         powershell.exe -NoProfile -File $(ProjectDir)vers-inc.ps1 Devlord.Utilities.csproj</PostBuildEvent>
-     -->
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="2.1.1" />
