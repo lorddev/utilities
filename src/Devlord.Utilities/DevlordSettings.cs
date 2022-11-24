@@ -13,15 +13,17 @@
 
 using System;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Devlord.Utilities
 {
-    public class Settings
+    public class DevlordSettings
     {
-        private static IConfiguration _configuration = GetConfig();
+        public string GoogleMapsApiKey { get; set; }
+        private static readonly IConfiguration _configuration = GetConfig();
         
-        public static Settings Default { get; } = new Settings();
+        public static DevlordSettings Default { get; } = new DevlordSettings();
 
         public int SmtpPort => int.Parse(GetValue("SmtpPort"));
         public string SmtpLogin => GetValue("SmtpLogin");
@@ -30,15 +32,10 @@ namespace Devlord.Utilities
         private static IConfiguration GetConfig()
         {
             var builder = new ConfigurationBuilder()
-#if NET451
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-#else
                 .SetBasePath(AppContext.BaseDirectory)
-#endif
                 .AddJsonFile("appsettings.json",
                     true,
                     true);
-            //builder.AddUserSecrets("22b9d517-6954-4beb-b7be-ba24eb9ac441");
             return builder.Build();
         }
 

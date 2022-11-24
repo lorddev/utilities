@@ -14,7 +14,7 @@ namespace Devlord.Utilities.Tests
 
         private readonly ITestOutputHelper _output;
 
-        [Theory(Skip = "This is meant for outputing arrays that we can copy to code. Run it manually.")]
+        [Fact(Skip = "This is meant for outputting arrays that we can copy to code. Run it manually.")]
         public void MakeNewKeyAsString()
         {
             var key = Crypt.MakeKey();

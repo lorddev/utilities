@@ -179,3 +179,4 @@ node_modules/
 *_BASE_*
 *_REMOTE_*
 *_BACKUP_*
+appsettings.Development.json
