@@ -18,17 +18,18 @@ using Newtonsoft.Json;
 
 namespace Devlord.Utilities
 {
-    public class DevlordSettings
+    public class DevlordOptions
     {
         public string GoogleMapsApiKey { get; set; }
         private static readonly IConfiguration _configuration = GetConfig();
         
-        public static DevlordSettings Default { get; } = new DevlordSettings();
+        public static DevlordOptions Default { get; } = new DevlordOptions();
 
         public int SmtpPort => int.Parse(GetValue("SmtpPort"));
         public string SmtpLogin => GetValue("SmtpLogin");
         public string SmtpPassword => GetValue("SmtpPassword");
-        
+        public string SmtpServer { get; set; }
+
         private static IConfiguration GetConfig()
         {
             var builder = new ConfigurationBuilder()

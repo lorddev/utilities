@@ -6,8 +6,10 @@ using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    public class MailTests
+    public class MailTests : IClassFixture<DevlordTestConfiguration>
     {
+        private readonly DevlordOptions _options;
+        
         [Fact]
         public void EncryptPassword()
         {
@@ -46,7 +48,13 @@ namespace Devlord.Utilities.Tests
 
             try
             {
-                await Mailbot.GetInstance("mail.google.com").QueueMail(botMail);
+                await new Mailbot
+                {
+                    SmtpPort = _options.SmtpPort,
+                    SmtpLogin = _options.SmtpLogin,
+                    SmtpServer = _options.SmtpServer,
+                    EncryptedPassword = _options.SmtpPassword
+                }.QueueMail(botMail);
             }
             catch (Exception e)
             {

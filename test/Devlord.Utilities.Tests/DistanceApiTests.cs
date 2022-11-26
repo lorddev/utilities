@@ -3,39 +3,18 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using Devlord.Utilities.MapsApi;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    public class DevlordTestConfiguration
-    {
-        public DevlordSettings Settings { get; private set; }
-        
-        public DevlordTestConfiguration(DevlordSettings settings)
-        {
-            Settings = settings;
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .AddUserSecrets<DistanceApiTests>()
-                .Build();
-            var services = new ServiceCollection().AddOptions();
-            services.Configure<DevlordSettings>(config.GetSection("Devlord.Utilities"));
-            Settings = services.BuildServiceProvider().GetService<DevlordSettings>();
-            //return config;
-        }
-    }
-    
     public class DistanceApiTests : IClassFixture<DevlordTestConfiguration>
     {
-        private readonly DevlordSettings _settings;
+        private readonly DevlordOptions _options;
         
         public DistanceApiTests(DevlordTestConfiguration settings)
         {
-            _settings = settings.Settings;
+            _options = settings.Options;
         }
         
         private static double ParseDuration(string distanceString)
@@ -52,7 +31,7 @@ namespace Devlord.Utilities.Tests
         {
             var endPoint =
                 "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928&key="
-                + _settings.GoogleMapsApiKey;
+                + _options.GoogleMapsApiKey;
             using (var httpClient = new HttpClient())
             {
                 var response = httpClient.GetAsync(endPoint).Result;
