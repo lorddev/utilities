@@ -40,6 +40,7 @@ namespace Devlord.Utilities.MapsApi
             ContractResolver =
                 new UnderscoreContractResolver()
         };
+
         public static DistanceResults FromJson(string json)
         {
             return JsonConvert.DeserializeObject<DistanceResults>(json, Settings);

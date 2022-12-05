@@ -17,7 +17,7 @@ namespace Devlord.Utilities
         public GmailThrottles() : base(500, 500, 500)
         {
         }
-        
+
         #endregion
     }
 }

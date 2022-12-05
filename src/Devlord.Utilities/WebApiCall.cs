@@ -42,7 +42,7 @@ namespace Devlord.Utilities
 
         public override IApiResult<dynamic> Execute<T>()
         {
-            string endPoint = BuildEndpoint() + BuildQueryString();
+            string endPoint = AppendQueryString(BuildEndpoint());
             return base.Execute<T>(new Uri(endPoint));
         }
 

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <!-- how to pack:
+    1. Use Visual Studio "Pack" tool.
+    2. Navigate to bin\Release
+    3. Open the pacakge in Nuget Package Explorer
+    4. Add devlord.utilities.json
+    5. Add Encryptamajig.dll for netstandard 1.5
+    6. Open "metadata" and copy in what's below if it doesn't match.
+    -->
+    <metadata>
+        <id>Devlord.Utilities</id>
+        <version>5.0.0</version>
+        <title>Devlord.Utilities</title>
+        <authors>lorddev/authors>
+        <owners>Devlords Cooperative</owners>
+        <licenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/lorddev/utilities</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers. Also includes a .NET Core-compatible build of Encryptamajig.</description>
+        <releaseNotes>New IDataReader mapper for dynamic ORM.</releaseNotes>
+        <copyright>Copyright © 2017 Aaron Lord</copyright>
+        <tags>utils utilities email distance-matrix micro-orm logging encryption</tags>
+    </metadata>
+    <files>
+        <file src="bin\Release\netstandard1.5\devlord.utilities.json" target="lib\netstandard1.5\devlord.utilities.json" />
+        <file src="bin\Release\netstandard1.5\Encryptamajig.dll" target="lib\netstandard1.5\Encryptamajig.dll" />
+        <file src="bin\Release\net462\devlord.utilities.json" target="net451\devlord.utilities.json" />
+        <file src="bin\Release\net462\devlord.utilities.json" target="net462\devlord.utilities.json" />
+        <file src="..\..\README.md" target="Devlord.Utilities.md" />
+    </files>
+</package>

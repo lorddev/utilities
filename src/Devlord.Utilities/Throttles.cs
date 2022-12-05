@@ -22,7 +22,7 @@ namespace Devlord.Utilities
         /// <summary>
         /// Initializes a new instance of the <see cref="Throttles" /> class.
         /// </summary>
-        protected Throttles(int min, int hour, int day)
+        public Throttles(int min, int hour, int day)
         {
             MinuteThrottle = new MailThrottle { Interval = ThrottleInterval.Minute, Limit = min };
             HourlyThrottle = new MailThrottle { Interval = ThrottleInterval.Hour, Limit = hour };

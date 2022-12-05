@@ -30,8 +30,10 @@
 
 using System;
 using System.Diagnostics;
+
 // ReSharper disable CheckNamespace
 #if NETSTANDARD1_5
+
 namespace System.Diagnostics
 {
     public enum EventLogEntryType
@@ -43,4 +45,5 @@ namespace System.Diagnostics
         FailureAudit = 0x10
     }
 }
+
 #endif

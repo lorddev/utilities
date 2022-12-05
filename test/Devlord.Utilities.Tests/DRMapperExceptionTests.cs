@@ -1,4 +1,4 @@
-﻿#pragma warning disable S101 // Types should be named in camel cas
+﻿#pragma warning disable S101 // Types should be named in camel case
 using System;
 using System.Collections.Generic;
 using System.Linq;

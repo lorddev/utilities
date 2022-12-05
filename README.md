@@ -11,6 +11,10 @@ A useful class library for universal utilities like encryption, sending emails, 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
     PM> Install-Package Devlord.Utilities
+    
+Or from the command-line:
+
+    dotnet add package Devlord.Utilities
 
 ### Feature Summary
 
@@ -62,18 +66,33 @@ business entities and your data layer. Useful for pagination as well.
 
 ### Mailbot
 
-A multithreaded SMTP queued mail sender, has a throttle based on Google Apps maximums for mail frequency sent by a single account.
+A multithreaded SMTP queued mail sender, has a configurable throttle for mail frequency sent by a single account.
+
+**Configuration**
+
+```json
+{
+  "Devlord.Utilities": {
+    "GoogleMapsApiKey": "",
+    "MailSettings": [
+      {
+        "Name": "Gmail",
+        "SmtpServer": "mail.google.com",
+        "SmtpPort": 587,
+        "SmtpPassword": "",
+        "MaxPerMinute": 500,
+        "MaxPerHour": 500,
+        "MaxPerDay": 500
+      }
+    ]
+  }
+}
+```
 
 ### Crypt
 
 Bidirectional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's
 configuration files. (Not recommend for use with user's site credentials as those should use one-way encryption.)
-
-### RssConverter
-
-This class makes it easy to download an RSS feed and parse it. It reads the data with LinqToXml and can output it in JSON format 
-for easy portability. 
-You can utilize the `PostFilter` delegate to filter the results even further. (Sorry, I can't remember what project I needed this for.)
 
 ### DRMapper
 
@@ -100,4 +119,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Contact [lorddev](https://github.com/lorddev) on GitHub or [@devlords](https://twitter.com/devlords) on Twitter.
+Contact [lorddev](https://github.com/lorddev) on GitHub or [@devlord@fosstodon.org](https://fosstodon.org/@devlord) on Mastodon.

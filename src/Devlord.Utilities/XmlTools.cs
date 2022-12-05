@@ -10,6 +10,12 @@ namespace Devlord.Utilities
 {
     public static class XmlTools
     {
+        /// <summary>
+        /// Serializes the given object to an xml string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string ToXmlString<T>(this T input)
         {
             using (var writer = new StringWriter())
@@ -36,10 +42,10 @@ namespace Devlord.Utilities
                 objectToSerialize.ToXml(new XmlSerializer(typeof(T)), stream);
             }
         }
-        
+
         private static void ToXml<T>(this T objectToSerialize, XmlObjectSerializer serializer, Stream stream)
         {
-             serializer.WriteObject(stream, objectToSerialize);
+            serializer.WriteObject(stream, objectToSerialize);
         }
 
         private static void ToXml<T>(this T objectToSerialize, XmlSerializer serializer, Stream stream)
@@ -49,16 +55,16 @@ namespace Devlord.Utilities
 
         public static void ToXml<T>(this T objectToSerialize, StringWriter writer)
         {
-            var settings = new XmlWriterSettings {OmitXmlDeclaration = true};
+            var settings = new XmlWriterSettings { OmitXmlDeclaration = true };
             using (var xwriter = XmlWriter.Create(writer, settings))
             {
-                if (IsDataContract(typeof (T)))
+                if (IsDataContract(typeof(T)))
                 {
-                    objectToSerialize.ToXml(new DataContractSerializer(typeof (T)), xwriter);
+                    objectToSerialize.ToXml(new DataContractSerializer(typeof(T)), xwriter);
                 }
                 else
                 {
-                    objectToSerialize.ToXml(new XmlSerializer(typeof (T)), xwriter);
+                    objectToSerialize.ToXml(new XmlSerializer(typeof(T)), xwriter);
                 }
             }
         }
@@ -78,7 +84,7 @@ namespace Devlord.Utilities
         {
             using (var xreader = XmlReader.Create(new StringReader(objectToDeserialize)))
             {
-                if (IsDataContract(typeof (T)))
+                if (IsDataContract(typeof(T)))
                 {
                     return Deserialize<T>(new DataContractSerializer(typeof(T)), xreader);
                 }

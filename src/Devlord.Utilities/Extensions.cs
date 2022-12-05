@@ -44,8 +44,8 @@ namespace Devlord.Utilities
 
         public static int GetPageCount(this IPaginable collection)
         {
-            decimal percent = collection.TotalResults / (decimal)collection.PageSize;
-            return (int)Math.Ceiling(percent);
+            decimal percent = collection.TotalResults / (decimal) collection.PageSize;
+            return (int) Math.Ceiling(percent);
         }
 
         #endregion
@@ -56,7 +56,13 @@ namespace Devlord.Utilities
             // Courtesy http://stackoverflow.com/a/7238007/16454 (Dexter Legaspi)
             return new XElement(e.Name.LocalName,
                 e.Nodes().Select(n => n is XElement ? RemoveNamespaces(n as XElement) : n),
-                       e.HasAttributes ? e.Attributes().Select(a => a) : null);
+                e.HasAttributes ? e.Attributes().Select(a => a) : null);
+        }
+        
+        public static IList<T> AsList<T>(this IEnumerable<T> query)
+        {
+            var list = query as IList<T> ?? query.ToList();
+            return list;
         }
     }
 }

@@ -10,8 +10,11 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using Devlord.Utilities.Cryptography;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace Devlord.Utilities
 {
@@ -19,18 +22,25 @@ namespace Devlord.Utilities
     /// Multi-threaded mailer to keep your systems running by sending messages asynchronously. If you're using it in a
     /// service that sends a lot of messages, be aware that you'll be limited by your .NET working threads.
     /// </summary>
-    public partial class Mailbot
+    public class Mailbot
     {
-        private static readonly object DictionaryLock = new object();
+        #region Fields
 
-        private static readonly Dictionary<string, Mailbot> Instances = new Dictionary<string, Mailbot>();
+        private readonly Crypt _crypt = new Crypt();
 
+        /// <summary>
+        /// The throttles.
+        /// </summary>
+        internal Throttles Throttles = new Throttles();
+
+        #endregion
+        
         #region Constructors and Destructors
 
         /// <summary>
         /// Private constructor to enforce use of singleton.
         /// </summary>
-        private Mailbot()
+        internal Mailbot()
         {
             _crypt.Key = new byte[]
             {
@@ -50,51 +60,49 @@ namespace Devlord.Utilities
         /// <summary>
         /// Gets the SMTP server.
         /// </summary>
-        public string SmtpServer { get; private set; }
+        public string SmtpServer { get; internal set; }
+
+        public int SmtpPort { get; internal set; }
+        public string SmtpLogin { get; internal set; }
+        public string EncryptedPassword { get; internal set; }
 
         #endregion
 
-        // Per minute 180, Per hour 3600, Per day 10,000
+        #region Methods
 
+        // Per minute 180, Per hour 3600, Per day 10,000
         public async Task QueueMail(Botmail message)
         {
             await SendMail(message);
         }
 
-        /// <summary>
-        /// Gets the instance.
-        /// </summary>
-        public static Mailbot GetInstance(string smtpServer)
+
+        // Per minute 180, Per hour 3600, Per day 10,000
+        private async Task SendMail(Botmail botmail)
         {
-            smtpServer = smtpServer.ToLower();
-            lock (DictionaryLock)
+            Throttles.Wait();
+
+            var mm = new MimeMessage();
+            mm.From.Add(new MailboxAddress(botmail.Addresser));
+            mm.Subject = botmail.Subject;
+            mm.Body = new TextPart(botmail.Format.ToString().ToLower())
             {
-                if (Instances.ContainsKey(smtpServer))
-                {
-                    return Instances[smtpServer];
-                }
+                Text = botmail.Body
+            };
 
-                var instance = new Mailbot { SmtpServer = smtpServer };
-                if (smtpServer == "smtp.gmail.com")
-                {
-                    instance._throttles = new GmailThrottles();
-                }
-
-                instance.SmtpServer = smtpServer;
-                Instances.Add(smtpServer, instance);
-                return instance;
+            botmail.Addressees.ForEach(a => mm.To.Add(new MailboxAddress(a)));
+            using (var client = new SmtpClient())
+            {
+                client.Connect(SmtpServer, SmtpPort, SecureSocketOptions.SslOnConnect);
+                await client.AuthenticateAsync(SmtpLogin,
+                    _crypt.DecryptSecret(EncryptedPassword));
+                await client.SendAsync(mm);
+                Throttles.Increment();
+                client.Disconnect(true);
             }
         }
 
-        #region Fields
-
-        private readonly Crypt _crypt = new Crypt();
-
-        /// <summary>
-        /// The throttles.
-        /// </summary>
-        private Throttles _throttles = new Throttles();
-
         #endregion
+
     }
 }

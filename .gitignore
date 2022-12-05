@@ -165,9 +165,18 @@ pip-log.txt
 #################
 
 .vs/*
+.idea/*
+*.userprefs
 
 # Created by mergetool
 *.orig
 
 # Ignore node thingy
 node_modules/
+
+# Merge files
+*_LOCAL_*
+*_BASE_*
+*_REMOTE_*
+*_BACKUP_*
+appsettings.Development.json

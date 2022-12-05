@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MailThrottle.cs" company="Lord Design">
+// <copyright file="DRMapper.cs" company="Lord Design">
 //   © Lord Design. Modified GPL: You may use freely and commercially without modification; you can modify if result 
 //   is also free.
 // </copyright>
@@ -30,28 +30,22 @@ namespace Devlord.Utilities
             var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public |
                                                      BindingFlags.Instance);
 
-            var fieldNames = new TypeMatcher<T>(properties).VerifyTypeMatch(dr).GetFieldTranslator();
+            var fieldTranslator = new TypeMatcher<T>(properties).VerifyTypeMatch(dr).GetFieldTranslator();
 
             while (dr.Read())
             {
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
-                    pi.SetValue(instance, dr[fieldNames[pi.Name.ToLowerInvariant()]], null);
+                    var fieldName = fieldTranslator[pi.Name.ToLowerInvariant()];
+                    if (dr[fieldName] != DBNull.Value)
+                        pi.SetValue(instance, dr[fieldTranslator[pi.Name.ToLowerInvariant()]], null);
                 }
 
                 list.Add(instance);
             }
 
             return list;
-        }
-
-
-        [Obsolete("This feature has been deprecated. The workaround is to sort in your query.", true)]
-        public static T ParseRecord<T>(IDataReader dr, int rowIndex)
-        {
-            throw new NotImplementedException(
-                "This feature has been deprecated. The workaround is to sort in your query.");
         }
 
         public static T ParseRecord<T>(IDataReader dr)
@@ -66,8 +60,9 @@ namespace Devlord.Utilities
                 var instance = Activator.CreateInstance<T>();
                 foreach (var pi in properties)
                 {
-                    var value = dr[fieldNames[pi.Name.ToLowerInvariant()]];
-                    pi.SetValue(instance, value == DBNull.Value ? null : value, null);
+                    var fieldName = fieldTranslator[pi.Name.ToLowerInvariant()];
+                    if (dr[fieldName] != DBNull.Value)
+                        pi.SetValue(instance, dr[fieldName], null);
                 }
 
                 return instance;

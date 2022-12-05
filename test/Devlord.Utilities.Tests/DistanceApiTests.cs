@@ -8,8 +8,15 @@ using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
-    public class DistanceApiTests
+    public class DistanceApiTests : IClassFixture<DevlordTestConfiguration>
     {
+        private readonly DevlordOptions _options;
+        
+        public DistanceApiTests(DevlordTestConfiguration settings)
+        {
+            _options = settings.Options;
+        }
+        
         private static double ParseDuration(string distanceString)
         {
             var resultDuration = Regex.Match(distanceString, @"[\d\.]+(?=\smins)")
@@ -22,8 +29,9 @@ namespace Devlord.Utilities.Tests
         [Fact]
         public void ReturnsDeserializedResults()
         {
-            const string endPoint =
-                "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928";
+            var endPoint =
+                "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928&key="
+                + _options.GoogleMapsApiKey;
             using (var httpClient = new HttpClient())
             {
                 var response = httpClient.GetAsync(endPoint).Result;
@@ -52,8 +60,9 @@ namespace Devlord.Utilities.Tests
         [Fact]
         public void ReturnsExpectedResultWithCustomApi()
         {
-            const string endPoint =
-                "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928";
+            string endPoint =
+                "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928&key="
+                + _options.GoogleMapsApiKey;
 
             using (IApiCall client = new ApiCall(endPoint,
                 new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
@@ -68,14 +77,15 @@ namespace Devlord.Utilities.Tests
 
         /// <summary>
         /// Given the following input:
-        /// https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928
+        /// https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&amp;origins=95969&amp;destinations=95928
         /// ...
         /// </summary>
         [Fact(Skip = "Run explicitly")]
         public void ReturnsJsonResults()
         {
-            const string endPoint =
-                "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928";
+            string endPoint =
+                "https://maps.googleapis.com/maps/api/distancematrix/json?sensor=false&origins=95969&destinations=95928&key="
+                + _options.GoogleMapsApiKey;
             using (var httpClient = new HttpClient())
             {
                 var response = httpClient.GetAsync(endPoint).Result;
@@ -124,7 +134,8 @@ this comparison to allow for variations in travel time.");
         [Fact]
         public void ReturnsResultWithCustomApiAndQueryParams()
         {
-            const string baseUri = "https://maps.googleapis.com/maps/api/distancematrix/json";
+            string baseUri = "https://maps.googleapis.com/maps/api/distancematrix/json?key="
+                                   + _options.GoogleMapsApiKey;
 
             // sensor=false&origins=95969&destinations=95928
             using (IApiCall client = new ApiCall(baseUri,
