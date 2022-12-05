@@ -31,20 +31,11 @@
     <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
-    <!--<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.0.0" />-->
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\$(Configuration)\netstandard1.3\Encryptamajig.dll" Pack="true" PackagePath="lib\netstandard1.3\" />
-    <None Include="bin\$(Configuration)\netstandard1.6\Encryptamajig.dll" Pack="true" PackagePath="lib\netstandard1.6\" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
     <PackageReference Include="MailKit" Version="1.12.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.1" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3' Or '$(TargetFramework)'=='netstandard1.6'">
-    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\ExceptionText.Designer.cs">
@@ -61,10 +52,5 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>
