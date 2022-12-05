@@ -1,7 +1,0 @@
-{
-  "Devlord.Utilities": {
-    "SmtpServer": "mail.google.com",
-    "SmtpPort": "587",
-    "SmtpPassword": "asdf"
-  }
-}

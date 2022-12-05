@@ -1,14 +1,22 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Devlord.Utilities.Cryptography;
+using Devlord.Utilities.Exceptions;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace Devlord.Utilities.Tests
 {
     public class MailTests : IClassFixture<DevlordTestConfiguration>
     {
-        private readonly DevlordOptions _options;
+        private readonly DevlordTestConfiguration _fixture;
+
+        public MailTests(DevlordTestConfiguration fixture)
+        {
+            _fixture = fixture;
+        }
         
         [Fact]
         public void EncryptPassword()
@@ -48,12 +56,19 @@ namespace Devlord.Utilities.Tests
 
             try
             {
+                var thisOptions = _fixture.Options.MailSettings.FirstOrDefault();
+
+                if (thisOptions == null)
+                {
+                    throw new DevlordConfigurationException("Missing MailSettings for test project.");
+                }
+                
                 await new Mailbot
                 {
-                    SmtpPort = _options.SmtpPort,
-                    SmtpLogin = _options.SmtpLogin,
-                    SmtpServer = _options.SmtpServer,
-                    EncryptedPassword = _options.SmtpPassword
+                    SmtpPort = thisOptions.SmtpPort,
+                    SmtpLogin = thisOptions.SmtpLogin,
+                    SmtpServer = thisOptions.SmtpServer,
+                    EncryptedPassword = thisOptions.SmtpPassword
                 }.QueueMail(botMail);
             }
             catch (Exception e)

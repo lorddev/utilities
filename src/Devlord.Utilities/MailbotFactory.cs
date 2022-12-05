@@ -10,7 +10,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using Devlord.Utilities.Exceptions;
 using Microsoft.Extensions.Options;
 
 [assembly: InternalsVisibleTo("Devlord.Utilities.Tests")]
@@ -33,30 +35,32 @@ namespace Devlord.Utilities
         /// <summary>
         /// Gets the instance.
         /// </summary>
-        public Mailbot GetMailbot(string smtpServer)
+        public Mailbot GetMailbot(string name)
         {
-            smtpServer = smtpServer.ToLower();
             lock (DictionaryLock)
             {
-                if (Instances.ContainsKey(smtpServer))
+                if (Instances.ContainsKey(name))
                 {
-                    return Instances[smtpServer];
+                    return Instances[name];
                 }
 
+                var thisOptions = _options.MailSettings.FirstOrDefault(n => n.Name == name);
+
+                if (thisOptions == null)
+                {
+                    throw new DevlordConfigurationException($"Missing mail options for name {name}");
+                }
+                
                 var instance = new Mailbot
                 {
-                    SmtpServer = smtpServer,
-                    SmtpPort = _options.SmtpPort,
-                    SmtpLogin = _options.SmtpLogin,
-                    EncryptedPassword = _options.SmtpPassword
+                    SmtpServer = thisOptions.SmtpServer,
+                    SmtpPort = thisOptions.SmtpPort,
+                    SmtpLogin = thisOptions.SmtpLogin,
+                    EncryptedPassword = thisOptions.SmtpPassword,
+                    Throttles = new Throttles(thisOptions.MaxPerMinute, thisOptions.MaxPerHour, thisOptions.MaxPerDay)
                 };
-                if (smtpServer == "smtp.gmail.com")
-                {
-                    instance.Throttles = new GmailThrottles();
-                }
 
-                instance.SmtpServer = smtpServer;
-                Instances.Add(smtpServer, instance);
+                Instances.Add(name, instance);
                 return instance;
             }
         }

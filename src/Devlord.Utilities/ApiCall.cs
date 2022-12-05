@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -76,7 +76,7 @@ namespace Devlord.Utilities
 
         public virtual IApiResult<dynamic> Execute<T>() where T : class
         {
-            _endPoint += BuildQueryString();
+            _endPoint = AppendQueryString(_endPoint);
             return Execute<T>(new Uri(_endPoint));
         }
 
@@ -103,19 +103,19 @@ namespace Devlord.Utilities
                 {
                     var stringContent = new StringContent(serialize(Payload));
                     stringContent.Headers.ContentType = new MediaTypeHeaderValue(format) { CharSet = "utf-8" };
-                    response = _client.PutAsync(_endPoint, stringContent).Result;
+                    response = _client.PutAsync(endPoint, stringContent).Result;
                     break;
                 }
                 case "POST":
                 {
                     var stringContent = new StringContent(serialize(Payload));
                     stringContent.Headers.ContentType = new MediaTypeHeaderValue(format) { CharSet = "utf-8" };
-                    response = _client.PostAsync(_endPoint, stringContent).Result;
+                    response = _client.PostAsync(endPoint, stringContent).Result;
                     break;
                 }
                 default:
                     // Assume "GET"
-                    response = _client.GetAsync(_endPoint).Result;
+                    response = _client.GetAsync(endPoint).Result;
                     break;
             }
 
@@ -148,7 +148,7 @@ namespace Devlord.Utilities
 
         #region Methods
 
-        protected string BuildQueryString()
+        protected string AppendQueryString(string original)
         {
             var sb = new StringBuilder();
 
@@ -166,7 +166,8 @@ namespace Devlord.Utilities
             }
 
             string qs2 = sb.ToString();
-            return "?" + qs2;
+            if (original.Contains('?')) return original + "&" + qs2;
+            return original + "?" + qs2;
         }
 
         protected virtual void Dispose(bool disposing)
