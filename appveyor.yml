@@ -4,7 +4,7 @@ build_script:
 - ps: >-
     dotnet restore
     
-    dotnet msbuild
+    dotnet build
 test_script:
 - ps: >-
     dotnet test test\Encryptamajig.Tests\Encryptamajig.Tests.csproj
