@@ -19,7 +19,6 @@
     <PackageReleaseNotes>...</PackageReleaseNotes>
     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <NuspecFile>Devlord.Utilities.nuspec</NuspecFile>
     <UserSecretsId>22b9d517-6954-4beb-b7be-ba24eb9ac441</UserSecretsId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
