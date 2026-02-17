@@ -1,0 +1,30 @@
+name: Publish NuGet package
+
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build release
+        run: dotnet build --configuration Release
+      - name: Pack prerelease with build number
+        if: "github.event.release.prerelease"
+        run: |
+          dotnet pack --configuration Release --output ./nupkg \
+            -p:VersionSuffix="preview.${{ github.run_number }}"
+      - name: Pack release
+        if: "!github.event.release.prerelease"
+        run: dotnet pack --configuration Release --output ./nupkg 
+      - name: Publish the package to NuGet
+        run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

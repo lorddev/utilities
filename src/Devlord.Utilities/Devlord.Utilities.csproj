@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>6.0.0</Version>
+    <Version>7.0.0</Version>
     <Company>Devlords Cooperative</Company>
     <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
-    <Copyright>Copyright © 2022 Aaron Lord</Copyright>
+    <Copyright>Copyright © 2026 Aaron Lord</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
@@ -21,6 +21,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <NuspecFile>Devlord.Utilities.nuspec</NuspecFile>
     <UserSecretsId>22b9d517-6954-4beb-b7be-ba24eb9ac441</UserSecretsId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="2.1.1" />
@@ -43,6 +44,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ExceptionText.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\ExceptionText.resx">
