@@ -119,4 +119,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Contact [lorddev](https://github.com/lorddev) on GitHub or [@devlord@fosstodon.org](https://fosstodon.org/@devlord) on Mastodon.
+Contact [lorddev](https://github.com/lorddev) on GitHub or [@devlord@hachyderm.io](https://hachyderm.io/@devlord) on Mastodon.
