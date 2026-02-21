@@ -56,7 +56,7 @@ namespace Devlord.Utilities
                     SmtpServer = thisOptions.SmtpServer,
                     SmtpPort = thisOptions.SmtpPort,
                     SmtpLogin = thisOptions.SmtpLogin,
-                    EncryptedPassword = thisOptions.SmtpPassword,
+                    SmtpPassword = thisOptions.SmtpPassword,
                     Throttles = new Throttles(thisOptions.MaxPerMinute, thisOptions.MaxPerHour, thisOptions.MaxPerDay)
                 };
 

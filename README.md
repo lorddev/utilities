@@ -22,7 +22,6 @@ Or from the command-line:
 * System.Threading.Timers service clocks
 * Email throttling to help you avoid being suspended by your ISP
 * Generic HTTP API wrappers
-* Two-way AES encryption
 * "Micro-ORM" DataReader mapper for when using a full-featured ORM would be overkill
 
 More details below, but for even _more_ details, see the [project wiki](https://github.com/lorddev/utilities/wiki).
@@ -88,11 +87,6 @@ A multithreaded SMTP queued mail sender, has a configurable throttle for mail fr
   }
 }
 ```
-
-### Crypt
-
-Bidirectional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's
-configuration files. (Not recommend for use with user's site credentials as those should use one-way encryption.)
 
 ### DRMapper
 
