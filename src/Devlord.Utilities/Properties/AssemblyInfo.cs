@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Devlord.Utilities")]
 [assembly:
     AssemblyDescription(
-        "Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, encapsulation of logging and encryption, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers. Also includes a .NET Core-compatible build of Encryptamajig.")]
+        "Multipurpose universal utilities library so you don't have to write your own utils for every project. Includes extensions, DataReader-to-POCO mapping, a mailer throttle, and strongly-typed API callers.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

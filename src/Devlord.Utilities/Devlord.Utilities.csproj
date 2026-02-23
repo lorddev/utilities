@@ -14,7 +14,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageTags>utils utilities email distance-matrix micro-orm logging encryption</PackageTags>
+    <PackageTags>utils utilities email distance-matrix micro-orm</PackageTags>
     <PackageSummary>Utilities class library so you don't have to rewrite your utilities on every project.</PackageSummary>
     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>

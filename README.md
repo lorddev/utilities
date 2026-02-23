@@ -2,7 +2,7 @@ devlord utilities
 ====================
 
 
-A useful class library for universal utilities like encryption, sending emails, and consuming RESTful APIs.
+A useful class library for universal utilities like sending emails and consuming RESTful APIs.
 
 | Master      | Develop      | NuGet      |
 | -----       | -----        | -----      |
