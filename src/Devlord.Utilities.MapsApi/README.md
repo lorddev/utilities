@@ -4,9 +4,10 @@ Devlord.Utilities.MapsApi
 
 A useful class library for universal utilities like sending emails and consuming RESTful APIs.
 
-| Master      | Develop      | NuGet      |
-| -----       | -----        | -----      |
-| [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [NuGet](https://www.nuget.org/packages/Devlord.Utilities/) |
+
+| Build       | NuGet      |
+| -----       | -----      |
+| [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [NuGet](https://www.nuget.org/packages/Devlord.Utilities.MapsApi/) |
 
 To install Devlord.Utilities.MapsApi, run the following command in the Package Manager Console:
 
