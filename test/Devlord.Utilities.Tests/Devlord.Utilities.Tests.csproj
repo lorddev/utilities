@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <TargetFramework>net10.0</TargetFramework>
     <LangVersion>10</LangVersion>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -27,7 +27,6 @@
     <PackageReference Include="NBuilder" Version="6.1.0" />
     <PackageReference Include="FastMember" Version="1.5.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <PrivateAssets>all</PrivateAssets>
@@ -41,6 +40,8 @@
     <PackageReference Include="xunit.runner.console" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Devlord.Utilities.Mail\Devlord.Utilities.Mail.csproj" />
+    <ProjectReference Include="..\..\src\Devlord.Utilities.MapsApi\Devlord.Utilities.MapsApi.csproj" />
     <ProjectReference Include="..\..\src\Devlord.Utilities\Devlord.Utilities.csproj" />
   </ItemGroup>
   <ItemGroup>

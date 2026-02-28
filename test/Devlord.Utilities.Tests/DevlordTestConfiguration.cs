@@ -27,7 +27,8 @@ public class DevlordTestConfiguration
             .AddUserSecrets<DistanceApiTests>()
             .Build();
         var services = new ServiceCollection().AddOptions();
-        services.AddDevlordUtilities(config.GetSection("Devlord.Utilities"));
+        services.AddDevlordMail(config.GetSection("Devlord.Utilities"));
+        services.AddDevlordMaps(config.GetSection("Devlord.Utilities"));
         Options = services.BuildServiceProvider().GetService<IOptions<DevlordOptions>>().Value;
         //return config;
     }

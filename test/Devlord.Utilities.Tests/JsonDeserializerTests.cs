@@ -1,8 +1,8 @@
 ﻿using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using Devlord.Utilities.MapsApi;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Devlord.Utilities.Tests
@@ -12,10 +12,14 @@ namespace Devlord.Utilities.Tests
         [Fact]
         public void TestCustomResolver()
         {
-            var settings = new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() };
+            var settings = new JsonSerializerOptions
+            {
+               PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+               WriteIndented = true,
+            };
 
             var bob = new { PropertyName = "asdf" };
-            var json = JsonConvert.SerializeObject(bob, Formatting.Indented, settings);
+            var json = JsonSerializer.Serialize(bob, settings);
 			
             // For macOS, Linux compatibility
             json = json.Replace("\r\n", "\n");
@@ -23,7 +27,7 @@ namespace Devlord.Utilities.Tests
         }
 
         [Fact]
-        public void TestDeserializeDynamic()
+        public void TestDeserializeStronglyTyped()
         {
             var input = @"{
    ""destination_addresses"" : [ ""Chico, CA 95928, USA"" ],
@@ -49,43 +53,13 @@ namespace Devlord.Utilities.Tests
 }
 ".Replace("\r\n", "\n");
 
-            var settings = new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() };
-
-            dynamic parsedObject = JsonConvert.DeserializeObject(input, settings);
-
-            Assert.Equal(typeof(JObject), parsedObject.rows[0].elements[0].GetType());
-        }
-
-        [Fact]
-        public void TestDeserializeStrongTyped()
-        {
-            var input = @"{
-   ""destination_addresses"" : [ ""Chico, CA 95928, USA"" ],
-   ""origin_addresses"" : [ ""Paradise, CA 95969, USA"" ],
-   ""rows"" : [
-      {
-         ""elements"" : [
+            var settings = new JsonSerializerOptions
             {
-               ""distance"" : {
-                  ""text"" : ""27.7 km"",
-                  ""value"" : 27722
-               },
-               ""duration"" : {
-                  ""text"" : ""25 mins"",
-                  ""value"" : 1518
-               },
-               ""status"" : ""OK""
-            }
-         ]
-      }
-   ],
-   ""status"" : ""OK""
-}
-".Replace("\r\n", "\n");
+               PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+               WriteIndented = true,
+            };
 
-            var settings = new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() };
-
-            var parsedObject = JsonConvert.DeserializeObject<DistanceResults>(input, settings);
+            var parsedObject = JsonSerializer.Deserialize<DistanceResults>(input, settings);
 
             Assert.Equal(typeof(DistanceElement), parsedObject.Rows.ElementAt(0).Elements.ElementAt(0).GetType());
 

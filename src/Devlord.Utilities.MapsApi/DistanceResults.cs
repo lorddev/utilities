@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace Devlord.Utilities.MapsApi
 {
@@ -28,22 +25,21 @@ namespace Devlord.Utilities.MapsApi
 
         public string ToJson()
         {
-            string json = JsonConvert.SerializeObject(
+            string json = JsonSerializer.Serialize(
                 this,
-                Formatting.Indented,
                 Settings);
             return json;
         }
 
-        private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
-        {
-            ContractResolver =
-                new UnderscoreContractResolver()
+        private static readonly JsonSerializerOptions Settings = new JsonSerializerOptions
+        {   
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+            WriteIndented = true,
         };
 
-        public static DistanceResults FromJson(string json)
+        public static DistanceResults? FromJson(string json)
         {
-            return JsonConvert.DeserializeObject<DistanceResults>(json, Settings);
+            return JsonSerializer.Deserialize<DistanceResults>(json, Settings);
         }
     }
 }

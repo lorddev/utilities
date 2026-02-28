@@ -11,11 +11,6 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-
 namespace Devlord.Utilities
 {
     public class DevlordOptions

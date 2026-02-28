@@ -16,6 +16,14 @@ Or from the command-line:
 
     dotnet add package Devlord.Utilities
 
+### Breaking Changes
+
+* Mail utilities have been moved to the Devlord.Utilities.Mail package.
+* Maps API utilities have been moved to the Devlord.Utilities.MapsApi package.
+* Encryption has been deprecated because the protocols are no longer recommended.
+* UnderscoreContractResolver has been removed in favor of System.Text.Json snake case handling.
+* ValueText.Value has been changed from string to decimal.
+
 ### Feature Summary
 
 * .NET Core compatibility

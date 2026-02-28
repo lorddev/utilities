@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using Devlord.Utilities.MapsApi;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace Devlord.Utilities.Tests
@@ -45,9 +45,9 @@ namespace Devlord.Utilities.Tests
 
                 var content = response.Content.ReadAsStringAsync().Result;
 
-                var settings = new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() };
+                var settings = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower };
 
-                var parsedObject = JsonConvert.DeserializeObject<DistanceResults>(content, settings);
+                var parsedObject = JsonSerializer.Deserialize<DistanceResults>(content, settings);
 
                 Assert.Equal(typeof(DistanceElement),
                     parsedObject.Rows.ElementAt(0).Elements.ElementAt(0).GetType());
@@ -65,7 +65,11 @@ namespace Devlord.Utilities.Tests
                 + _options.GoogleMapsApiKey;
 
             using (IApiCall client = new ApiCall(endPoint,
-                new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
+                new JsonSerializerOptions 
+                { 
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    WriteIndented = true,
+                }))
             {
                 var result = client.Execute<DistanceResults>();
                 Assert.Equal(HttpStatusCode.OK, result.StatusCode);
@@ -139,7 +143,11 @@ this comparison to allow for variations in travel time.");
 
             // sensor=false&origins=95969&destinations=95928
             using (IApiCall client = new ApiCall(baseUri,
-                new JsonSerializerSettings { ContractResolver = new UnderscoreContractResolver() }))
+                new JsonSerializerOptions 
+                { 
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+                    WriteIndented = true,
+                }))
             {
                 client.QueryParams.Add("sensor", "false");
                 client.QueryParams.Add("origins", "95969");

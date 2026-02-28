@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <VersionPrefix>7.0.1</VersionPrefix>
+    <Company>Devlords Cooperative</Company>
+    <Authors>devlord</Authors>
+    <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
+    <Copyright>Copyright © 2026 Aaron Lord</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>utils utilities email gmail mailbot</PackageTags>
+    <PackageSummary>Utilities class library so you don't have to rewrite your utilities on every project.</PackageSummary>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Devlord.Utilities\Devlord.Utilities.csproj" />
+    <PackageReference Include="MailKit" Version="4.15.0" />
+  </ItemGroup>
+
+</Project>

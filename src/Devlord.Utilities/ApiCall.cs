@@ -4,8 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json;
 
 #pragma warning disable S1449 // Culture should be specified for "string" operations
 
@@ -15,9 +14,9 @@ namespace Devlord.Utilities
     {
         #region Fields
 
-        private readonly HttpClient _client = new HttpClient();
+        private readonly HttpClient _client = new();
 
-        private readonly JsonSerializerSettings _settings;
+        private readonly JsonSerializerOptions _settings;
 
         private bool _disposed;
 
@@ -33,10 +32,10 @@ namespace Devlord.Utilities
             QueryParams = new Dictionary<string, string>();
             Method = "GET";
             _endPoint = endpoint;
-            _settings = new JsonSerializerSettings { ContractResolver = new DefaultContractResolver() };
+            _settings = new JsonSerializerOptions();
         }
 
-        public ApiCall(string endpoint, JsonSerializerSettings settings)
+        public ApiCall(string endpoint, JsonSerializerOptions settings)
             : this(endpoint)
         {
             _settings = settings;
@@ -49,7 +48,7 @@ namespace Devlord.Utilities
 
         protected ApiCall()
         {
-            _settings = new JsonSerializerSettings { ContractResolver = new DefaultContractResolver() };
+            _settings = new JsonSerializerOptions();
         }
 
         #endregion
@@ -91,7 +90,7 @@ namespace Devlord.Utilities
             }
             else
             {
-                serialize = JsonConvert.SerializeObject;
+                serialize = x => JsonSerializer.Serialize(x);
                 format = "application/json";
             }
 
@@ -131,7 +130,7 @@ namespace Devlord.Utilities
                 // Assume we know how to deserialize the object.
                 if (format.EndsWith("json"))
                 {
-                    var dataItem = JsonConvert.DeserializeObject<T>(content, _settings);
+                    var dataItem = JsonSerializer.Deserialize<T>(content, _settings);
 
                     return new ApiResult<dynamic> { StatusCode = response.StatusCode, DataItem = dataItem };
                 }
