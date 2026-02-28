@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Devlord.Utilities
+﻿namespace Devlord.Utilities.Mail
 {
     /// <summary>
     /// The throttles.

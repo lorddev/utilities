@@ -9,14 +9,12 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Devlord.Utilities.Exceptions;
 using Microsoft.Extensions.Options;
 
 [assembly: InternalsVisibleTo("Devlord.Utilities.Tests")]
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     public class MailbotFactory : IMailbotFactory
     {
@@ -56,7 +54,7 @@ namespace Devlord.Utilities
                     SmtpServer = thisOptions.SmtpServer,
                     SmtpPort = thisOptions.SmtpPort,
                     SmtpLogin = thisOptions.SmtpLogin,
-                    EncryptedPassword = thisOptions.SmtpPassword,
+                    SmtpPassword = thisOptions.SmtpPassword,
                     Throttles = new Throttles(thisOptions.MaxPerMinute, thisOptions.MaxPerHour, thisOptions.MaxPerDay)
                 };
 

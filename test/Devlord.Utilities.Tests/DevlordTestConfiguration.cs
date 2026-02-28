@@ -9,6 +9,7 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Devlord.Utilities.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -27,7 +28,8 @@ public class DevlordTestConfiguration
             .AddUserSecrets<DistanceApiTests>()
             .Build();
         var services = new ServiceCollection().AddOptions();
-        services.AddDevlordUtilities(config.GetSection("Devlord.Utilities"));
+        services.AddDevlordMail(config.GetSection("Devlord.Utilities"));
+        services.AddDevlordMaps(config.GetSection("Devlord.Utilities"));
         Options = services.BuildServiceProvider().GetService<IOptions<DevlordOptions>>().Value;
         //return config;
     }

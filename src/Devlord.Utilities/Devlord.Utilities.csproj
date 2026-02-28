@@ -1,41 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <Version>6.0.0</Version>
+    <VersionPrefix>7.0.1</VersionPrefix>
     <Company>Devlords Cooperative</Company>
     <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
-    <Copyright>Copyright © 2022 Aaron Lord</Copyright>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</PackageLicenseUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</PackageIconUrl>
+    <Copyright>Copyright © 2026 Aaron Lord</Copyright>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageIcon>devlord-105.png</PackageIcon>
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageTags>utils utilities email distance-matrix micro-orm logging encryption</PackageTags>
+    <PackageTags>utils utilities email distance-matrix micro-orm</PackageTags>
     <PackageSummary>Utilities class library so you don't have to rewrite your utilities on every project.</PackageSummary>
-    <PackageReleaseNotes>...</PackageReleaseNotes>
     <!-- Makes the TypeScript compilation task a no-op -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <NuspecFile>Devlord.Utilities.nuspec</NuspecFile>
     <UserSecretsId>22b9d517-6954-4beb-b7be-ba24eb9ac441</UserSecretsId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="2.1.1" />
-    <PackageReference Include="Elmah.Io.AspNetCore" Version="3.2.39-pre" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
-    <ProjectReference Include="..\Encryptamajig\Encryptamajig.csproj" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
-    <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
-    <PackageReference Include="MailKit" Version="1.12.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.22" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\ExceptionText.Designer.cs">
@@ -43,6 +34,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ExceptionText.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt" Pack="true" PackagePath="" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\images\devlord-105.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\ExceptionText.resx">

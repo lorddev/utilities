@@ -32,7 +32,7 @@ namespace Devlord.Utilities.Services.Tests
         [Fact]
         public void TestContinuousLoop()
         {
-            Console.WriteLine(@"Test app start logging.");
+            _output.WriteLine("Test app start logging.");
             var success = false;
             ServiceTimer timedMultiple = new ContinuousLoop();
             timedMultiple.AddEvent(LoopedElapsed)

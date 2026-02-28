@@ -16,11 +16,10 @@ namespace Devlord.Utilities
 {
     public static class DevlordSettingsExtension
     {
-        public static IServiceCollection AddDevlordUtilities(this IServiceCollection services,
+        public static IServiceCollection AddDevlordMaps(this IServiceCollection services,
             IConfiguration namedConfigurationSection)
         {
             services.Configure<DevlordOptions>(namedConfigurationSection);
-            services.AddSingleton<IMailbotFactory, MailbotFactory>();
 
             return services;
         }

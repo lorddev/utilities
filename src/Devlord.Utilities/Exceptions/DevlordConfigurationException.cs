@@ -21,10 +21,5 @@ namespace Devlord.Utilities.Exceptions
         public DevlordConfigurationException(string s) : base(s)
         {
         }
-
-        protected DevlordConfigurationException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-
-        }
     }
 }

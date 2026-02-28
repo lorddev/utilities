@@ -1,19 +1,20 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">--------------------------------------------------------------------------------------------------------------------&#xD;
-&lt;copyright file="$FILENAME$" company="Lord Design"&gt;&#xD;
-  © $CURRENT_YEAR$ Lord Design&#xD;
+&lt;copyright file="${File.FileName}" company="Lord Design"&gt;&#xD;
+  © ${CurrentDate.Year} Lord Design&#xD;
 &lt;/copyright&gt;&#xD;
 &lt;license type="GPL-3.0"&gt;&#xD;
   You may use freely and commercially without modification; if you make changes, please share back to the&#xD;
   community. &#xD;
 &lt;/license&gt;&#xD;
-&lt;author&gt;$USER_NAME$&lt;/author&gt;&#xD;
+&lt;author&gt;${User.Name}&lt;/author&gt;&#xD;
 --------------------------------------------------------------------------------------------------------------------&#xD;
 </s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=DR/@EntryIndexedValue">DR</s:String>
 	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Devlord_002EUtilities_003B_002A_003BDevlord_002EUtilities_002EProperties_002E_002A_003B_002A/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=Devlord_002EUtilities_003B_002A_003BDevlord_002EUtilities_002EResources_002E_002A_003B_002A/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EdotCover_002EIde_002ECore_002EFilterManagement_002EModel_002ESolutionFilterSettingsManagerMigrateSettings/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EFeature_002EServices_002ECodeCleanup_002EFileHeader_002EFileHeaderSettingsMigrate/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/FilterSettingsManager/CoverageFilterXml/@EntryValue">&lt;data&gt;&lt;IncludeFilters /&gt;&lt;ExcludeFilters&gt;&lt;Filter ModuleMask="Devlord.Utilities" ModuleVersionMask="*" ClassMask="Devlord.Utilities.Properties.*" FunctionMask="*" IsEnabled="True" /&gt;&lt;Filter ModuleMask="Devlord.Utilities" ModuleVersionMask="*" ClassMask="Devlord.Utilities.Resources.*" FunctionMask="*" IsEnabled="True" /&gt;&lt;/ExcludeFilters&gt;&lt;/data&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=botmail/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Devlord/@EntryIndexedValue">True</s:Boolean>

@@ -28,16 +28,17 @@ namespace Devlord.Utilities.Services
         /// <summary>
         /// Adding multiple events to the timer will allow the events to run consecutively, though in no particular order.
         /// </summary>
-        /// <param name="event"></param>
+        /// <param name="elapsedHandler"></param>
         /// <returns></returns>
-        public override ServiceTimer AddEvent(ServiceTimerEventHandler @event)
+        
+        public override ServiceTimer AddEvent(ServiceTimerEventHandler elapsedHandler)
         {
             _queuedTimers++;
             Events += (s, e) =>
             {
                 try
                 {
-                    @event.Invoke(this, e);
+                    elapsedHandler.Invoke(this, e);
                 }
                 catch (Exception error)
                 {

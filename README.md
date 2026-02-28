@@ -1,12 +1,11 @@
-devlord utilities
+Devlord.Utilities
 ====================
 
+A useful class library for universal utilities like consuming RESTful APIs.
 
-A useful class library for universal utilities like encryption, sending emails, and consuming RESTful APIs.
-
-| Master      | Develop      | NuGet      |
-| -----       | -----        | -----      |
-| [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/master?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [![NuGet Package](https://buildstats.info/nuget/Devlord.Utilities)](https://www.nuget.org/packages/Devlord.Utilities/) |
+| Main        | Develop    | NuGet      |
+| -----       | -----      | -----      |
+| [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![NuGet](https://img.shields.io/badge/nuget-%23004880.svg?style=for-the-badge&logo=nuget&logoColor=white)](https://www.nuget.org/packages/Devlord.Utilities/) |
 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
@@ -16,13 +15,20 @@ Or from the command-line:
 
     dotnet add package Devlord.Utilities
 
+### Breaking Changes
+
+* Mail utilities have been moved to the Devlord.Utilities.Mail package.
+* Maps API utilities have been moved to the Devlord.Utilities.MapsApi package.
+* Encryption has been deprecated because the protocols are no longer recommended.
+* UnderscoreContractResolver has been removed in favor of System.Text.Json snake case handling.
+* ValueText.Value has been changed from string to decimal.
+
 ### Feature Summary
 
 * .NET Core compatibility
 * System.Threading.Timers service clocks
 * Email throttling to help you avoid being suspended by your ISP
 * Generic HTTP API wrappers
-* Two-way AES encryption
 * "Micro-ORM" DataReader mapper for when using a full-featured ORM would be overkill
 
 More details below, but for even _more_ details, see the [project wiki](https://github.com/lorddev/utilities/wiki).
@@ -88,11 +94,6 @@ A multithreaded SMTP queued mail sender, has a configurable throttle for mail fr
   }
 }
 ```
-
-### Crypt
-
-Bidirectional encryption methods useful for storing credit cards or encrypting passwords or API keys to save in a project's
-configuration files. (Not recommend for use with user's site credentials as those should use one-way encryption.)
 
 ### DRMapper
 

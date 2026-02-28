@@ -17,7 +17,7 @@ jobs:
           dotnet-version: 8.0.x
           
       - name: Build release
-        run: dotnet build src/Devlord.Utilities/Devlord.Utilities.csproj --configuration Release
+        run: dotnet build --configuration Release
       - name: Pack prerelease with build number
         if: "github.event.release.prerelease"
         run: |
