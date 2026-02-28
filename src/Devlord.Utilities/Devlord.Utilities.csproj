@@ -10,7 +10,7 @@
     <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
     <Copyright>Copyright © 2026 Aaron Lord</Copyright>
-    <PackageLicense>LICENSE</PackageLicense>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageIcon>devlord-105.png</PackageIcon>
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
@@ -36,7 +36,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\..\LICENSE.txt" Pack="true" PackagePath="" />
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\images\devlord-105.png" Pack="true" PackagePath="" />
   </ItemGroup>

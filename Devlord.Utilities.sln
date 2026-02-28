@@ -10,7 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33918F2B-0111-483C-B796-328D8AB07E35}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
-		LICENSE = LICENSE
+		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 		images\devlord-105.png = images\devlord-105.png
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
