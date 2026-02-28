@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
     <Copyright>Copyright © 2026 Aaron Lord</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</PackageLicenseUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/lorddev/devlords-org/develop/Image.png</PackageIconUrl>
+    <PackageIcon>devlord-105.png</PackageIcon>
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>utils utilities email distance-matrix micro-orm</PackageTags>
@@ -36,7 +36,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\images\devlord-105.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\ExceptionText.resx">
