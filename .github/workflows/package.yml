@@ -10,6 +10,7 @@ jobs:
     permissions:
       packages: write
       contents: read
+      id-token: write # Explicitly grant write permission for the OIDC token
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-dotnet@v4
