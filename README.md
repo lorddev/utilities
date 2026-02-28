@@ -3,9 +3,9 @@ Devlord.Utilities
 
 A useful class library for universal utilities like consuming RESTful APIs.
 
-| Build       | NuGet      |
-| -----       | -----      |
-| [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [NuGet](https://www.nuget.org/packages/Devlord.Utilities/) |
+| Main        | Develop    | NuGet      |
+| -----       | -----      | -----      |
+| [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [NuGet](https://www.nuget.org/packages/Devlord.Utilities/) |
 
 To install Devlord.Utilities, run the following command in the Package Manager Console:
 
