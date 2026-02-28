@@ -1,4 +1,4 @@
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     public enum MailFormat
     {

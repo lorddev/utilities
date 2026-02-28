@@ -1,4 +1,4 @@
-Devlord.Utilities
+Devlord.Utilities.MapsApi
 ====================
 
 
@@ -8,44 +8,18 @@ A useful class library for universal utilities like sending emails and consuming
 | -----       | -----        | -----      |
 | [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![Build status](https://ci.appveyor.com/api/projects/status/i0us4v5jxi6llk3e/branch/develop?svg=true)](https://ci.appveyor.com/project/lorddev/utilities/branch/develop) | [NuGet](https://www.nuget.org/packages/Devlord.Utilities/) |
 
-To install Devlord.Utilities, run the following command in the Package Manager Console:
+To install Devlord.Utilities.MapsApi, run the following command in the Package Manager Console:
 
-    PM> Install-Package Devlord.Utilities
-    
+    PM> Install-Package Devlord.Utilities.MapsApi
+
 Or from the command-line:
 
-    dotnet add package Devlord.Utilities
+    dotnet add package Devlord.Utilities.MapsApi
 
-### Breaking Changes
+### Changes from Devlord.Utilities 6.0
 
-* Mail utilities have been moved to the Devlord.Utilities.Mail package.
-* Maps API utilities have been moved to the Devlord.Utilities.MapsApi package.
-* Encryption has been deprecated because the protocols are no longer recommended.
 * UnderscoreContractResolver has been removed in favor of System.Text.Json snake case handling.
 * ValueText.Value has been changed from string to decimal.
-
-### Feature Summary
-
-* .NET Core compatibility
-* System.Threading.Timers service clocks
-* Email throttling to help you avoid being suspended by your ISP
-* Generic HTTP API wrappers
-* "Micro-ORM" DataReader mapper for when using a full-featured ORM would be overkill
-
-More details below, but for even _more_ details, see the [project wiki](https://github.com/lorddev/utilities/wiki).
-
-### Service Timers
-
-We've provided 3 types of timers for back-end services to execute operations 
-* At a certain time
-* At a certain regular interval
-* Continuously, repeating an action as soon as the previous action is complete
-
-### ApiCall
-
-The `ApiCall` class wraps the .NET HttpClient, and returns a deserialized object using Generics. It also features a Dictionary 
-for query parameter input. The `WebApiCall` subclass will build your endpoint for ASP.NET MVC Web API based on the supplied 
-controller, action, and id as input parameters.
 
 ### Distance API
 
@@ -66,45 +40,14 @@ Usage with a custom JSON contract resolver that converts the Google JSON propert
     }
 ```
 
-### DataManager
-
-A handy generic DataManager abstract base class for your business layer that serves to enforce a CRUD contract between your 
-business entities and your data layer. Useful for pagination as well.
-
-### Mailbot
-
-A multithreaded SMTP queued mail sender, has a configurable throttle for mail frequency sent by a single account.
-
 **Configuration**
 
 ```json
 {
   "Devlord.Utilities": {
     "GoogleMapsApiKey": "",
-    "MailSettings": [
-      {
-        "Name": "Gmail",
-        "SmtpServer": "mail.google.com",
-        "SmtpPort": 587,
-        "SmtpPassword": "",
-        "MaxPerMinute": 500,
-        "MaxPerHour": 500,
-        "MaxPerDay": 500
-      }
-    ]
   }
 }
-```
-
-### DRMapper
-
-Allows mapping of an `IDataReader` to POCO classes using reflection. It's faster than you might expect.
-
-### Pagination
-
-```csharp
-    var query = from a in context.Addresses where a.IsActive select a;
-    var results = query.GetPage(pageNumber, pageSize); 
 ```
 
 ### Contributing

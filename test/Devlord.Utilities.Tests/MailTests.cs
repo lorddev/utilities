@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Devlord.Utilities.Exceptions;
+using Devlord.Utilities.Mail;
 using Xunit;
 
 namespace Devlord.Utilities.Tests

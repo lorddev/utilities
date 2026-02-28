@@ -12,7 +12,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     public static class DevlordSettingsExtension
     {

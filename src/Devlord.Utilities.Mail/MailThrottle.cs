@@ -10,11 +10,7 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     /// <summary>
     /// The mail throttle.

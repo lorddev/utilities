@@ -9,7 +9,7 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     public interface IMailbotFactory
     {

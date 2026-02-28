@@ -9,6 +9,7 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Devlord.Utilities.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

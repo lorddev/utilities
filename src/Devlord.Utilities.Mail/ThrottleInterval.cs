@@ -1,4 +1,4 @@
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     /// <summary>
     /// The throttle interval.

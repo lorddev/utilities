@@ -9,14 +9,12 @@
 // <author>Aaron Lord</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Devlord.Utilities.Exceptions;
 using Microsoft.Extensions.Options;
 
 [assembly: InternalsVisibleTo("Devlord.Utilities.Tests")]
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     public class MailbotFactory : IMailbotFactory
     {

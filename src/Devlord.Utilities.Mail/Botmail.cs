@@ -6,9 +6,7 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     /// <summary>
     /// The botmail.

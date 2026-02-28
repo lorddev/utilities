@@ -10,12 +10,11 @@
 // <author>aaron@lorddesign.net</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 
-namespace Devlord.Utilities
+namespace Devlord.Utilities.Mail
 {
     /// <summary>
     /// Multi-threaded mailer to keep your systems running by sending messages asynchronously. If you're using it in a
