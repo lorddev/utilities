@@ -6,7 +6,7 @@ A useful class library for universal utilities like sending emails and consuming
 
 | Main        | Develop    | NuGet      |
 | -----       | -----      | -----      |
-| [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [NuGet](https://www.nuget.org/packages/Devlord.Utilities.MapsApi/) |
+| [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![.NET](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml/badge.svg?branch=develop)](https://github.com/lorddev/utilities/actions/workflows/dotnet.yml) | [![NuGet](https://img.shields.io/badge/nuget-%23004880.svg?style=for-the-badge&logo=nuget&logoColor=white)](https://www.nuget.org/packages/Devlord.Utilities.MapsApi/) |
 
 To install Devlord.Utilities.MapsApi, run the following command in the Package Manager Console:
 
