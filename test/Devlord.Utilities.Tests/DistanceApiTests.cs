@@ -26,7 +26,7 @@ namespace Devlord.Utilities.Tests
             return double.Parse(resultDuration);
         }
 
-        [Fact]
+        [Fact(Skip = "Needs to be run with user secrets")]
         public void ReturnsDeserializedResults()
         {
             var endPoint =
@@ -57,7 +57,7 @@ namespace Devlord.Utilities.Tests
             }
         }
 
-        [Fact]
+        [Fact(Skip = "Needs to be run with user secrets")]
         public void ReturnsExpectedResultWithCustomApi()
         {
             string endPoint =
@@ -135,7 +135,7 @@ this comparison to allow for variations in travel time.");
             }
         }
 
-        [Fact]
+        [Fact(Skip = "Needs to be run with user secrets")]
         public void ReturnsResultWithCustomApiAndQueryParams()
         {
             string baseUri = "https://maps.googleapis.com/maps/api/distancematrix/json?key="
