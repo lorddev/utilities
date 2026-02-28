@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <VersionPrefix>7.0.1</VersionPrefix>
@@ -9,7 +9,7 @@
     <Authors>devlord</Authors>
     <PackageProjectUrl>https://github.com/lorddev/utilities</PackageProjectUrl>
     <Copyright>Copyright © 2026 Aaron Lord</Copyright>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/lorddev/utilities/master/LICENSE</PackageLicenseUrl>
+    <PackageLicense>LICENSE</PackageLicense>
     <PackageIcon>devlord-105.png</PackageIcon>
     <RepositoryUrl>https://github.com/lorddev/utilities</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
@@ -20,6 +20,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\images\devlord-105.png" Pack="true" PackagePath="" />
   </ItemGroup>
