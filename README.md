@@ -17,8 +17,8 @@ Or from the command-line:
 
 ### Breaking Changes
 
-* Mail utilities have been moved to the Devlord.Utilities.Mail package.
-* Maps API utilities have been moved to the Devlord.Utilities.MapsApi package.
+* Mail utilities have been moved to the [Devlord.Utilities.Mail](https://www.nuget.org/packages/Devlord.Utilities.Mail) package.
+* Maps API utilities have been moved to the [Devlord.Utilities.MapsApi](https://www.nuget.org/packages/Devlord.Utilities.MapsApi) package.
 * Encryption has been deprecated because the protocols are no longer recommended.
 * UnderscoreContractResolver has been removed in favor of System.Text.Json snake case handling.
 * ValueText.Value has been changed from string to decimal.
