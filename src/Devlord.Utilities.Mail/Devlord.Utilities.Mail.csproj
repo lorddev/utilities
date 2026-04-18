@@ -27,7 +27,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\Devlord.Utilities\Devlord.Utilities.csproj" />
-    <PackageReference Include="MailKit" Version="4.15.0" />
+    <PackageReference Include="MailKit" Version="4.16.0" />
   </ItemGroup>
 
 </Project>
